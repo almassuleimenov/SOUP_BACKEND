@@ -1,0 +1,333 @@
+[   0.00s] run 20261110T233654Z-FINAL-main-10k  os=windows  args=-db postgres://jobq:jobq@127.0.0.1:55432/jobq_chaos?sslmode=disable -jobs 10000 -workers 8 -out results -label FINAL-main-10k
+[   0.00s] config jobs=10000 workers=8 kill-every=2s pause-prob=0.25(pause supported=false) dup=0.30 mismatch=0.02 cancel=0.10 fail=0.05 long=0.05/4000ms freeze=0.0200 lease=2s hb=500ms effect=tx unsafe=""
+[   3.88s] chaos: kill -9 w003 (kills=1)
+[   6.46s] chaos: kill -9 w004 (kills=2)
+[   6.62s] progress posts=7230 cancels=112 load_done=false cancelled=137 queued=4288 kills=2
+[   9.15s] chaos: kill -9 w009 (kills=3)
+[  11.25s] progress posts=17091 cancels=417 load_done=false cancelled=418 queued=8663 running=8 succeeded=40 kills=3
+[  11.71s] chaos: kill -9 w008 (kills=4)
+[  14.60s] chaos: kill -9 w001 (kills=5)
+[  14.90s] load finished in 13.703s: posts=19208 dup_posts=9208 mismatch_posts=217 cancels=530 client_retries=0 net_errors=0 5xx=0
+[  16.15s] chaos: kill -9 w002 (kills=6)
+[  16.22s] progress posts=19208 cancels=531 load_done=true cancelled=530 queued=9302 running=7 succeeded=161 kills=6
+[  18.54s] chaos: kill -9 w010 (kills=7)
+[  20.82s] chaos: kill -9 w012 (kills=8)
+[  21.21s] progress posts=19208 cancels=537 load_done=true cancelled=536 queued=9177 running=8 succeeded=279 kills=8
+[  22.86s] chaos: kill -9 w014 (kills=9)
+[  24.09s] chaos: kill -9 w007 (kills=10)
+[  26.21s] progress posts=19208 cancels=542 load_done=true cancelled=541 queued=9015 running=9 succeeded=435 kills=10
+[  27.05s] chaos: kill -9 w013 (kills=11)
+[  28.56s] chaos: kill -9 w019 (kills=12)
+[  30.50s] chaos: kill -9 w016 (kills=13)
+[  31.21s] progress posts=19208 cancels=548 load_done=true cancelled=547 queued=8906 running=8 succeeded=539 kills=13
+[  31.60s] chaos: kill -9 w018 (kills=14)
+[  32.83s] chaos: kill -9 w017 (kills=15)
+[  35.54s] chaos: kill -9 w021 (kills=16)
+[  36.21s] progress posts=19208 cancels=556 load_done=true cancelled=555 queued=8727 running=8 succeeded=710 kills=16
+[  36.77s] chaos: kill -9 w022 (kills=17)
+[  39.06s] chaos: kill -9 w023 (kills=18)
+[  41.21s] progress posts=19208 cancels=566 load_done=true cancelled=563 queued=8582 running=7 succeeded=848 kills=18
+[  41.29s] chaos: kill -9 w025 (kills=19)
+[  43.36s] chaos: kill -9 w006 (kills=20)
+[  44.82s] chaos: kill -9 w005 (kills=21)
+[  46.21s] progress posts=19208 cancels=570 load_done=true cancelled=568 queued=8484 running=8 succeeded=940 kills=21
+[  46.78s] chaos: kill -9 w015 (kills=22)
+[  48.33s] chaos: kill -9 w011 (kills=23)
+[  50.08s] chaos: kill -9 w024 (kills=24)
+[  51.21s] progress posts=19208 cancels=580 load_done=true cancelled=578 queued=8326 running=8 succeeded=1088 kills=24
+[  52.28s] chaos: kill -9 w026 (kills=25)
+[  54.70s] chaos: kill -9 w033 (kills=26)
+[  55.89s] chaos: kill -9 w020 (kills=27)
+[  56.21s] progress posts=19208 cancels=585 load_done=true cancelled=582 queued=8190 running=8 succeeded=1220 kills=27
+[  57.84s] chaos: kill -9 w035 (kills=28)
+[  59.45s] chaos: kill -9 w030 (kills=29)
+[  61.22s] progress posts=19208 cancels=590 load_done=true cancelled=588 queued=8085 running=9 succeeded=1318 kills=29
+[  61.53s] chaos: kill -9 w037 (kills=30)
+[  63.99s] chaos: kill -9 w028 (kills=31)
+[  66.21s] progress posts=19208 cancels=599 load_done=true cancelled=596 queued=7945 running=8 succeeded=1451 kills=31
+[  66.71s] chaos: kill -9 w039 (kills=32)
+[  68.50s] chaos: kill -9 w027 (kills=33)
+[  70.47s] chaos: kill -9 w029 (kills=34)
+[  71.21s] progress posts=19208 cancels=610 load_done=true cancelled=608 queued=7796 running=7 succeeded=1589 kills=34
+[  71.54s] chaos: kill -9 w031 (kills=35)
+[  74.39s] chaos: kill -9 w036 (kills=36)
+[  75.67s] chaos: kill -9 w041 (kills=37)
+[  76.21s] progress posts=19208 cancels=616 load_done=true cancelled=614 queued=7657 running=9 succeeded=1720 kills=37
+[  76.88s] chaos: kill -9 w045 (kills=38)
+[  79.21s] chaos: kill -9 w032 (kills=39)
+[  81.21s] progress posts=19208 cancels=626 load_done=true cancelled=624 queued=7507 running=7 succeeded=1862 kills=39
+[  81.29s] chaos: kill -9 w044 (kills=40)
+[  82.50s] chaos: kill -9 w048 (kills=41)
+[  84.30s] chaos: kill -9 w047 (kills=42)
+[  85.91s] chaos: kill -9 w042 (kills=43)
+[  86.21s] progress posts=19208 cancels=638 load_done=true cancelled=636 queued=7352 running=8 succeeded=2004 kills=43
+[  88.05s] chaos: kill -9 w049 (kills=44)
+[  89.74s] chaos: kill -9 w040 (kills=45)
+[  91.21s] progress posts=19208 cancels=646 load_done=true cancelled=644 queued=7239 running=7 succeeded=2110 kills=45
+[  92.17s] chaos: kill -9 w034 (kills=46)
+[  93.44s] chaos: kill -9 w050 (kills=47)
+[  96.23s] progress posts=19208 cancels=654 load_done=true cancelled=651 queued=7149 running=8 succeeded=2192 kills=47
+[  96.30s] chaos: kill -9 w055 (kills=48)
+[  97.90s] chaos: kill -9 w056 (kills=49)
+[  99.70s] chaos: kill -9 w046 (kills=50)
+[ 101.21s] progress posts=19208 cancels=657 load_done=true cancelled=655 queued=7088 running=6 succeeded=2251 kills=50
+[ 102.06s] chaos: kill -9 w054 (kills=51)
+[ 103.78s] chaos: kill -9 w058 (kills=52)
+[ 106.25s] progress posts=19208 cancels=661 load_done=true cancelled=659 queued=7007 running=8 succeeded=2326 kills=52
+[ 106.49s] chaos: kill -9 w060 (kills=53)
+[ 109.13s] chaos: kill -9 w053 (kills=54)
+[ 111.22s] progress posts=19208 cancels=666 load_done=true cancelled=663 queued=6886 running=7 succeeded=2444 kills=54
+[ 111.38s] chaos: kill -9 w059 (kills=55)
+[ 114.24s] chaos: kill -9 w063 (kills=56)
+[ 116.22s] progress posts=19208 cancels=678 load_done=true cancelled=673 queued=6740 running=8 succeeded=2579 kills=56
+[ 116.75s] chaos: kill -9 w057 (kills=57)
+[ 119.11s] chaos: kill -9 w038 (kills=58)
+[ 120.89s] chaos: kill -9 w066 (kills=59)
+[ 121.25s] progress posts=19208 cancels=684 load_done=true cancelled=680 queued=6635 running=5 succeeded=2680 kills=59
+[ 123.73s] chaos: kill -9 w061 (kills=60)
+[ 124.96s] chaos: kill -9 w062 (kills=61)
+[ 126.23s] progress posts=19208 cancels=686 load_done=true cancelled=682 queued=6565 running=9 succeeded=2744 kills=61
+[ 126.51s] chaos: kill -9 w043 (kills=62)
+[ 128.04s] chaos: kill -9 w070 (kills=63)
+[ 130.68s] chaos: kill -9 w065 (kills=64)
+[ 131.22s] progress posts=19208 cancels=689 load_done=true cancelled=685 queued=6498 running=8 succeeded=2809 kills=64
+[ 132.05s] chaos: kill -9 w071 (kills=65)
+[ 134.11s] chaos: kill -9 w072 (kills=66)
+[ 136.14s] chaos: kill -9 w068 (kills=67)
+[ 136.23s] progress posts=19208 cancels=698 load_done=true cancelled=693 queued=6402 running=6 succeeded=2899 kills=67
+[ 137.53s] chaos: kill -9 w064 (kills=68)
+[ 139.66s] chaos: kill -9 w051 (kills=69)
+[ 141.21s] progress posts=19208 cancels=700 load_done=true cancelled=696 queued=6313 running=6 succeeded=2985 kills=69
+[ 142.03s] chaos: kill -9 w075 (kills=70)
+[ 144.98s] chaos: kill -9 w074 (kills=71)
+[ 146.23s] progress posts=19208 cancels=705 load_done=true cancelled=701 queued=6200 running=6 succeeded=3093 kills=71
+[ 146.50s] chaos: kill -9 w079 (kills=72)
+[ 148.24s] chaos: kill -9 w073 (kills=73)
+[ 149.31s] chaos: kill -9 w069 (kills=74)
+[ 150.86s] chaos: kill -9 w081 (kills=75)
+[ 151.23s] progress posts=19208 cancels=711 load_done=true cancelled=707 queued=6118 running=7 succeeded=3168 kills=75
+[ 153.25s] chaos: kill -9 w077 (kills=76)
+[ 154.82s] chaos: kill -9 w083 (kills=77)
+[ 156.21s] progress posts=19208 cancels=715 load_done=true cancelled=711 queued=6031 running=8 succeeded=3250 kills=77
+[ 156.61s] chaos: kill -9 w085 (kills=78)
+[ 158.71s] chaos: kill -9 w080 (kills=79)
+[ 161.21s] progress posts=19208 cancels=722 load_done=true cancelled=718 queued=5921 running=7 succeeded=3354 kills=79
+[ 161.42s] chaos: kill -9 w084 (kills=80)
+[ 162.47s] chaos: kill -9 w067 (kills=81)
+[ 164.14s] chaos: kill -9 w089 (kills=82)
+[ 166.21s] progress posts=19208 cancels=726 load_done=true cancelled=722 queued=5801 running=7 succeeded=3470 kills=82
+[ 166.84s] chaos: kill -9 w078 (kills=83)
+[ 169.22s] chaos: kill -9 w088 (kills=84)
+[ 171.04s] chaos: kill -9 w082 (kills=85)
+[ 171.21s] progress posts=19208 cancels=735 load_done=true cancelled=731 queued=5708 running=8 succeeded=3553 kills=85
+[ 173.47s] chaos: kill -9 w086 (kills=86)
+[ 175.66s] chaos: kill -9 w087 (kills=87)
+[ 176.21s] progress posts=19208 cancels=751 load_done=true cancelled=747 queued=5550 running=9 succeeded=3694 kills=87
+[ 177.85s] chaos: kill -9 w093 (kills=88)
+[ 179.14s] chaos: kill -9 w076 (kills=89)
+[ 180.94s] chaos: kill -9 w097 (kills=90)
+[ 181.21s] progress posts=19208 cancels=758 load_done=true cancelled=754 queued=5407 running=7 succeeded=3832 kills=90
+[ 182.57s] chaos: kill -9 w094 (kills=91)
+[ 184.18s] chaos: kill -9 w090 (kills=92)
+[ 185.75s] chaos: kill -9 w091 (kills=93)
+[ 186.21s] progress posts=19208 cancels=765 load_done=true cancelled=761 queued=5308 running=7 succeeded=3924 kills=93
+[ 187.65s] chaos: kill -9 w095 (kills=94)
+[ 189.34s] chaos: kill -9 w052 (kills=95)
+[ 191.02s] chaos: kill -9 w099 (kills=96)
+[ 191.22s] progress posts=19208 cancels=772 load_done=true cancelled=768 queued=5172 running=8 succeeded=4052 kills=96
+[ 192.98s] chaos: kill -9 w101 (kills=97)
+[ 194.18s] chaos: kill -9 w100 (kills=98)
+[ 196.21s] progress posts=19208 cancels=788 load_done=true cancelled=784 queued=4979 running=9 succeeded=4228 kills=98
+[ 196.85s] chaos: kill -9 w102 (kills=99)
+[ 198.52s] chaos: kill -9 w098 (kills=100)
+[ 200.50s] chaos: kill -9 w103 (kills=101)
+[ 201.21s] progress posts=19208 cancels=796 load_done=true cancelled=792 queued=4850 running=7 succeeded=4351 kills=101
+[ 202.42s] chaos: kill -9 w107 (kills=102)
+[ 204.11s] chaos: kill -9 w109 (kills=103)
+[ 205.50s] chaos: kill -9 w092 (kills=104)
+[ 206.21s] progress posts=19208 cancels=803 load_done=true cancelled=799 queued=4738 running=8 succeeded=4455 kills=104
+[ 207.93s] chaos: kill -9 w106 (kills=105)
+[ 210.35s] chaos: kill -9 w108 (kills=106)
+[ 211.21s] progress posts=19208 cancels=811 load_done=true cancelled=807 queued=4632 running=9 succeeded=4552 kills=106
+[ 212.74s] chaos: kill -9 w096 (kills=107)
+[ 215.46s] chaos: kill -9 w112 (kills=108)
+[ 216.21s] progress posts=19208 cancels=824 load_done=true cancelled=819 queued=4497 running=8 succeeded=4676 kills=108
+[ 217.90s] chaos: kill -9 w104 (kills=109)
+[ 219.21s] chaos: kill -9 w105 (kills=110)
+[ 221.21s] progress posts=19208 cancels=830 load_done=true cancelled=826 queued=4373 running=8 succeeded=4793 kills=110
+[ 221.92s] chaos: kill -9 w111 (kills=111)
+[ 223.25s] chaos: kill -9 w113 (kills=112)
+[ 224.53s] chaos: kill -9 w118 (kills=113)
+[ 226.21s] progress posts=19208 cancels=833 load_done=true cancelled=829 queued=4270 running=8 succeeded=4893 kills=113
+[ 226.98s] chaos: kill -9 w116 (kills=114)
+[ 228.77s] chaos: kill -9 w120 (kills=115)
+[ 231.22s] progress posts=19208 cancels=836 load_done=true cancelled=832 queued=4214 running=6 succeeded=4948 kills=115
+[ 231.79s] chaos: kill -9 w122 (kills=116)
+[ 233.78s] chaos: kill -9 w123 (kills=117)
+[ 234.99s] chaos: kill -9 w114 (kills=118)
+[ 236.08s] chaos: kill -9 w110 (kills=119)
+[ 236.22s] progress posts=19208 cancels=846 load_done=true cancelled=841 queued=4092 running=8 succeeded=5059 kills=119
+[ 237.45s] chaos: kill -9 w126 (kills=120)
+[ 240.37s] chaos: kill -9 w117 (kills=121)
+[ 241.21s] progress posts=19208 cancels=854 load_done=true cancelled=848 queued=3952 running=8 succeeded=5192 kills=121
+[ 242.76s] chaos: kill -9 w128 (kills=122)
+[ 244.47s] chaos: kill -9 w129 (kills=123)
+[ 246.22s] progress posts=19208 cancels=863 load_done=true cancelled=858 queued=3832 running=5 succeeded=5305 kills=123
+[ 246.31s] chaos: kill -9 w125 (kills=124)
+[ 248.34s] chaos: kill -9 w121 (kills=125)
+[ 250.29s] chaos: kill -9 w131 (kills=126)
+[ 251.22s] progress posts=19208 cancels=865 load_done=true cancelled=860 queued=3739 running=9 succeeded=5392 kills=126
+[ 251.50s] chaos: kill -9 w127 (kills=127)
+[ 253.66s] chaos: kill -9 w132 (kills=128)
+[ 255.87s] chaos: kill -9 w124 (kills=129)
+[ 256.21s] progress posts=19208 cancels=872 load_done=true cancelled=867 queued=3608 running=8 succeeded=5517 kills=129
+[ 258.08s] chaos: kill -9 w133 (kills=130)
+[ 260.12s] chaos: kill -9 w136 (kills=131)
+[ 261.22s] progress posts=19208 cancels=879 load_done=true cancelled=873 queued=3477 running=8 succeeded=5642 kills=131
+[ 261.28s] chaos: kill -9 w134 (kills=132)
+[ 263.56s] chaos: kill -9 w140 (kills=133)
+[ 264.71s] chaos: kill -9 w135 (kills=134)
+[ 266.22s] progress posts=19208 cancels=887 load_done=true cancelled=881 queued=3380 running=9 succeeded=5730 kills=134
+[ 267.18s] chaos: kill -9 w142 (kills=135)
+[ 269.80s] chaos: kill -9 w130 (kills=136)
+[ 271.21s] progress posts=19208 cancels=894 load_done=true cancelled=888 queued=3278 running=9 succeeded=5825 kills=136
+[ 272.62s] chaos: kill -9 w137 (kills=137)
+[ 274.73s] chaos: kill -9 w138 (kills=138)
+[ 276.21s] progress posts=19208 cancels=898 load_done=true cancelled=891 queued=3169 running=6 succeeded=5934 kills=138
+[ 276.34s] chaos: kill -9 w143 (kills=139)
+[ 278.44s] chaos: kill -9 w119 (kills=140)
+[ 280.53s] chaos: kill -9 w146 (kills=141)
+[ 281.21s] progress posts=19208 cancels=904 load_done=true cancelled=898 queued=3018 running=8 succeeded=6076 kills=141
+[ 281.70s] chaos: kill -9 w144 (kills=142)
+[ 283.77s] chaos: kill -9 w149 (kills=143)
+[ 285.19s] chaos: kill -9 w141 (kills=144)
+[ 286.21s] progress posts=19208 cancels=907 load_done=true cancelled=900 queued=2899 running=8 succeeded=6193 kills=144
+[ 287.54s] chaos: kill -9 w145 (kills=145)
+[ 289.32s] chaos: kill -9 w139 (kills=146)
+[ 291.22s] progress posts=19208 cancels=916 load_done=true cancelled=909 queued=2757 running=8 succeeded=6326 kills=147
+[ 291.23s] chaos: kill -9 w150 (kills=147)
+[ 293.64s] chaos: kill -9 w154 (kills=148)
+[ 295.26s] chaos: kill -9 w151 (kills=149)
+[ 296.21s] progress posts=19208 cancels=921 load_done=true cancelled=914 queued=2599 running=9 succeeded=6478 kills=149
+[ 296.76s] chaos: kill -9 w115 (kills=150)
+[ 299.05s] chaos: kill -9 w147 (kills=151)
+[ 300.86s] chaos: kill -9 w155 (kills=152)
+[ 301.21s] progress posts=19208 cancels=923 load_done=true cancelled=916 queued=2499 running=9 succeeded=6576 kills=152
+[ 302.31s] chaos: kill -9 w152 (kills=153)
+[ 303.68s] chaos: kill -9 w153 (kills=154)
+[ 306.21s] progress posts=19208 cancels=927 load_done=true cancelled=920 queued=2368 running=8 succeeded=6704 kills=154
+[ 306.64s] chaos: kill -9 w156 (kills=155)
+[ 308.94s] chaos: kill -9 w160 (kills=156)
+[ 310.12s] chaos: kill -9 w161 (kills=157)
+[ 311.21s] progress posts=19208 cancels=940 load_done=true cancelled=931 queued=2223 running=8 succeeded=6838 kills=157
+[ 311.78s] chaos: kill -9 w148 (kills=158)
+[ 314.70s] chaos: kill -9 w159 (kills=159)
+[ 316.21s] progress posts=19208 cancels=954 load_done=true cancelled=947 queued=2017 running=9 succeeded=7027 kills=159
+[ 317.58s] chaos: kill -9 w163 (kills=160)
+[ 320.16s] chaos: kill -9 w164 (kills=161)
+[ 321.21s] progress posts=19208 cancels=963 load_done=true cancelled=956 queued=1903 running=8 succeeded=7133 kills=161
+[ 322.98s] chaos: kill -9 w165 (kills=162)
+[ 324.67s] chaos: kill -9 w170 (kills=163)
+[ 326.21s] progress posts=19208 cancels=969 load_done=true cancelled=962 queued=1772 running=9 succeeded=7257 kills=163
+[ 327.68s] chaos: kill -9 w169 (kills=164)
+[ 329.51s] chaos: kill -9 w171 (kills=165)
+[ 331.21s] progress posts=19208 cancels=971 load_done=true cancelled=964 queued=1678 running=7 succeeded=7351 kills=165
+[ 331.44s] chaos: kill -9 w162 (kills=166)
+[ 332.58s] chaos: kill -9 w172 (kills=167)
+[ 335.52s] chaos: kill -9 w168 (kills=168)
+[ 336.21s] progress posts=19208 cancels=977 load_done=true cancelled=970 queued=1528 running=9 succeeded=7493 kills=168
+[ 338.06s] chaos: kill -9 w174 (kills=169)
+[ 340.41s] chaos: kill -9 w158 (kills=170)
+[ 341.21s] progress posts=19208 cancels=985 load_done=true cancelled=978 queued=1364 running=8 succeeded=7650 kills=170
+[ 343.40s] chaos: kill -9 w175 (kills=171)
+[ 344.59s] chaos: kill -9 w173 (kills=172)
+[ 345.62s] chaos: kill -9 w167 (kills=173)
+[ 346.21s] progress posts=19208 cancels=996 load_done=true cancelled=987 queued=1222 running=9 succeeded=7782 kills=173
+[ 347.25s] chaos: kill -9 w181 (kills=174)
+[ 348.71s] chaos: kill -9 w178 (kills=175)
+[ 350.10s] chaos: kill -9 w157 (kills=176)
+[ 351.21s] progress posts=19208 cancels=1001 load_done=true cancelled=992 queued=1142 running=8 succeeded=7858 kills=176
+[ 352.16s] chaos: kill -9 w176 (kills=177)
+[ 353.50s] chaos: kill -9 w183 (kills=178)
+[ 355.80s] chaos: kill -9 w180 (kills=179)
+[ 356.21s] progress posts=19208 cancels=1006 load_done=true cancelled=997 queued=1034 running=9 succeeded=7960 kills=179
+[ 358.48s] chaos: kill -9 w186 (kills=180)
+[ 359.94s] chaos: kill -9 w177 (kills=181)
+[ 361.21s] progress posts=19208 cancels=1013 load_done=true cancelled=1004 queued=922 running=8 succeeded=8066 kills=181
+[ 362.89s] chaos: kill -9 w166 (kills=182)
+[ 364.76s] chaos: kill -9 w184 (kills=183)
+[ 366.22s] progress posts=19208 cancels=1022 load_done=true cancelled=1013 queued=799 running=9 succeeded=8179 kills=183
+[ 367.05s] chaos: kill -9 w185 (kills=184)
+[ 369.63s] chaos: kill -9 w189 (kills=185)
+[ 371.21s] progress posts=19208 cancels=1030 load_done=true cancelled=1021 queued=669 running=7 succeeded=8303 kills=185
+[ 371.43s] chaos: kill -9 w190 (kills=186)
+[ 372.74s] chaos: kill -9 w188 (kills=187)
+[ 374.05s] chaos: kill -9 w193 (kills=188)
+[ 375.17s] chaos: kill -9 w192 (kills=189)
+[ 376.21s] progress posts=19208 cancels=1036 load_done=true cancelled=1027 queued=522 running=8 succeeded=8443 kills=189
+[ 376.51s] chaos: kill -9 w179 (kills=190)
+[ 378.88s] chaos: kill -9 w194 (kills=191)
+[ 380.51s] chaos: kill -9 w195 (kills=192)
+[ 381.21s] progress posts=19208 cancels=1037 load_done=true cancelled=1028 queued=474 running=6 succeeded=8492 kills=192
+[ 382.66s] chaos: kill -9 w197 (kills=193)
+[ 384.10s] chaos: kill -9 w199 (kills=194)
+[ 386.21s] progress posts=19208 cancels=1038 load_done=true cancelled=1029 queued=439 running=5 succeeded=8527 kills=194
+[ 387.11s] chaos: kill -9 w187 (kills=195)
+[ 389.05s] chaos: kill -9 w196 (kills=196)
+[ 390.86s] chaos: kill -9 w202 (kills=197)
+[ 391.21s] progress posts=19208 cancels=1038 load_done=true cancelled=1029 queued=412 running=8 succeeded=8551 kills=197
+[ 393.21s] chaos: kill -9 w182 (kills=198)
+[ 396.20s] chaos: kill -9 w206 (kills=199)
+[ 396.22s] progress posts=19208 cancels=1038 load_done=true cancelled=1029 failed=1 queued=396 running=6 succeeded=8568 kills=199
+[ 398.57s] chaos: kill -9 w201 (kills=200)
+[ 400.90s] chaos: kill -9 w204 (kills=201)
+[ 401.21s] progress posts=19208 cancels=1038 load_done=true cancelled=1029 failed=1 queued=333 running=9 succeeded=8628 kills=201
+[ 402.39s] chaos: kill -9 w198 (kills=202)
+[ 405.38s] chaos: kill -9 w205 (kills=203)
+[ 406.21s] progress posts=19208 cancels=1038 load_done=true cancelled=1029 failed=2 queued=298 running=8 succeeded=8663 kills=203
+[ 407.00s] chaos: kill -9 w207 (kills=204)
+[ 408.12s] chaos: kill -9 w203 (kills=205)
+[ 410.73s] chaos: kill -9 w211 (kills=206)
+[ 411.21s] progress posts=19208 cancels=1038 load_done=true cancelled=1029 failed=4 queued=260 running=8 succeeded=8699 kills=206
+[ 413.24s] chaos: kill -9 w214 (kills=207)
+[ 414.33s] chaos: kill -9 w212 (kills=208)
+[ 416.21s] progress posts=19208 cancels=1038 load_done=true cancelled=1029 failed=10 queued=191 running=7 succeeded=8763 kills=208
+[ 416.41s] chaos: kill -9 w208 (kills=209)
+[ 418.34s] chaos: kill -9 w200 (kills=210)
+[ 420.91s] chaos: kill -9 w213 (kills=211)
+[ 421.21s] progress posts=19208 cancels=1038 load_done=true cancelled=1029 failed=97 running=4 succeeded=8870 kills=211
+[ 423.53s] chaos: kill -9 w216 (kills=212)
+[ 425.28s] queue drained 7m4.063s after load start
+[ 425.72s] ==================== RESULT ====================
+[ 425.73s] jobs=10000 workers=8 wall=7m4.063s throughput=23.6 jobs/s  create latency p50=21ms p95=64.8ms p99=161.3ms max=1.147s (n=19425)
+[ 425.76s] end-to-end (DB clock): queue_wait p50=189.776s p99=362.475s | created->succeeded p50=197.373s p99=409.491s max=413.979s
+[ 425.76s] evidence (proves the failure paths were exercised):
+  attempts_per_job  0=523 1=8695 2=369 3=115 4=81 5=217
+  cancel_paths      cancelled_by_reaper_after_worker_death=13 cancelled_by_worker_while_running=492 cancelled_while_queued=523 other:retry=1
+  cancel_responses  200_cancelled=524 202_cancel_requested=505 409_already_succeeded=10
+  effects           jobs_with_effect=8871 total=8871
+  final_states      cancelled=1029 failed=100 succeeded=8871
+  harness           cancel_requests=1039 client_retries=0 dup_posts=9208 http_5xx=0 kills_sigkill=212 mismatch_posts=217 net_errors=0 pauses_sigstop=0 posts=19208 respawns=212 unexpected_worker_exits=0
+  run_outcomes      cancelled=492 failed=93 lease_expired=381 retry=1350 succeeded=8871
+  zombies           fence_only_rejections=11 late_writes_rejected_total=174 runs_with_late_write_rejected=174
+
+[ 425.76s] PASS  no_lost_jobs (every acknowledged key exists with the acknowledged id)                           violations=0
+[ 425.76s] PASS  no_phantom_jobs (db has no job the harness never asked for)                                     violations=0
+[ 425.76s] PASS  idempotency (one job per key; all 2xx for a key carry the same id; <=1 x 201)                   violations=0
+[ 425.76s] PASS  idempotency_mismatch (same key + different body => 422, job unchanged)                          violations=0
+[ 425.76s] PASS  none_stuck (no queued/running job after drain)                                                  violations=0
+[ 425.76s] PASS  at_most_one_effect (no job has >1 side effect)                                                  violations=0
+[ 425.76s] PASS  succeeded_has_exactly_one_effect                                                                violations=0
+[ 425.76s] PASS  non_succeeded_has_no_effect                                                                     violations=0
+[ 425.76s] PASS  no_stale_write (effect comes from the newest run, which is the one that succeeded)              violations=0
+[ 425.76s] PASS  no_double_claim (runs of a job never overlap in time)                                           violations=0
+[ 425.76s] PASS  all_runs_closed (every attempt has an end and an outcome)                                       violations=0
+[ 425.76s] PASS  runs_match_attempts (one job_runs row per counted attempt)                                      violations=0
+[ 425.76s] PASS  terminal_run_matches_state (succeeded <=> exactly one succeeded run)                            violations=0
+[ 425.76s] PASS  cancel_wins (cancel_requested <=> final state cancelled)                                        violations=0
+[ 425.76s] PASS  transition_log_consistent (last logged state = current state; one running entry per attempt)    violations=0
+[ 425.76s] PASS  transition_log_starts_queued                                                                    violations=0
+[ 425.76s] PASS  failure_semantics (jobs that fail every attempt never succeed; failed => attempts exhausted)    violations=0
+[ 425.76s] PASS  cancel_response_consistency (API answer matches final state)                                    violations=0
+[ 425.76s] VERDICT: ALL INVARIANTS HELD
+[ 425.76s] artifacts in results\20261110T233654Z-FINAL-main-10k

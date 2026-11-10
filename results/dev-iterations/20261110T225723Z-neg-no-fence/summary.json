@@ -1,0 +1,150 @@
+{
+  "args": [
+    "-db",
+    "postgres://jobq:jobq@127.0.0.1:55432/jobq_chaos",
+    "-jobs",
+    "1000",
+    "-out",
+    "scratch-results",
+    "-drain-timeout",
+    "2m",
+    "-unsafe",
+    "no-fence",
+    "-freeze-prob",
+    "0.03",
+    "-label",
+    "neg-no-fence"
+  ],
+  "checks": [
+    {
+      "name": "no_lost_jobs (every acknowledged key exists with the acknowledged id)",
+      "violations": 0
+    },
+    {
+      "name": "no_phantom_jobs (db has no job the harness never asked for)",
+      "violations": 0
+    },
+    {
+      "name": "idempotency (one job per key; all 2xx for a key carry the same id; \u003c=1 x 201)",
+      "violations": 0
+    },
+    {
+      "name": "idempotency_mismatch (same key + different body =\u003e 422, job unchanged)",
+      "violations": 0
+    },
+    {
+      "name": "none_stuck (no queued/running job after drain)",
+      "violations": 0
+    },
+    {
+      "name": "at_most_one_effect (no job has \u003e1 side effect)",
+      "violations": 0
+    },
+    {
+      "name": "succeeded_has_exactly_one_effect",
+      "violations": 0
+    },
+    {
+      "name": "non_succeeded_has_no_effect",
+      "violations": 0
+    },
+    {
+      "name": "no_stale_write (effect comes from the newest run, which is the one that succeeded)",
+      "violations": 0
+    },
+    {
+      "name": "no_double_claim (runs of a job never overlap in time)",
+      "violations": 0
+    },
+    {
+      "name": "all_runs_closed (every attempt has an end and an outcome)",
+      "violations": 0
+    },
+    {
+      "name": "runs_match_attempts (one job_runs row per counted attempt)",
+      "violations": 0
+    },
+    {
+      "name": "terminal_run_matches_state (succeeded \u003c=\u003e exactly one succeeded run)",
+      "violations": 0
+    },
+    {
+      "name": "cancel_wins (cancel_requested \u003c=\u003e final state cancelled)",
+      "violations": 0
+    },
+    {
+      "name": "transition_log_consistent (last logged state = current state; one running entry per attempt)",
+      "violations": 0
+    },
+    {
+      "name": "transition_log_starts_queued",
+      "violations": 0
+    },
+    {
+      "name": "failure_semantics (jobs that fail every attempt never succeed; failed =\u003e attempts exhausted)",
+      "violations": 0
+    },
+    {
+      "name": "cancel_response_consistency (API answer matches final state)",
+      "violations": 0
+    }
+  ],
+  "drained": true,
+  "evidence": {
+    "attempts_per_job": {
+      "0": 58,
+      "1": 861,
+      "2": 41,
+      "3": 9,
+      "4": 11,
+      "5": 20
+    },
+    "cancel_paths": {
+      "cancelled_by_reaper_after_worker_death": 3,
+      "cancelled_by_worker_while_running": 38,
+      "cancelled_while_queued": 58
+    },
+    "cancel_responses": {
+      "200_cancelled": 58,
+      "202_cancel_requested": 41,
+      "409_already_succeeded": 1
+    },
+    "effects": {
+      "jobs_with_effect": 890,
+      "total": 890
+    },
+    "final_states": {
+      "cancelled": 99,
+      "failed": 11,
+      "succeeded": 890
+    },
+    "harness": {
+      "cancel_requests": 100,
+      "client_retries": 0,
+      "dup_posts": 944,
+      "http_5xx": 0,
+      "kills_sigkill": 14,
+      "mismatch_posts": 22,
+      "net_errors": 0,
+      "pauses_sigstop": 0,
+      "posts": 1944,
+      "respawns": 14,
+      "unexpected_worker_exits": 0
+    },
+    "run_outcomes": {
+      "cancelled": 38,
+      "failed": 10,
+      "lease_expired": 34,
+      "retry": 142,
+      "succeeded": 890
+    },
+    "zombies": {
+      "late_writes_rejected_total": 21,
+      "runs_with_late_write_rejected": 21
+    }
+  },
+  "os": "windows",
+  "run": "20261110T225723Z-neg-no-fence",
+  "verdict": "ALL INVARIANTS HELD",
+  "wall_seconds": 30.9757794
+}

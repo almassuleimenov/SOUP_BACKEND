@@ -1,0 +1,62 @@
+{"time":"2026-11-11T04:22:35.2008201+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w001","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:35.3038355+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w005","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:35.3635749+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w004","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:36.8614852+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w006","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:37.0578819+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}
+{"time":"2026-11-11T04:22:37.1424106+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}
+{"time":"2026-11-11T04:22:37.1168706+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}
+{"time":"2026-11-11T04:22:37.2448093+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}
+{"time":"2026-11-11T04:22:36.9647072+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}
+{"time":"2026-11-11T04:22:36.8127851+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w003","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:36.9916454+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}
+{"time":"2026-11-11T04:22:36.8068498+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}
+{"time":"2026-11-11T04:22:43.4200244+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}
+{"time":"2026-11-11T04:22:37.4354092+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}
+{"time":"2026-11-11T04:22:46.3101225+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}
+{"time":"2026-11-11T04:22:47.0560682+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}
+{"time":"2026-11-11T04:22:49.7080703+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}
+{"time":"2026-11-11T04:22:48.4573322+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}
+{"time":"2026-11-11T04:22:48.6235605+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}
+{"time":"2026-11-11T04:22:49.6780409+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}
+{"time":"2026-11-11T04:22:48.9402387+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}
+{"time":"2026-11-11T04:22:49.4666529+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w027","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:49.6861779+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}
+{"time":"2026-11-11T04:22:49.2321145+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}
+{"time":"2026-11-11T04:22:48.978565+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}
+{"time":"2026-11-11T04:22:49.7528354+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}
+{"time":"2026-11-11T04:22:49.2026346+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}
+{"time":"2026-11-11T04:22:49.2213817+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}
+{"time":"2026-11-11T04:22:49.31318+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}
+{"time":"2026-11-11T04:22:49.3864263+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}
+{"time":"2026-11-11T04:22:49.2563067+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}
+{"time":"2026-11-11T04:22:49.789087+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}
+{"time":"2026-11-11T04:22:55.2998177+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w011","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:55.3574882+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w010","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:55.4801956+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w028","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:55.4978086+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w031","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:55.5093809+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w032","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:55.5123821+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w013","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:55.6839998+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w025","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:55.6957306+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w016","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:55.7292144+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w014","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:56.0286605+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w008","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:56.3424494+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w020","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:56.502166+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w029","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:56.8181433+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w022","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:57.0525572+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}
+{"time":"2026-11-11T04:22:57.2261013+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}
+{"time":"2026-11-11T04:22:57.4742025+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w012","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:57.5439282+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}
+{"time":"2026-11-11T04:22:57.5691634+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w030","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:57.8114559+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w018","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:57.8488705+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w026","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:57.9405527+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w019","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:57.9506946+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w009","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:57.9713713+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w023","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:57.9861377+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w021","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:58.0019009+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w024","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:58.2817598+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w007","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:59.3789033+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w002","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:59.7275141+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}
+{"time":"2026-11-11T04:23:00.2489653+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w015","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:23:01.5133538+05:00","level":"INFO","msg":"waiting for database","svc":"worker","err":"context deadline exceeded"}

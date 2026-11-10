@@ -1,0 +1,8 @@
+{"time":"2026-11-11T04:22:20.7058921+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w002","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:20.762069+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w005","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:20.7988095+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w004","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:20.9212938+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w008","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:21.2547552+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w007","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:21.5181479+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w003","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:20.9400512+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w006","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:22:20.9077306+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w001","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}

@@ -1,0 +1,418 @@
+{"time":"2026-11-11T04:09:29.7393401+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w004","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:09:29.7755093+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w001","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:09:29.8454653+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w007","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:09:29.8576011+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w005","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:09:30.1946644+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w006","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:09:29.8325029+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w002","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:09:31.1950585+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w003","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:09:32.5441517+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w009","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:09:33.2081231+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w001","job":"e8d6d8b4-9674-479f-a5dd-a0f1427f08b1","fence":2,"attempt":1,"for":3179975063}
+{"time":"2026-11-11T04:09:33.3220408+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w009","job":"fe579ae5-d765-4120-bfbf-97eb39dd55d2","fence":11,"attempt":1,"for":3243395754}
+{"time":"2026-11-11T04:09:33.9392217+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w010","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:09:34.7268152+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w002","job":"519f93c1-dffa-4809-a81d-666b8170b2e6","fence":6,"attempt":1,"for":4065614849}
+{"time":"2026-11-11T04:09:35.8718449+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w004","count":2}
+{"time":"2026-11-11T04:09:36.3942301+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w001","job":"e8d6d8b4-9674-479f-a5dd-a0f1427f08b1","fence":2,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:09:36.4165329+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w001","job":"99b83359-a381-4983-800a-dd2197870175","fence":29,"attempt":1,"for":4292313346}
+{"time":"2026-11-11T04:09:36.504703+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w011","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:09:36.7745044+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w005","count":1}
+{"time":"2026-11-11T04:09:37.3245153+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w003","job":"ccd39ded-74a0-48c5-8bce-e95265b645ba","fence":16,"attempt":1,"for":2760045499}
+{"time":"2026-11-11T04:09:38.3335339+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w005","count":1}
+{"time":"2026-11-11T04:09:38.7976564+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w002","job":"519f93c1-dffa-4809-a81d-666b8170b2e6","fence":6,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:09:38.8044586+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w002","count":1}
+{"time":"2026-11-11T04:09:38.8463795+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w012","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:09:38.9682403+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w012","count":1}
+{"time":"2026-11-11T04:09:40.6327302+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w006","job":"fb63511c-d4ac-4e1f-8cd4-bc9fd2f62be1","fence":54,"attempt":1,"for":4726422655}
+{"time":"2026-11-11T04:09:40.7133533+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w001","job":"99b83359-a381-4983-800a-dd2197870175","fence":29,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:09:41.0976185+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w013","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:09:41.3277991+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w005","job":"f9f418ef-b6b0-48d7-aa44-b9dc09ca50ed","fence":73,"attempt":1,"for":3530175280}
+{"time":"2026-11-11T04:09:42.1116813+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w014","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:09:42.896+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w012","count":1}
+{"time":"2026-11-11T04:09:43.1719201+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w012","job":"1bee5694-7018-4cb6-833f-78c32d34e358","fence":79,"attempt":1,"for":3804376756}
+{"time":"2026-11-11T04:09:43.2888439+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w015","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:09:43.3727206+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w002","job":"e6e08c1f-8d44-489d-ace3-4b97366baa95","fence":69,"attempt":1,"for":2755914529}
+{"time":"2026-11-11T04:09:43.4070648+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w015","count":1}
+{"time":"2026-11-11T04:09:43.5367365+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w007","count":1}
+{"time":"2026-11-11T04:09:44.1543467+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w014","job":"3815f145-2c1a-4a78-9a19-5728cc607b20","fence":92,"attempt":1,"for":4451709092}
+{"time":"2026-11-11T04:09:44.8629983+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w005","job":"f9f418ef-b6b0-48d7-aa44-b9dc09ca50ed","fence":73,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:09:45.0062778+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w016","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:09:45.1340982+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w016","count":1}
+{"time":"2026-11-11T04:09:46.0475223+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w001","count":2}
+{"time":"2026-11-11T04:09:46.1330819+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w002","job":"e6e08c1f-8d44-489d-ace3-4b97366baa95","fence":69,"attempt":1,"job_state":"running"}
+{"time":"2026-11-11T04:09:46.137538+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w002","count":1}
+{"time":"2026-11-11T04:09:46.7638886+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w002","count":1}
+{"time":"2026-11-11T04:09:46.9809443+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w012","job":"1bee5694-7018-4cb6-833f-78c32d34e358","fence":79,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:09:47.3117812+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w007","job":"150f44da-cbfc-412d-a258-aaf9a139a5d8","fence":127,"attempt":1,"for":4402098358}
+{"time":"2026-11-11T04:09:47.9376433+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w017","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:09:48.2379485+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w001","job":"e6e08c1f-8d44-489d-ace3-4b97366baa95","fence":114,"attempt":2,"for":2937002195}
+{"time":"2026-11-11T04:09:48.6096482+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w014","job":"3815f145-2c1a-4a78-9a19-5728cc607b20","fence":92,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:09:48.8160133+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w016","job":"64740d28-d003-453a-8acb-67e01dde9719","fence":138,"attempt":1,"for":3231175000}
+{"time":"2026-11-11T04:09:50.4412804+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w018","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:09:50.5653879+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w018","count":3}
+{"time":"2026-11-11T04:09:51.0874086+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w012","count":1}
+{"time":"2026-11-11T04:09:51.1788596+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w001","job":"e6e08c1f-8d44-489d-ace3-4b97366baa95","fence":114,"attempt":2,"job_state":"running"}
+{"time":"2026-11-11T04:09:51.7077136+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w019","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:09:51.9013912+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w019","job":"49245b74-6ab2-4252-b425-d81b111f1415","fence":171,"attempt":1,"for":2554379593}
+{"time":"2026-11-11T04:09:52.0516545+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w016","job":"64740d28-d003-453a-8acb-67e01dde9719","fence":138,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:09:52.7595337+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w018","job":"e6e08c1f-8d44-489d-ace3-4b97366baa95","fence":151,"attempt":3,"for":3893424807}
+{"time":"2026-11-11T04:09:53.5008455+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w005","count":1}
+{"time":"2026-11-11T04:09:54.434736+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w020","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:09:54.7343463+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w012","count":1}
+{"time":"2026-11-11T04:09:56.0270495+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w020","job":"c91b8cd0-77a7-4879-a835-60ac8adfcaf8","fence":196,"attempt":1,"for":4665959584}
+{"time":"2026-11-11T04:09:55.9544131+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w021","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:09:56.5458945+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w016","job":"631015af-3e75-4456-b44a-77eb51ea33cb","fence":216,"attempt":1,"for":2722505846}
+{"time":"2026-11-11T04:09:56.614567+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w019","job":"1cd5c9ec-0a91-4d58-b143-a760a962f933","fence":218,"attempt":1,"for":4460660411}
+{"time":"2026-11-11T04:09:57.7440346+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w014","count":1}
+{"time":"2026-11-11T04:09:57.9829472+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w022","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:09:58.1056382+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w022","count":1}
+{"time":"2026-11-11T04:09:59.1352489+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w021","job":"6b113130-691b-43c9-81db-24f0ff89c75a","fence":217,"attempt":1,"for":4667501789}
+{"time":"2026-11-11T04:09:59.1429635+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w022","count":2}
+{"time":"2026-11-11T04:09:59.2484196+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w022","job":"631015af-3e75-4456-b44a-77eb51ea33cb","fence":222,"attempt":2,"for":3111086425}
+{"time":"2026-11-11T04:09:59.2733019+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w016","job":"631015af-3e75-4456-b44a-77eb51ea33cb","fence":216,"attempt":1,"job_state":"running"}
+{"time":"2026-11-11T04:09:59.4736757+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w012","job":"cc4df2ea-6ddd-45ca-9467-09670fe56380","fence":225,"attempt":1,"for":2883064606}
+{"time":"2026-11-11T04:10:00.399477+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w023","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:00.5244623+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w023","count":1}
+{"time":"2026-11-11T04:10:00.6977377+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w020","job":"c91b8cd0-77a7-4879-a835-60ac8adfcaf8","fence":196,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:01.0811298+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w019","job":"1cd5c9ec-0a91-4d58-b143-a760a962f933","fence":218,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:01.0847138+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w019","count":1}
+{"time":"2026-11-11T04:10:01.3583845+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w001","count":2}
+{"time":"2026-11-11T04:10:01.4634868+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w001","job":"631015af-3e75-4456-b44a-77eb51ea33cb","fence":237,"attempt":3,"for":4444699779}
+{"time":"2026-11-11T04:10:01.8886928+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w024","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:02.0168534+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w024","count":1}
+{"time":"2026-11-11T04:10:02.3601127+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w012","job":"cc4df2ea-6ddd-45ca-9467-09670fe56380","fence":225,"attempt":1,"job_state":"queued"}
+{"time":"2026-11-11T04:10:02.3647065+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w022","job":"631015af-3e75-4456-b44a-77eb51ea33cb","fence":222,"attempt":2,"job_state":"running"}
+{"time":"2026-11-11T04:10:02.5136989+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w012","job":"655d250a-4b3e-415a-a530-f48b2d83bbc5","fence":242,"attempt":1,"for":3388524703}
+{"time":"2026-11-11T04:10:02.6176925+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w023","job":"6cb04c2f-1376-45af-a8f7-93c0dcc4d400","fence":229,"attempt":2,"for":3566642997}
+{"time":"2026-11-11T04:10:03.555601+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w025","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:03.732036+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w025","count":1}
+{"time":"2026-11-11T04:10:04.6948688+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w026","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:04.8266993+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w026","count":2}
+{"time":"2026-11-11T04:10:05.5921956+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w019","job":"2feab418-c366-4957-b9fd-b803880d1556","fence":264,"attempt":1,"for":2790586951}
+{"time":"2026-11-11T04:10:05.9290864+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w012","job":"655d250a-4b3e-415a-a530-f48b2d83bbc5","fence":242,"attempt":1,"job_state":"queued"}
+{"time":"2026-11-11T04:10:05.9351878+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w001","job":"631015af-3e75-4456-b44a-77eb51ea33cb","fence":237,"attempt":3,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:05.9377255+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w012","count":1}
+{"time":"2026-11-11T04:10:06.2132644+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w023","job":"6cb04c2f-1376-45af-a8f7-93c0dcc4d400","fence":229,"attempt":2,"job_state":"running"}
+{"time":"2026-11-11T04:10:06.2207242+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w023","count":1}
+{"time":"2026-11-11T04:10:06.6849195+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w027","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:07.072925+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w001","job":"b3928270-ef6e-4c05-89dd-397444b7f2e6","fence":266,"attempt":2,"for":4054954154}
+{"time":"2026-11-11T04:10:07.191298+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w025","job":"9ef7f623-1c23-4bbf-9cfd-8f8fd3043989","fence":279,"attempt":1,"for":3965909494}
+{"time":"2026-11-11T04:10:07.5524664+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w027","job":"929734f3-c3c3-4751-a1d7-de59d9dbffe0","fence":285,"attempt":1,"for":4504589344}
+{"time":"2026-11-11T04:10:07.9675287+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w014","count":2}
+{"time":"2026-11-11T04:10:08.3949085+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w019","job":"2feab418-c366-4957-b9fd-b803880d1556","fence":264,"attempt":1,"job_state":"running"}
+{"time":"2026-11-11T04:10:08.6112794+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w028","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:09.1531694+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w023","count":2}
+{"time":"2026-11-11T04:10:10.2946561+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w023","count":2}
+{"time":"2026-11-11T04:10:10.7034961+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w029","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:11.1319301+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w001","job":"b3928270-ef6e-4c05-89dd-397444b7f2e6","fence":266,"attempt":2,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:11.162583+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w025","job":"9ef7f623-1c23-4bbf-9cfd-8f8fd3043989","fence":279,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:11.3571237+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w026","job":"f2142076-fd3b-47c2-acc3-2ce586b1a808","fence":309,"attempt":1,"for":3277926706}
+{"time":"2026-11-11T04:10:12.0620579+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w027","job":"929734f3-c3c3-4751-a1d7-de59d9dbffe0","fence":285,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:12.1998305+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w019","job":"0569d6d7-4df5-41ff-a001-085a33e48f37","fence":323,"attempt":1,"for":4641182355}
+{"time":"2026-11-11T04:10:12.3176896+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w020","count":1}
+{"time":"2026-11-11T04:10:13.0635144+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w030","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:13.2269446+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w030","job":"30a4e7a6-7cc5-4c79-9711-521f7469c79c","fence":337,"attempt":1,"for":3164904209}
+{"time":"2026-11-11T04:10:13.5355028+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w020","count":1}
+{"time":"2026-11-11T04:10:13.6885335+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w020","job":"a86a3ced-ab15-44ee-820e-357e7e02aa74","fence":339,"attempt":1,"for":4558090304}
+{"time":"2026-11-11T04:10:14.2214755+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w025","job":"a31a50bb-c53a-415c-ba1f-cdaeb149f0b6","fence":336,"attempt":1,"for":2600361600}
+{"time":"2026-11-11T04:10:14.6392841+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w026","job":"f2142076-fd3b-47c2-acc3-2ce586b1a808","fence":309,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:14.6424736+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w026","count":2}
+{"time":"2026-11-11T04:10:15.2578504+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w028","count":1}
+{"time":"2026-11-11T04:10:15.3548285+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w027","job":"0f66f7aa-4bac-45e6-830b-0d4dd3062f55","fence":348,"attempt":1,"for":3398257524}
+{"time":"2026-11-11T04:10:15.5116222+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w031","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:15.6332331+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w031","count":1}
+{"time":"2026-11-11T04:10:16.3983088+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w030","job":"30a4e7a6-7cc5-4c79-9711-521f7469c79c","fence":337,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:16.4022189+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w030","count":1}
+{"time":"2026-11-11T04:10:16.8263073+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w025","job":"a31a50bb-c53a-415c-ba1f-cdaeb149f0b6","fence":336,"attempt":1,"job_state":"running"}
+{"time":"2026-11-11T04:10:16.8443962+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w019","job":"0569d6d7-4df5-41ff-a001-085a33e48f37","fence":323,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:16.9019594+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w032","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:17.3745201+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w019","job":"6f0abbce-f339-4848-914d-299d68206848","fence":370,"attempt":1,"for":4075075326}
+{"time":"2026-11-11T04:10:17.7575679+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w030","count":2}
+{"time":"2026-11-11T04:10:18.2514501+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w020","job":"a86a3ced-ab15-44ee-820e-357e7e02aa74","fence":339,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:18.5769301+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w028","job":"f125d8a3-3682-4525-a83f-23cf72724dc9","fence":351,"attempt":1,"for":3023342070}
+{"time":"2026-11-11T04:10:18.7594739+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w027","job":"0f66f7aa-4bac-45e6-830b-0d4dd3062f55","fence":348,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:18.7630236+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w027","count":1}
+{"time":"2026-11-11T04:10:18.8957937+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w033","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:19.0160671+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w027","job":"5e08f782-c46e-4f2c-9a34-af030cbae72b","fence":379,"attempt":1,"for":4574991040}
+{"time":"2026-11-11T04:10:19.6938754+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w033","count":1}
+{"time":"2026-11-11T04:10:20.0092818+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w034","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:20.2311048+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w033","job":"3d0a987a-92a6-41c4-90fc-8be81305e971","fence":389,"attempt":1,"for":4652957189}
+{"time":"2026-11-11T04:10:21.216014+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w035","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:21.3422172+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w035","count":3}
+{"time":"2026-11-11T04:10:21.4536159+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w019","job":"6f0abbce-f339-4848-914d-299d68206848","fence":370,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:21.6039434+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w028","job":"f125d8a3-3682-4525-a83f-23cf72724dc9","fence":351,"attempt":1,"job_state":"running"}
+{"time":"2026-11-11T04:10:21.742005+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w028","job":"50f25a65-8c7e-4c84-911e-01280300b0e4","fence":399,"attempt":1,"for":4557485477}
+{"time":"2026-11-11T04:10:22.0946304+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w020","job":"27eb0cb2-1f85-46c1-8aa7-77895a82c486","fence":404,"attempt":1,"for":3723779395}
+{"time":"2026-11-11T04:10:22.4260183+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w034","count":1}
+{"time":"2026-11-11T04:10:23.005027+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w035","count":1}
+{"time":"2026-11-11T04:10:23.6913233+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w036","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:23.7917505+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w025","count":1}
+{"time":"2026-11-11T04:10:24.3284004+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w036","count":1}
+{"time":"2026-11-11T04:10:24.7372331+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w025","job":"d2b21a6c-000b-4d39-8e02-b1de621b6c36","fence":432,"attempt":1,"for":4845430426}
+{"time":"2026-11-11T04:10:25.0463983+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w037","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:25.7908862+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w037","job":"b4e81741-9f73-4ea0-a074-190cb569cd63","fence":442,"attempt":1,"for":2670814500}
+{"time":"2026-11-11T04:10:25.8222022+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w020","job":"27eb0cb2-1f85-46c1-8aa7-77895a82c486","fence":404,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:25.9169043+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w020","job":"058d1dd1-6da0-4a27-bda6-d0fe25e241b4","fence":444,"attempt":1,"for":2964470247}
+{"time":"2026-11-11T04:10:26.304063+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w028","job":"50f25a65-8c7e-4c84-911e-01280300b0e4","fence":399,"attempt":1,"job_state":"cancelled"}
+{"time":"2026-11-11T04:10:26.4178411+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w028","job":"66f728df-1f01-425f-b8d3-273e574e9a7e","fence":445,"attempt":1,"for":4849118545}
+{"time":"2026-11-11T04:10:26.9574601+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w038","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:27.0812944+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w038","count":2}
+{"time":"2026-11-11T04:10:27.4952307+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w038","job":"81caed5c-64cc-4e46-aa6f-be5016325704","fence":450,"attempt":1,"for":3166765310}
+{"time":"2026-11-11T04:10:28.1426336+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w019","count":2}
+{"time":"2026-11-11T04:10:28.4665475+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w037","job":"b4e81741-9f73-4ea0-a074-190cb569cd63","fence":442,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:28.470563+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w037","count":2}
+{"time":"2026-11-11T04:10:28.884371+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w020","job":"058d1dd1-6da0-4a27-bda6-d0fe25e241b4","fence":444,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:29.5870652+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w025","job":"d2b21a6c-000b-4d39-8e02-b1de621b6c36","fence":432,"attempt":1,"job_state":"cancelled"}
+{"time":"2026-11-11T04:10:29.5903589+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w025","count":1}
+{"time":"2026-11-11T04:10:29.6918324+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w039","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:30.3670116+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w020","job":"cbbe69e6-e383-4f6d-8d0b-f9c724bf28cd","fence":458,"attempt":1,"for":4415951850}
+{"time":"2026-11-11T04:10:30.667054+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w038","job":"81caed5c-64cc-4e46-aa6f-be5016325704","fence":450,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:31.2714538+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w028","job":"66f728df-1f01-425f-b8d3-273e574e9a7e","fence":445,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:31.2742832+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w028","count":1}
+{"time":"2026-11-11T04:10:31.5622513+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w038","job":"c70d2168-4281-47e4-9deb-3f71c794c4fa","fence":491,"attempt":1,"for":3823149813}
+{"time":"2026-11-11T04:10:32.1279069+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w019","job":"1e9a3e9c-643b-4f4c-8542-c8545294ec6e","fence":453,"attempt":1,"for":2798118249}
+{"time":"2026-11-11T04:10:32.0846845+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w040","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:32.2027055+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w040","count":1}
+{"time":"2026-11-11T04:10:32.4699661+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w025","job":"1e6e6d7e-fee9-4e82-bec0-3641cff40265","fence":494,"attempt":1,"for":4960719776}
+{"time":"2026-11-11T04:10:33.7059572+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w040","count":1}
+{"time":"2026-11-11T04:10:33.6449463+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w041","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:33.7996061+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w040","job":"c70d2168-4281-47e4-9deb-3f71c794c4fa","fence":496,"attempt":2,"for":4346142482}
+{"time":"2026-11-11T04:10:34.0170464+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w041","job":"1eb8c8c7-8db6-41cc-93ac-61fe238270a3","fence":499,"attempt":1,"for":3007470781}
+{"time":"2026-11-11T04:10:34.1624708+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w039","count":2}
+{"time":"2026-11-11T04:10:34.4672184+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w028","count":1}
+{"time":"2026-11-11T04:10:34.7868913+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w020","job":"cbbe69e6-e383-4f6d-8d0b-f9c724bf28cd","fence":458,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:34.9278674+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w020","job":"1e6e6d7e-fee9-4e82-bec0-3641cff40265","fence":502,"attempt":2,"for":4919624488}
+{"time":"2026-11-11T04:10:34.930763+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w019","job":"1e9a3e9c-643b-4f4c-8542-c8545294ec6e","fence":453,"attempt":1,"job_state":"running"}
+{"time":"2026-11-11T04:10:35.4769686+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w042","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:35.6136484+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w042","count":1}
+{"time":"2026-11-11T04:10:37.035882+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w041","count":2}
+{"time":"2026-11-11T04:10:37.4350274+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w025","job":"1e6e6d7e-fee9-4e82-bec0-3641cff40265","fence":494,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:37.4606503+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w028","job":"d1b96e4e-4f0f-4252-a7c4-c7d714ef9659","fence":501,"attempt":2,"for":4853585625}
+{"time":"2026-11-11T04:10:37.7902581+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w043","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:38.1509209+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w040","job":"c70d2168-4281-47e4-9deb-3f71c794c4fa","fence":496,"attempt":2,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:38.3346264+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w040","job":"2ce508d7-1830-4d7b-8dcb-1c6e70d8fae6","fence":529,"attempt":1,"for":3982927991}
+{"time":"2026-11-11T04:10:39.0804702+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w042","job":"e171b53c-ccdf-45db-86ab-ce714d5f72be","fence":540,"attempt":1,"for":4159112667}
+{"time":"2026-11-11T04:10:39.5154521+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w019","count":2}
+{"time":"2026-11-11T04:10:39.851191+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w039","job":"36f1e5e4-1e4f-461b-99e9-2c96ecfd9ac7","fence":535,"attempt":1,"for":3771175511}
+{"time":"2026-11-11T04:10:39.85214+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w020","job":"1e6e6d7e-fee9-4e82-bec0-3641cff40265","fence":502,"attempt":2,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:40.4537204+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w043","count":1}
+{"time":"2026-11-11T04:10:40.4677846+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w044","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:40.6985146+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w044","job":"5d5436cc-259f-49d3-9b6d-f677f7824a81","fence":556,"attempt":1,"for":2878835028}
+{"time":"2026-11-11T04:10:42.3190872+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w028","job":"d1b96e4e-4f0f-4252-a7c4-c7d714ef9659","fence":501,"attempt":2,"job_state":"running"}
+{"time":"2026-11-11T04:10:42.3213497+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w028","count":2}
+{"time":"2026-11-11T04:10:42.3221339+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w040","job":"2ce508d7-1830-4d7b-8dcb-1c6e70d8fae6","fence":529,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:42.4108234+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w040","job":"749e48b7-1003-49a7-be4a-a23354cbefe8","fence":558,"attempt":1,"for":4559832818}
+{"time":"2026-11-11T04:10:42.7147819+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w020","count":1}
+{"time":"2026-11-11T04:10:42.6927572+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w045","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:43.2444332+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w042","job":"e171b53c-ccdf-45db-86ab-ce714d5f72be","fence":540,"attempt":1,"job_state":"cancelled"}
+{"time":"2026-11-11T04:10:43.3721342+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w028","job":"36f1e5e4-1e4f-461b-99e9-2c96ecfd9ac7","fence":557,"attempt":2,"for":4181050254}
+{"time":"2026-11-11T04:10:43.5748902+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w042","job":"b83786de-7fda-43e5-8118-f9e4b44ef66b","fence":583,"attempt":1,"for":4003183686}
+{"time":"2026-11-11T04:10:43.5840041+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w044","job":"5d5436cc-259f-49d3-9b6d-f677f7824a81","fence":556,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:44.0114376+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w044","job":"856aaff4-4ce0-42cf-899c-a9eea535e817","fence":590,"attempt":1,"for":2549525515}
+{"time":"2026-11-11T04:10:44.572692+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w046","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:44.7740706+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w019","count":2}
+{"time":"2026-11-11T04:10:44.9010398+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w046","job":"749e48b7-1003-49a7-be4a-a23354cbefe8","fence":592,"attempt":2,"for":4470457500}
+{"time":"2026-11-11T04:10:45.8127129+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w047","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:45.9401491+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w047","count":2}
+{"time":"2026-11-11T04:10:46.4275634+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w020","count":1}
+{"time":"2026-11-11T04:10:46.5294602+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w043","job":"710e888c-037d-4fb6-893f-b634a400dfc3","fence":596,"attempt":1,"for":2914880494}
+{"time":"2026-11-11T04:10:46.5652646+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w044","job":"856aaff4-4ce0-42cf-899c-a9eea535e817","fence":590,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:47.0098534+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w047","count":1}
+{"time":"2026-11-11T04:10:47.0962577+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w047","job":"749e48b7-1003-49a7-be4a-a23354cbefe8","fence":599,"attempt":3,"for":3731657969}
+{"time":"2026-11-11T04:10:47.3499665+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w048","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:47.4760858+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w048","count":1}
+{"time":"2026-11-11T04:10:47.5619948+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w028","job":"36f1e5e4-1e4f-461b-99e9-2c96ecfd9ac7","fence":557,"attempt":2,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:47.5818466+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w042","job":"b83786de-7fda-43e5-8118-f9e4b44ef66b","fence":583,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:47.8625899+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w028","job":"eaff3ef7-76e7-4e4f-810a-3d516d49f471","fence":605,"attempt":1,"for":3775153031}
+{"time":"2026-11-11T04:10:49.0415355+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w042","count":2}
+{"time":"2026-11-11T04:10:49.2991555+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w044","job":"4f05eed0-d746-49a5-8637-7b693d912dbd","fence":617,"attempt":1,"for":3102210481}
+{"time":"2026-11-11T04:10:49.3784255+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w046","job":"749e48b7-1003-49a7-be4a-a23354cbefe8","fence":592,"attempt":2,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:49.4498548+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w043","job":"710e888c-037d-4fb6-893f-b634a400dfc3","fence":596,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:49.8220523+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w043","job":"dc1763d3-a09d-42b9-a2f6-cb200ae8010b","fence":622,"attempt":1,"for":4265525524}
+{"time":"2026-11-11T04:10:50.0348042+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w049","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:50.159188+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w049","count":1}
+{"time":"2026-11-11T04:10:51.422433+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w020","count":1}
+{"time":"2026-11-11T04:10:51.6424054+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w028","job":"eaff3ef7-76e7-4e4f-810a-3d516d49f471","fence":605,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:51.6443329+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w028","count":1}
+{"time":"2026-11-11T04:10:51.9241895+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w050","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:52.0465985+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w050","count":1}
+{"time":"2026-11-11T04:10:52.3739945+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w019","job":"10eeb937-b1d2-4f0f-adf4-25da4e4472f3","fence":640,"attempt":1,"for":3997481764}
+{"time":"2026-11-11T04:10:52.4055628+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w044","job":"4f05eed0-d746-49a5-8637-7b693d912dbd","fence":617,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:53.0377247+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w051","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:53.2311529+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w051","job":"f9b96a32-ed1e-434e-ae01-e1a50081629c","fence":646,"attempt":1,"for":3512976620}
+{"time":"2026-11-11T04:10:54.5953894+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w048","count":1}
+{"time":"2026-11-11T04:10:54.7824871+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w028","count":1}
+{"time":"2026-11-11T04:10:55.2834429+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w044","count":1}
+{"time":"2026-11-11T04:10:55.7591115+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w042","job":"247aef19-4ab6-4e7f-a948-b92a95b5d7f1","fence":639,"attempt":1,"for":3292907283}
+{"time":"2026-11-11T04:10:56.1323723+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w052","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:56.3751728+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w019","job":"10eeb937-b1d2-4f0f-adf4-25da4e4472f3","fence":640,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:56.7505603+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w051","job":"f9b96a32-ed1e-434e-ae01-e1a50081629c","fence":646,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:10:56.8750172+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w052","job":"f5620370-d1fc-468b-8e53-a52de16fd159","fence":683,"attempt":1,"for":3236416170}
+{"time":"2026-11-11T04:10:57.9477949+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w053","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:10:58.0741754+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w053","count":2}
+{"time":"2026-11-11T04:10:58.6653694+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w048","job":"7947c4d5-909c-43c4-ae88-58aef610704f","fence":654,"attempt":1,"for":4969087099}
+{"time":"2026-11-11T04:10:59.0562853+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w042","job":"247aef19-4ab6-4e7f-a948-b92a95b5d7f1","fence":639,"attempt":1,"job_state":"running"}
+{"time":"2026-11-11T04:10:59.0571498+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w042","count":1}
+{"time":"2026-11-11T04:10:59.7085871+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w042","count":1}
+{"time":"2026-11-11T04:11:00.1175328+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w052","job":"f5620370-d1fc-468b-8e53-a52de16fd159","fence":683,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:11:00.5017081+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w049","count":1}
+{"time":"2026-11-11T04:11:00.4274966+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w054","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:11:00.9038284+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w054","job":"81810d51-86ed-4ca4-88a4-6f51b0229d54","fence":715,"attempt":1,"for":2988236710}
+{"time":"2026-11-11T04:11:00.9113317+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w019","job":"7912f88a-83b4-436e-ba72-1d8735c72597","fence":719,"attempt":1,"for":2943771640}
+{"time":"2026-11-11T04:11:00.9309178+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w050","job":"0374e0c9-18d7-41a1-bc85-8cdf4c92f05c","fence":705,"attempt":1,"for":4075996225}
+{"time":"2026-11-11T04:11:02.105927+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w042","count":1}
+{"time":"2026-11-11T04:11:02.803636+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w052","job":"31763166-c5e8-4b28-88ab-46c7d7f36247","fence":708,"attempt":1,"for":4352399883}
+{"time":"2026-11-11T04:11:02.8339873+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w055","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:11:02.9542698+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w055","count":3}
+{"time":"2026-11-11T04:11:03.6398307+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w048","job":"7947c4d5-909c-43c4-ae88-58aef610704f","fence":654,"attempt":1,"job_state":"running"}
+{"time":"2026-11-11T04:11:03.8581916+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w019","job":"7912f88a-83b4-436e-ba72-1d8735c72597","fence":719,"attempt":1,"job_state":"queued"}
+{"time":"2026-11-11T04:11:03.8969078+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w054","job":"81810d51-86ed-4ca4-88a4-6f51b0229d54","fence":715,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:11:04.2246109+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w056","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:11:04.6466397+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w056","job":"fe976d35-1046-4fc6-b12e-3cbe3a7a5d80","fence":748,"attempt":1,"for":3256873523}
+{"time":"2026-11-11T04:11:04.664792+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w051","count":2}
+{"time":"2026-11-11T04:11:05.8989602+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w057","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:11:07.175214+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w052","job":"31763166-c5e8-4b28-88ab-46c7d7f36247","fence":708,"attempt":1,"job_state":"running"}
+{"time":"2026-11-11T04:11:07.1807942+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w052","count":1}
+{"time":"2026-11-11T04:11:07.7220583+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w052","count":1}
+{"time":"2026-11-11T04:11:07.9295122+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w056","job":"fe976d35-1046-4fc6-b12e-3cbe3a7a5d80","fence":748,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:11:08.0154059+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w058","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:11:08.2617783+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w058","job":"6f0e9dc1-adfe-40c3-a918-1ffcd77a8bfc","fence":784,"attempt":1,"for":3093599362}
+{"time":"2026-11-11T04:11:08.70036+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w051","job":"be3c0d72-8d04-448b-b469-cbe27a14e06b","fence":787,"attempt":1,"for":2858378887}
+{"time":"2026-11-11T04:11:09.6066451+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w054","job":"5b33c7f4-f29b-4729-abeb-e44c7a5503c0","fence":789,"attempt":1,"for":3089859701}
+{"time":"2026-11-11T04:11:09.7912656+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w059","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:11:09.914194+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w059","count":1}
+{"time":"2026-11-11T04:11:10.4181368+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w042","count":1}
+{"time":"2026-11-11T04:11:11.3613503+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w058","job":"6f0e9dc1-adfe-40c3-a918-1ffcd77a8bfc","fence":784,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:11:11.3647074+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w058","count":2}
+{"time":"2026-11-11T04:11:11.5633002+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w051","job":"be3c0d72-8d04-448b-b469-cbe27a14e06b","fence":787,"attempt":1,"job_state":"queued"}
+{"time":"2026-11-11T04:11:11.6668346+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w055","count":1}
+{"time":"2026-11-11T04:11:12.1309523+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w060","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:11:12.3095786+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w056","job":"eb4ad5ff-dd02-4593-860b-0c6e9a00b3c8","fence":809,"attempt":1,"for":4307645065}
+{"time":"2026-11-11T04:11:12.7001058+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w054","job":"5b33c7f4-f29b-4729-abeb-e44c7a5503c0","fence":789,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:11:12.8122912+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w054","job":"b0fbba83-a382-4b93-be3b-59f74a0b98c4","fence":818,"attempt":1,"for":4248728319}
+{"time":"2026-11-11T04:11:13.0806544+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w059","job":"f82f51e2-ebb8-4ad1-97d4-1d56848c7e69","fence":822,"attempt":1,"for":3362280606}
+{"time":"2026-11-11T04:11:13.2856521+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w060","job":"e71ef841-7bf5-4f58-bb3f-599c0370d140","fence":819,"attempt":1,"for":3900166969}
+{"time":"2026-11-11T04:11:13.9419014+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w058","count":1}
+{"time":"2026-11-11T04:11:14.425413+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w061","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:11:14.5508045+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w061","count":1}
+{"time":"2026-11-11T04:11:14.7177058+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w051","count":1}
+{"time":"2026-11-11T04:11:15.3976149+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w055","count":2}
+{"time":"2026-11-11T04:11:15.447128+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w055","job":"f82f51e2-ebb8-4ad1-97d4-1d56848c7e69","fence":838,"attempt":2,"for":3293010782}
+{"time":"2026-11-11T04:11:15.773118+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w062","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:11:16.3433026+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w062","job":"3727af2a-201c-461c-91ac-3d4d004109fb","fence":847,"attempt":1,"for":3451010897}
+{"time":"2026-11-11T04:11:16.4487359+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w059","job":"f82f51e2-ebb8-4ad1-97d4-1d56848c7e69","fence":822,"attempt":1,"job_state":"running"}
+{"time":"2026-11-11T04:11:16.4522878+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w059","count":1}
+{"time":"2026-11-11T04:11:16.6213928+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w056","job":"eb4ad5ff-dd02-4593-860b-0c6e9a00b3c8","fence":809,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:11:17.0635478+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w054","job":"b0fbba83-a382-4b93-be3b-59f74a0b98c4","fence":818,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:11:17.1897132+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w060","job":"e71ef841-7bf5-4f58-bb3f-599c0370d140","fence":819,"attempt":1,"job_state":"cancelled"}
+{"time":"2026-11-11T04:11:17.2413577+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w060","job":"e94e2797-0672-4df6-9811-83d784e509d5","fence":870,"attempt":1,"for":2584633134}
+{"time":"2026-11-11T04:11:17.3492288+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w056","job":"c2b01dcf-44ac-4e15-a302-0feb1369895b","fence":872,"attempt":1,"for":4757396563}
+{"time":"2026-11-11T04:11:17.532182+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w058","count":2}
+{"time":"2026-11-11T04:11:18.2841056+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w063","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:11:18.4059991+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w063","count":1}
+{"time":"2026-11-11T04:11:18.7444113+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w055","job":"f82f51e2-ebb8-4ad1-97d4-1d56848c7e69","fence":838,"attempt":2,"job_state":"succeeded"}
+{"time":"2026-11-11T04:11:19.2259794+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w059","count":1}
+{"time":"2026-11-11T04:11:19.3138973+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w055","count":1}
+{"time":"2026-11-11T04:11:19.4084656+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w055","job":"c2b01dcf-44ac-4e15-a302-0feb1369895b","fence":888,"attempt":2,"for":3117813955}
+{"time":"2026-11-11T04:11:19.7996029+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w062","job":"3727af2a-201c-461c-91ac-3d4d004109fb","fence":847,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:11:19.8291698+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w060","job":"e94e2797-0672-4df6-9811-83d784e509d5","fence":870,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:11:19.9321106+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w060","job":"b3f66d85-2566-4a65-be7f-0be6d366d250","fence":895,"attempt":1,"for":4561186517}
+{"time":"2026-11-11T04:11:20.8660606+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w064","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:11:21.2225237+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w051","job":"5f7da2ab-b5c1-4688-abcc-b868156ad4f9","fence":910,"attempt":1,"for":4458147128}
+{"time":"2026-11-11T04:11:21.553468+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w064","count":1}
+{"time":"2026-11-11T04:11:21.9691066+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w062","count":1}
+{"time":"2026-11-11T04:11:22.038397+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w065","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:11:22.2311929+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w059","count":1}
+{"time":"2026-11-11T04:11:22.2471544+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w062","job":"a5aeebca-8086-46ad-9a0f-3cf397a0dd75","fence":921,"attempt":1,"for":3834763867}
+{"time":"2026-11-11T04:11:22.5311408+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w055","job":"c2b01dcf-44ac-4e15-a302-0feb1369895b","fence":888,"attempt":2,"job_state":"succeeded"}
+{"time":"2026-11-11T04:11:23.1293293+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w055","job":"ca1f33a8-6e5b-42ae-aae9-db4fc0cf4b9d","fence":939,"attempt":1,"for":4398693076}
+{"time":"2026-11-11T04:11:23.142729+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w066","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:11:23.2715144+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w066","count":1}
+{"time":"2026-11-11T04:11:23.3821138+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w066","job":"5f7da2ab-b5c1-4688-abcc-b868156ad4f9","fence":940,"attempt":2,"for":3988709030}
+{"time":"2026-11-11T04:11:24.0698633+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w064","count":1}
+{"time":"2026-11-11T04:11:24.424853+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w063","count":1}
+{"time":"2026-11-11T04:11:24.4977955+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w060","job":"b3f66d85-2566-4a65-be7f-0be6d366d250","fence":895,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:11:24.6982927+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w067","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:11:25.3252946+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w065","job":"cd366230-c1fc-4f6e-abf9-172808eeb0fd","fence":936,"attempt":1,"for":3065663685}
+{"time":"2026-11-11T04:11:25.3651984+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w067","job":"0b03d241-369a-4de4-aa94-69c96a174a9e","fence":969,"attempt":1,"for":2788849485}
+{"time":"2026-11-11T04:11:25.6546828+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w060","count":2}
+{"time":"2026-11-11T04:11:26.0856014+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w062","job":"a5aeebca-8086-46ad-9a0f-3cf397a0dd75","fence":921,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:11:26.2191279+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w060","job":"6eac4f9e-9d5b-4dcf-84e9-82b6489b9dbc","fence":981,"attempt":1,"for":2928111212}
+{"time":"2026-11-11T04:11:27.3773788+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w066","job":"5f7da2ab-b5c1-4688-abcc-b868156ad4f9","fence":940,"attempt":2,"job_state":"succeeded"}
+{"time":"2026-11-11T04:11:27.3821339+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w066","count":3}
+{"time":"2026-11-11T04:11:27.3320457+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w068","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:11:27.5304872+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w055","job":"ca1f33a8-6e5b-42ae-aae9-db4fc0cf4b9d","fence":939,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:11:28.1594011+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w067","job":"0b03d241-369a-4de4-aa94-69c96a174a9e","fence":969,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:11:28.161963+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w067","count":1}
+{"time":"2026-11-11T04:11:28.3893663+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w063","job":"34e1bf16-7669-4f4f-a672-7f3bf47bed7f","fence":970,"attempt":1,"for":3075714780}
+{"time":"2026-11-11T04:11:28.3949477+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w065","job":"cd366230-c1fc-4f6e-abf9-172808eeb0fd","fence":936,"attempt":1,"job_state":"running"}
+{"time":"2026-11-11T04:11:28.9653885+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w069","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:11:29.1518852+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w060","job":"6eac4f9e-9d5b-4dcf-84e9-82b6489b9dbc","fence":981,"attempt":1,"job_state":"cancelled"}
+{"time":"2026-11-11T04:11:29.1541225+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w060","count":1}
+{"time":"2026-11-11T04:11:30.5446552+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w069","job":"3fa75e85-7e11-4bb7-825d-ae02ae102489","fence":1013,"attempt":1,"for":3107070715}
+{"time":"2026-11-11T04:11:31.2533209+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w067","count":2}
+{"time":"2026-11-11T04:11:31.4692507+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w063","job":"34e1bf16-7669-4f4f-a672-7f3bf47bed7f","fence":970,"attempt":1,"job_state":"running"}
+{"time":"2026-11-11T04:11:31.462674+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w070","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:11:32.5216947+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w055","count":1}
+{"time":"2026-11-11T04:11:32.6518993+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w060","job":"fb48d0ac-1a3b-48ca-85ca-b3e7fcb72ac1","fence":1042,"attempt":1,"for":3927447543}
+{"time":"2026-11-11T04:11:32.7190303+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w068","job":"9afa01d6-fcdb-4d9f-8621-72b28e2c27cc","fence":1044,"attempt":1,"for":3458945831}
+{"time":"2026-11-11T04:11:33.6570248+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w069","job":"3fa75e85-7e11-4bb7-825d-ae02ae102489","fence":1013,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:11:33.6607443+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w069","count":1}
+{"time":"2026-11-11T04:11:34.1403443+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w071","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:11:34.7638204+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w071","count":2}
+{"time":"2026-11-11T04:11:35.7842786+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w070","count":1}
+{"time":"2026-11-11T04:11:36.1823559+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w068","job":"9afa01d6-fcdb-4d9f-8621-72b28e2c27cc","fence":1044,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:11:36.2480172+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w055","job":"31607418-027d-4c2e-96ae-069b06d9e29a","fence":1043,"attempt":1,"for":3120125329}
+{"time":"2026-11-11T04:11:36.3481822+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w072","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:11:36.432688+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w068","job":"c7ec3f02-a855-4adf-94e1-cc38e17645a9","fence":1063,"attempt":1,"for":2972664838}
+{"time":"2026-11-11T04:11:36.5822217+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w060","job":"fb48d0ac-1a3b-48ca-85ca-b3e7fcb72ac1","fence":1042,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:11:37.9456783+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w067","job":"bbcd9772-3942-4613-b116-599721dc4a50","fence":1071,"attempt":1,"for":2957025563}
+{"time":"2026-11-11T04:11:38.0944557+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w071","count":1}
+{"time":"2026-11-11T04:11:38.4494055+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w070","count":2}
+{"time":"2026-11-11T04:11:38.4552663+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w073","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:11:39.3719404+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w055","job":"31607418-027d-4c2e-96ae-069b06d9e29a","fence":1043,"attempt":1,"job_state":"running"}
+{"time":"2026-11-11T04:11:39.4089295+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w068","job":"c7ec3f02-a855-4adf-94e1-cc38e17645a9","fence":1063,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:11:40.162916+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w072","job":"cc4df2ea-6ddd-45ca-9467-09670fe56380","fence":1091,"attempt":3,"for":3223535835}
+{"time":"2026-11-11T04:11:40.1951101+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w074","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:11:40.3254913+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w073","job":"814008cf-242a-4ac6-89cb-b28f25a93c74","fence":1078,"attempt":1,"for":3017720347}
+{"time":"2026-11-11T04:11:40.3260103+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w074","count":2}
+{"time":"2026-11-11T04:11:41.3124792+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w069","job":"7f282bff-9889-4ece-9b92-c8a4d653ab93","fence":1086,"attempt":2,"for":2575382345}
+{"time":"2026-11-11T04:11:41.8723332+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w075","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:11:42.1167849+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w068","count":2}
+{"time":"2026-11-11T04:11:43.0209345+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w060","job":"26ad2be4-f662-44c9-a91d-1cc5d1a449df","fence":1111,"attempt":2,"for":3874147553}
+{"time":"2026-11-11T04:11:43.3376723+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w068","count":2}
+{"time":"2026-11-11T04:11:43.3485745+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w073","job":"814008cf-242a-4ac6-89cb-b28f25a93c74","fence":1078,"attempt":1,"job_state":"succeeded"}
+{"time":"2026-11-11T04:11:43.3899742+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w072","job":"cc4df2ea-6ddd-45ca-9467-09670fe56380","fence":1091,"attempt":3,"job_state":"succeeded"}
+{"time":"2026-11-11T04:11:43.4679282+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w072","job":"7e20b44e-f518-4838-805f-ed6ec9a7e991","fence":1125,"attempt":3,"for":3778858699}
+{"time":"2026-11-11T04:11:43.8920226+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w069","job":"7f282bff-9889-4ece-9b92-c8a4d653ab93","fence":1086,"attempt":2,"job_state":"running"}
+{"time":"2026-11-11T04:11:43.8734062+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w076","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:11:44.2584854+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w069","job":"2a3112e4-2304-46a3-a4a6-15303e4fa43a","fence":1133,"attempt":3,"for":3972985767}
+{"time":"2026-11-11T04:11:44.2641427+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w070","job":"8ff74604-9aa1-4aba-8525-dda4deab622b","fence":1120,"attempt":2,"for":2862135302}
+{"time":"2026-11-11T04:11:44.6254781+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w075","job":"a92d0833-e0f9-403c-a9f8-eda542212a29","fence":1138,"attempt":3,"for":3012472072}
+{"time":"2026-11-11T04:11:45.0282094+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w076","count":1}
+{"time":"2026-11-11T04:11:45.7618424+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w068","count":2}
+{"time":"2026-11-11T04:11:46.0144384+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w055","count":1}
+{"time":"2026-11-11T04:11:46.2126366+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w076","count":1}
+{"time":"2026-11-11T04:11:46.4186503+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w076","job":"2a3112e4-2304-46a3-a4a6-15303e4fa43a","fence":1148,"attempt":4,"for":3586981124}
+{"time":"2026-11-11T04:11:46.5349541+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w077","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:11:46.6533653+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w077","count":1}
+{"time":"2026-11-11T04:11:46.8998175+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w060","job":"26ad2be4-f662-44c9-a91d-1cc5d1a449df","fence":1111,"attempt":2,"job_state":"succeeded"}
+{"time":"2026-11-11T04:11:47.0695934+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w060","job":"0dfe92d8-2bd1-4987-a550-892b0dad20ac","fence":1157,"attempt":4,"for":3803437433}
+{"time":"2026-11-11T04:11:47.1305566+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w070","job":"8ff74604-9aa1-4aba-8525-dda4deab622b","fence":1120,"attempt":2,"job_state":"running"}
+{"time":"2026-11-11T04:11:47.2514885+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w072","job":"7e20b44e-f518-4838-805f-ed6ec9a7e991","fence":1125,"attempt":3,"job_state":"succeeded"}
+{"time":"2026-11-11T04:11:47.3546107+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w068","job":"7f282bff-9889-4ece-9b92-c8a4d653ab93","fence":1145,"attempt":4,"for":3205536563}
+{"time":"2026-11-11T04:11:48.2354763+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w069","job":"2a3112e4-2304-46a3-a4a6-15303e4fa43a","fence":1133,"attempt":3,"job_state":"running"}
+{"time":"2026-11-11T04:11:48.3930562+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w072","count":1}
+{"time":"2026-11-11T04:11:48.5374923+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w072","job":"2a3112e4-2304-46a3-a4a6-15303e4fa43a","fence":1183,"attempt":5,"for":4628718589}
+{"time":"2026-11-11T04:11:49.0511451+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w055","count":1}
+{"time":"2026-11-11T04:11:49.3627343+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w078","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:11:49.4816073+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w078","count":1}
+{"time":"2026-11-11T04:11:50.3140862+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w069","job":"8ff74604-9aa1-4aba-8525-dda4deab622b","fence":1182,"attempt":4,"for":3555067705}
+{"time":"2026-11-11T04:11:50.5650747+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w068","job":"7f282bff-9889-4ece-9b92-c8a4d653ab93","fence":1145,"attempt":4,"job_state":"running"}
+{"time":"2026-11-11T04:11:50.5669581+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w068","count":1}
+{"time":"2026-11-11T04:11:50.8765528+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w060","job":"0dfe92d8-2bd1-4987-a550-892b0dad20ac","fence":1157,"attempt":4,"job_state":"succeeded"}
+{"time":"2026-11-11T04:11:51.0781617+05:00","level":"WARN","msg":"chaos: freezing before finish","svc":"worker","worker":"w078","job":"7f282bff-9889-4ece-9b92-c8a4d653ab93","fence":1186,"attempt":5,"for":3846763256}
+{"time":"2026-11-11T04:11:51.6211697+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w079","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:11:52.2433235+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w079","count":1}
+{"time":"2026-11-11T04:11:53.1101926+05:00","level":"INFO","msg":"reaped expired leases","svc":"worker","worker":"w055","count":1}
+{"time":"2026-11-11T04:11:53.1703014+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w072","job":"2a3112e4-2304-46a3-a4a6-15303e4fa43a","fence":1183,"attempt":5,"job_state":"failed"}
+{"time":"2026-11-11T04:11:53.4823507+05:00","level":"INFO","msg":"worker started","svc":"worker","worker":"w080","lease":2000000000,"heartbeat":500000000,"effect_mode":"tx"}
+{"time":"2026-11-11T04:11:53.8738877+05:00","level":"WARN","msg":"stale write rejected by fencing (zombie)","svc":"worker","worker":"w069","job":"8ff74604-9aa1-4aba-8525-dda4deab622b","fence":1182,"attempt":4,"job_state":"running"}

@@ -1,0 +1,178 @@
+{
+  "args": [
+    "-db",
+    "postgres://jobq:jobq@127.0.0.1:55432/jobq_chaos",
+    "-jobs",
+    "1000",
+    "-out",
+    "scratch-results",
+    "-drain-timeout",
+    "2m",
+    "-effect-mode",
+    "external",
+    "-freeze-prob",
+    "0.03",
+    "-label",
+    "neg-external-effect"
+  ],
+  "checks": [
+    {
+      "name": "no_lost_jobs (every acknowledged key exists with the acknowledged id)",
+      "violations": 0
+    },
+    {
+      "name": "no_phantom_jobs (db has no job the harness never asked for)",
+      "violations": 0
+    },
+    {
+      "name": "idempotency (one job per key; all 2xx for a key carry the same id; \u003c=1 x 201)",
+      "violations": 0
+    },
+    {
+      "name": "idempotency_mismatch (same key + different body =\u003e 422, job unchanged)",
+      "violations": 0
+    },
+    {
+      "name": "none_stuck (no queued/running job after drain)",
+      "violations": 0
+    },
+    {
+      "name": "at_most_one_effect (no job has \u003e1 side effect)",
+      "violations": 20,
+      "examples": [
+        "[6 25 147 10 153 224 78 87 172 38 200 110 34 108 135 13] | 2 | [199 966]",
+        "[18 207 16 48 33 197 74 252 129 108 147 175 239 125 110 240] | 2 | [96 958]",
+        "[25 245 176 71 71 124 73 19 156 241 112 158 45 230 142 59] | 2 | [658 1001]",
+        "[43 67 87 51 213 1 74 46 139 229 133 101 83 5 1 9] | 2 | [203 967]",
+        "[55 22 78 12 158 252 73 80 161 174 240 19 99 189 127 245] | 2 | [334 980]"
+      ]
+    },
+    {
+      "name": "succeeded_has_exactly_one_effect",
+      "violations": 20,
+      "examples": [
+        "[55 22 78 12 158 252 73 80 161 174 240 19 99 189 127 245] | 2",
+        "[220 63 180 9 11 84 75 163 176 243 53 118 242 76 189 145] | 2",
+        "[205 150 192 255 22 178 76 3 179 213 184 198 227 239 150 221] | 2",
+        "[216 198 119 245 228 124 71 206 183 233 109 0 48 177 106 124] | 2",
+        "[224 148 223 69 135 142 70 61 168 166 59 42 60 93 221 177] | 2"
+      ]
+    },
+    {
+      "name": "non_succeeded_has_no_effect",
+      "violations": 41,
+      "examples": [
+        "[197 64 7 155 251 214 66 206 160 57 118 86 15 76 236 60] | cancelled | 1",
+        "[126 220 116 10 229 30 79 49 160 58 56 131 119 216 161 73] | cancelled | 1",
+        "[255 48 240 186 247 247 65 139 138 37 8 153 134 185 157 252] | cancelled | 1",
+        "[116 91 112 49 154 76 73 222 129 123 92 41 77 57 128 116] | cancelled | 1",
+        "[37 95 3 215 63 11 64 197 168 212 202 235 164 92 105 188] | cancelled | 1"
+      ]
+    },
+    {
+      "name": "no_stale_write (effect comes from the newest run, which is the one that succeeded)",
+      "violations": 61,
+      "examples": [
+        "[35 78 217 179 231 8 71 168 148 70 194 127 135 101 182 127] | 94 | 94 | \u003cnil\u003e",
+        "[126 220 116 10 229 30 79 49 160 58 56 131 119 216 161 73] | 166 | 166 | \u003cnil\u003e",
+        "[43 67 87 51 213 1 74 46 139 229 133 101 83 5 1 9] | 203 | 967 | 967",
+        "[55 22 78 12 158 252 73 80 161 174 240 19 99 189 127 245] | 334 | 980 | 980",
+        "[149 73 133 234 234 108 78 45 145 22 122 208 34 69 191 121] | 607 | 607 | \u003cnil\u003e"
+      ]
+    },
+    {
+      "name": "no_double_claim (runs of a job never overlap in time)",
+      "violations": 0
+    },
+    {
+      "name": "all_runs_closed (every attempt has an end and an outcome)",
+      "violations": 0
+    },
+    {
+      "name": "runs_match_attempts (one job_runs row per counted attempt)",
+      "violations": 0
+    },
+    {
+      "name": "terminal_run_matches_state (succeeded \u003c=\u003e exactly one succeeded run)",
+      "violations": 0
+    },
+    {
+      "name": "cancel_wins (cancel_requested \u003c=\u003e final state cancelled)",
+      "violations": 0
+    },
+    {
+      "name": "transition_log_consistent (last logged state = current state; one running entry per attempt)",
+      "violations": 0
+    },
+    {
+      "name": "transition_log_starts_queued",
+      "violations": 0
+    },
+    {
+      "name": "failure_semantics (jobs that fail every attempt never succeed; failed =\u003e attempts exhausted)",
+      "violations": 0
+    },
+    {
+      "name": "cancel_response_consistency (API answer matches final state)",
+      "violations": 0
+    }
+  ],
+  "drained": true,
+  "evidence": {
+    "attempts_per_job": {
+      "0": 55,
+      "1": 871,
+      "2": 37,
+      "3": 10,
+      "4": 10,
+      "5": 17
+    },
+    "cancel_paths": {
+      "cancelled_by_reaper_after_worker_death": 2,
+      "cancelled_by_worker_while_running": 43,
+      "cancelled_while_queued": 55
+    },
+    "cancel_responses": {
+      "200_cancelled": 55,
+      "202_cancel_requested": 45,
+      "409_already_succeeded": 12
+    },
+    "effects": {
+      "jobs_with_effect": 932,
+      "total": 952
+    },
+    "final_states": {
+      "cancelled": 100,
+      "failed": 9,
+      "succeeded": 891
+    },
+    "harness": {
+      "cancel_requests": 112,
+      "client_retries": 0,
+      "dup_posts": 1039,
+      "http_5xx": 0,
+      "kills_sigkill": 14,
+      "mismatch_posts": 19,
+      "net_errors": 0,
+      "pauses_sigstop": 0,
+      "posts": 2039,
+      "respawns": 14,
+      "unexpected_worker_exits": 0
+    },
+    "run_outcomes": {
+      "cancelled": 43,
+      "failed": 9,
+      "lease_expired": 34,
+      "retry": 123,
+      "succeeded": 891
+    },
+    "zombies": {
+      "late_writes_rejected_total": 21,
+      "runs_with_late_write_rejected": 21
+    }
+  },
+  "os": "windows",
+  "run": "20261110T225817Z-neg-external-effect",
+  "verdict": "4 INVARIANT(S) VIOLATED",
+  "wall_seconds": 29.2070205
+}

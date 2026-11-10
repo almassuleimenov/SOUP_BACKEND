@@ -1,0 +1,166 @@
+{
+  "args": [
+    "-db",
+    "postgres://jobq:jobq@127.0.0.1:55432/jobq_chaos",
+    "-jobs",
+    "1000",
+    "-out",
+    "scratch-results",
+    "-drain-timeout",
+    "2m",
+    "-unsafe",
+    "racy-claim",
+    "-label",
+    "neg-racy-claim"
+  ],
+  "checks": [
+    {
+      "name": "no_lost_jobs (every acknowledged key exists with the acknowledged id)",
+      "violations": 0
+    },
+    {
+      "name": "no_phantom_jobs (db has no job the harness never asked for)",
+      "violations": 0
+    },
+    {
+      "name": "idempotency (one job per key; all 2xx for a key carry the same id; \u003c=1 x 201)",
+      "violations": 0
+    },
+    {
+      "name": "idempotency_mismatch (same key + different body =\u003e 422, job unchanged)",
+      "violations": 0
+    },
+    {
+      "name": "none_stuck (no queued/running job after drain)",
+      "violations": 0
+    },
+    {
+      "name": "at_most_one_effect (no job has \u003e1 side effect)",
+      "violations": 0
+    },
+    {
+      "name": "succeeded_has_exactly_one_effect",
+      "violations": 0
+    },
+    {
+      "name": "non_succeeded_has_no_effect",
+      "violations": 0
+    },
+    {
+      "name": "no_stale_write (effect comes from the newest run, which is the one that succeeded)",
+      "violations": 0
+    },
+    {
+      "name": "no_double_claim (runs of a job never overlap in time)",
+      "violations": 154,
+      "examples": [
+        "[0 180 171 231 42 35 79 161 148 92 254 97 91 10 23 157] | 1046 | 1047 | 2026-11-11 03:58:12.410971 +0500 +05 | 2026-11-11 03:58:12.313734 +0500 +05",
+        "[1 70 192 213 8 133 68 23 159 151 16 125 213 76 250 76] | 151 | 153 | 2026-11-11 03:58:03.023628 +0500 +05 | 2026-11-11 03:58:02.910116 +0500 +05",
+        "[2 88 153 81 221 245 79 241 144 182 82 18 100 142 35 106] | 328 | 330 | 2026-11-11 03:58:05.143357 +0500 +05 | 2026-11-11 03:58:05.058445 +0500 +05",
+        "[4 223 232 54 229 130 64 189 128 210 88 133 30 64 1 29] | 1042 | 1043 | 2026-11-11 03:58:12.428556 +0500 +05 | 2026-11-11 03:58:12.288723 +0500 +05",
+        "[10 126 217 203 42 95 68 198 159 84 46 126 135 179 137 181] | 146 | 148 | 2026-11-11 03:58:02.902877 +0500 +05 | 2026-11-11 03:58:02.871565 +0500 +05"
+      ]
+    },
+    {
+      "name": "all_runs_closed (every attempt has an end and an outcome)",
+      "violations": 1,
+      "examples": [
+        "81 | [168 107 176 155 224 92 74 233 152 90 76 131 50 214 185 70] | w002 | 2026-11-11 03:58:02.110138 +0500 +05"
+      ]
+    },
+    {
+      "name": "runs_match_attempts (one job_runs row per counted attempt)",
+      "violations": 0
+    },
+    {
+      "name": "terminal_run_matches_state (succeeded \u003c=\u003e exactly one succeeded run)",
+      "violations": 0
+    },
+    {
+      "name": "cancel_wins (cancel_requested \u003c=\u003e final state cancelled)",
+      "violations": 0
+    },
+    {
+      "name": "transition_log_consistent (last logged state = current state; one running entry per attempt)",
+      "violations": 143,
+      "examples": [
+        "[231 216 71 160 22 27 65 23 175 18 57 165 168 222 201 219] | succeeded | succeeded | 1 | 2",
+        "[47 9 143 248 122 51 65 171 190 29 42 39 112 170 76 79] | succeeded | succeeded | 1 | 2",
+        "[189 156 251 179 200 164 71 207 161 137 122 86 248 207 0 0] | succeeded | succeeded | 1 | 2",
+        "[101 167 12 94 119 67 67 26 181 76 246 174 85 81 9 109] | succeeded | succeeded | 1 | 2",
+        "[228 108 107 32 176 208 74 95 148 149 188 239 96 233 205 85] | succeeded | succeeded | 1 | 2"
+      ]
+    },
+    {
+      "name": "transition_log_starts_queued",
+      "violations": 0
+    },
+    {
+      "name": "failure_semantics (jobs that fail every attempt never succeed; failed =\u003e attempts exhausted)",
+      "violations": 0
+    },
+    {
+      "name": "cancel_response_consistency (API answer matches final state)",
+      "violations": 0
+    }
+  ],
+  "drained": true,
+  "evidence": {
+    "attempts_per_job": {
+      "0": 59,
+      "1": 768,
+      "2": 131,
+      "3": 16,
+      "4": 11,
+      "5": 15
+    },
+    "cancel_paths": {
+      "cancelled_by_worker_while_running": 36,
+      "cancelled_while_queued": 59
+    },
+    "cancel_responses": {
+      "200_cancelled": 59,
+      "202_cancel_requested": 36,
+      "409_already_succeeded": 1
+    },
+    "effects": {
+      "jobs_with_effect": 900,
+      "total": 900
+    },
+    "final_states": {
+      "cancelled": 95,
+      "failed": 5,
+      "succeeded": 900
+    },
+    "harness": {
+      "cancel_requests": 96,
+      "client_retries": 0,
+      "dup_posts": 892,
+      "http_5xx": 0,
+      "kills_sigkill": 9,
+      "mismatch_posts": 24,
+      "net_errors": 0,
+      "pauses_sigstop": 0,
+      "posts": 1892,
+      "respawns": 9,
+      "unexpected_worker_exits": 0
+    },
+    "run_outcomes": {
+      "OPEN": 1,
+      "cancelled": 36,
+      "failed": 5,
+      "lease_expired": 6,
+      "retry": 96,
+      "succeeded": 900,
+      "superseded": 153
+    },
+    "zombies": {
+      "late_writes_rejected_total": 153,
+      "runs_with_late_write_rejected": 153
+    }
+  },
+  "os": "windows",
+  "run": "20261110T225755Z-neg-racy-claim",
+  "verdict": "3 INVARIANT(S) VIOLATED",
+  "wall_seconds": 20.2504793
+}

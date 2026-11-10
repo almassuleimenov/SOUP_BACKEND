@@ -1,0 +1,48 @@
+[   0.00s] run 20261110T225655Z-smoke2  os=windows  args=-db postgres://jobq:jobq@127.0.0.1:55432/jobq_chaos -jobs 1000 -out scratch-results -label smoke2 -drain-timeout 2m
+[   0.00s] config jobs=1000 workers=8 kill-every=2s pause-prob=0.25(pause supported=false) dup=0.30 mismatch=0.02 cancel=0.10 fail=0.05 freeze=0.0030 lease=2s hb=500ms effect=tx unsafe=""
+[   4.12s] chaos: kill -9 w003 (kills=1)
+[   6.13s] progress posts=1769 cancels=36 load_done=false cancelled=35 queued=941 running=8 succeeded=16 kills=1
+[   6.51s] chaos: kill -9 w008 (kills=2)
+[   8.02s] load finished in 6.92s: posts=1907 dup_posts=907 mismatch_posts=18 cancels=69 client_retries=0 net_errors=0 5xx=0
+[   9.43s] chaos: kill -9 w001 (kills=3)
+[  11.14s] progress posts=1907 cancels=85 load_done=true cancelled=85 queued=518 running=8 succeeded=389 kills=3
+[  11.26s] chaos: kill -9 w006 (kills=4)
+[  12.62s] chaos: kill -9 w002 (kills=5)
+[  14.57s] chaos: kill -9 w009 (kills=6)
+[  16.08s] chaos: kill -9 w007 (kills=7)
+[  16.13s] progress posts=1907 cancels=100 load_done=true cancelled=100 queued=166 running=9 succeeded=725 kills=7
+[  18.62s] chaos: kill -9 w014 (kills=8)
+[  19.94s] chaos: kill -9 w015 (kills=9)
+[  20.87s] queue drained 19.769s after load start
+[  21.04s] ==================== RESULT ====================
+[  21.04s] jobs=1000 workers=8 wall=19.769s throughput=50.6 jobs/s  create latency p50=27.2ms p95=136.8ms p99=2.2871s max=2.329s (n=1925)
+[  21.04s] evidence (proves the failure paths were exercised):
+  attempts_per_job  0=62 1=888 2=14 3=10 4=10 5=16
+  cancel_paths      cancelled_by_reaper_after_worker_death=1 cancelled_by_worker_while_running=47 cancelled_while_queued=62
+  cancel_responses  200_cancelled=62 202_cancel_requested=48 409_already_succeeded=2
+  effects           jobs_with_effect=880 total=880
+  final_states      cancelled=110 failed=10 succeeded=880
+  harness           cancel_requests=112 client_retries=0 dup_posts=907 http_5xx=0 kills_sigkill=9 mismatch_posts=18 net_errors=0 pauses_sigstop=0 posts=1907 respawns=9 unexpected_worker_exits=0
+  run_outcomes      cancelled=47 failed=10 lease_expired=9 retry=120 succeeded=880
+  zombies           late_writes_rejected_total=2 runs_with_late_write_rejected=2
+
+[  21.04s] PASS  no_lost_jobs (every acknowledged key exists with the acknowledged id)                           violations=0
+[  21.04s] PASS  no_phantom_jobs (db has no job the harness never asked for)                                     violations=0
+[  21.04s] PASS  idempotency (one job per key; all 2xx for a key carry the same id; <=1 x 201)                   violations=0
+[  21.04s] PASS  idempotency_mismatch (same key + different body => 422, job unchanged)                          violations=0
+[  21.04s] PASS  none_stuck (no queued/running job after drain)                                                  violations=0
+[  21.04s] PASS  at_most_one_effect (no job has >1 side effect)                                                  violations=0
+[  21.04s] PASS  succeeded_has_exactly_one_effect                                                                violations=0
+[  21.04s] PASS  non_succeeded_has_no_effect                                                                     violations=0
+[  21.04s] PASS  no_stale_write (effect comes from the newest run, which is the one that succeeded)              violations=0
+[  21.04s] PASS  no_double_claim (runs of a job never overlap in time)                                           violations=0
+[  21.04s] PASS  all_runs_closed (every attempt has an end and an outcome)                                       violations=0
+[  21.04s] PASS  runs_match_attempts (one job_runs row per counted attempt)                                      violations=0
+[  21.04s] PASS  terminal_run_matches_state (succeeded <=> exactly one succeeded run)                            violations=0
+[  21.04s] PASS  cancel_wins (cancel_requested <=> final state cancelled)                                        violations=0
+[  21.04s] PASS  transition_log_consistent (last logged state = current state; one running entry per attempt)    violations=0
+[  21.04s] PASS  transition_log_starts_queued                                                                    violations=0
+[  21.04s] PASS  failure_semantics (jobs that fail every attempt never succeed; failed => attempts exhausted)    violations=0
+[  21.04s] PASS  cancel_response_consistency (API answer matches final state)                                    violations=0
+[  21.04s] VERDICT: ALL INVARIANTS HELD
+[  21.04s] artifacts in scratch-results\20261110T225655Z-smoke2

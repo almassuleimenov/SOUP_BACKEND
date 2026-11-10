@@ -1,0 +1,42 @@
+[   0.00s] run 20261110T232946Z-load-1000rps-10x-w32  os=windows  args=-db postgres://jobq:jobq@127.0.0.1:55432/jobq_chaos?sslmode=disable -jobs 10000 -workers 32 -rate 1000 -clients 128 -kill-every 0 -freeze-prob 0 -min-ms 0 -max-ms 0 -long-rate 0 -dup-rate 0 -cancel-rate 0 -fail-rate 0 -mismatch-rate 0 -out results -label load-1000rps-10x-w32
+[   0.00s] config jobs=10000 workers=32 kill-every=0s pause-prob=0.25(pause supported=false) dup=0.00 mismatch=0.00 cancel=0.00 fail=0.00 long=0.00/4000ms freeze=0.0000 lease=2s hb=500ms effect=tx unsafe=""
+[   3.65s] chaos disabled (-kill-every 0)
+[   8.70s] progress posts=3306 cancels=0 load_done=false queued=2920 running=12 succeeded=368 kills=0
+[  15.99s] progress posts=4449 cancels=0 load_done=false queued=633 running=22 succeeded=3763 kills=0
+[  18.84s] progress posts=5385 cancels=0 load_done=false queued=21 running=4 succeeded=5327 kills=0
+[  23.68s] progress posts=7858 cancels=0 load_done=false running=13 succeeded=7844 kills=0
+[  27.44s] load finished in 23.784s: posts=10000 dup_posts=0 mismatch_posts=0 cancels=0 client_retries=0 net_errors=0 5xx=0
+[  27.70s] queue drained 24.051s after load start
+[  28.46s] ==================== RESULT ====================
+[  28.46s] jobs=10000 workers=32 wall=24.051s throughput=415.8 jobs/s  create latency p50=6.3ms p95=288ms p99=706.9ms max=4.906s (n=10000)
+[  28.50s] end-to-end (DB clock): queue_wait p50=1.284s p99=6.920s | created->succeeded p50=1.294s p99=6.932s max=12.457s
+[  28.50s] evidence (proves the failure paths were exercised):
+  attempts_per_job  1=9996 2=4
+  cancel_paths      
+  cancel_responses  
+  effects           jobs_with_effect=10000 total=10000
+  final_states      succeeded=10000
+  harness           cancel_requests=0 client_retries=0 dup_posts=0 http_5xx=0 kills_sigkill=0 mismatch_posts=0 net_errors=0 pauses_sigstop=0 posts=10000 respawns=0 unexpected_worker_exits=0
+  run_outcomes      lease_expired=4 succeeded=10000
+  zombies           fence_only_rejections=0 late_writes_rejected_total=3 runs_with_late_write_rejected=3
+
+[  28.50s] PASS  no_lost_jobs (every acknowledged key exists with the acknowledged id)                           violations=0
+[  28.50s] PASS  no_phantom_jobs (db has no job the harness never asked for)                                     violations=0
+[  28.50s] PASS  idempotency (one job per key; all 2xx for a key carry the same id; <=1 x 201)                   violations=0
+[  28.50s] PASS  idempotency_mismatch (same key + different body => 422, job unchanged)                          violations=0
+[  28.50s] PASS  none_stuck (no queued/running job after drain)                                                  violations=0
+[  28.50s] PASS  at_most_one_effect (no job has >1 side effect)                                                  violations=0
+[  28.50s] PASS  succeeded_has_exactly_one_effect                                                                violations=0
+[  28.50s] PASS  non_succeeded_has_no_effect                                                                     violations=0
+[  28.50s] PASS  no_stale_write (effect comes from the newest run, which is the one that succeeded)              violations=0
+[  28.50s] PASS  no_double_claim (runs of a job never overlap in time)                                           violations=0
+[  28.50s] PASS  all_runs_closed (every attempt has an end and an outcome)                                       violations=0
+[  28.50s] PASS  runs_match_attempts (one job_runs row per counted attempt)                                      violations=0
+[  28.50s] PASS  terminal_run_matches_state (succeeded <=> exactly one succeeded run)                            violations=0
+[  28.50s] PASS  cancel_wins (cancel_requested <=> final state cancelled)                                        violations=0
+[  28.50s] PASS  transition_log_consistent (last logged state = current state; one running entry per attempt)    violations=0
+[  28.50s] PASS  transition_log_starts_queued                                                                    violations=0
+[  28.50s] PASS  failure_semantics (jobs that fail every attempt never succeed; failed => attempts exhausted)    violations=0
+[  28.50s] PASS  cancel_response_consistency (API answer matches final state)                                    violations=0
+[  28.50s] VERDICT: ALL INVARIANTS HELD
+[  28.50s] artifacts in results\20261110T232946Z-load-1000rps-10x-w32

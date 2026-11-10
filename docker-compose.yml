@@ -1,0 +1,66 @@
+# docker compose up                       -> Postgres + API (:8080) + 4 workers
+# docker compose --profile chaos run --rm chaos            -> 10k-job chaos run
+# docker compose --profile chaos run --rm chaos -jobs 1000 -unsafe no-fence ...
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: jobq
+      POSTGRES_PASSWORD: jobq
+      POSTGRES_DB: jobq
+    volumes:
+      - ./deploy/initdb:/docker-entrypoint-initdb.d:ro
+      - pgdata:/var/lib/postgresql/data
+    command: ["postgres", "-c", "max_connections=300"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U jobq -d jobq"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  api:
+    build: .
+    command: ["/app/server"]
+    environment:
+      DATABASE_URL: postgres://jobq:jobq@db:5432/jobq?sslmode=disable
+      HTTP_ADDR: ":8080"
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  worker:
+    build: .
+    command: ["/app/worker"]
+    environment:
+      DATABASE_URL: postgres://jobq:jobq@db:5432/jobq?sslmode=disable
+      LEASE: 3s
+      HEARTBEAT: 750ms
+    depends_on:
+      db:
+        condition: service_healthy
+    deploy:
+      replicas: 4
+    restart: unless-stopped
+    stop_grace_period: 15s
+
+  # The harness spawns its own API + 8 worker processes inside this container
+  # so it can kill -9 / SIGSTOP them directly. It uses a separate database
+  # (jobq_chaos) and TRUNCATEs it at start.
+  chaos:
+    build: .
+    profiles: ["chaos"]
+    entrypoint: ["/app/chaos", "-bin", "/app", "-out", "/work/results"]
+    environment:
+      DATABASE_URL: postgres://jobq:jobq@db:5432/jobq_chaos?sslmode=disable
+    volumes:
+      - ./results:/work/results
+    user: root
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:

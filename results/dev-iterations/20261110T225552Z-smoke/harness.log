@@ -1,0 +1,43 @@
+[   0.00s] run 20261110T225552Z-smoke  os=windows  args=-db postgres://jobq:jobq@127.0.0.1:55432/jobq_chaos -jobs 500 -out scratch-results -label smoke -drain-timeout 2m
+[   0.00s] config jobs=500 workers=8 kill-every=2s pause-prob=0.25(pause supported=false) dup=0.30 mismatch=0.02 cancel=0.10 fail=0.05 freeze=0.0030 lease=2s hb=500ms effect=tx unsafe=""
+[   2.94s] chaos: kill -9 w001 (kills=1)
+[   5.12s] chaos: kill -9 w009 (kills=2)
+[   6.36s] progress posts=882 cancels=37 load_done=false cancelled=37 queued=389 running=8 succeeded=66 kills=2
+[   6.59s] chaos: kill -9 w005 (kills=3)
+[   7.49s] load finished in 6.164s: posts=906 dup_posts=406 mismatch_posts=12 cancels=44 client_retries=0 net_errors=0 5xx=0
+[   9.51s] chaos: kill -9 w011 (kills=4)
+[  11.33s] progress posts=906 cancels=44 load_done=true cancelled=44 queued=18 running=9 succeeded=429 kills=4
+[  12.29s] chaos: kill -9 w006 (kills=5)
+[  13.54s] queue drained 12.217s after load start
+[  13.68s] ==================== RESULT ====================
+[  13.68s] jobs=500 workers=8 wall=12.217s throughput=40.9 jobs/s  create latency p50=33.2ms p95=440.9ms p99=2.9476s max=2.964s (n=918)
+[  13.68s] evidence (proves the failure paths were exercised):
+  attempts_per_job  0=44 1=436 2=8 3=3 4=4 5=5
+  cancel_paths      cancelled_while_queued=44
+  cancel_responses  200_cancelled=44
+  effects           jobs_with_effect=455 total=455
+  final_states      cancelled=44 failed=1 succeeded=455
+  harness           cancel_requests=44 client_retries=0 dup_posts=406 http_5xx=0 kills_sigkill=5 mismatch_posts=12 net_errors=0 pauses_sigstop=0 posts=906 respawns=5 unexpected_worker_exits=0
+  run_outcomes      failed=1 lease_expired=3 retry=43 succeeded=455
+  zombies           late_writes_rejected_total=1 runs_with_late_write_rejected=1
+
+[  13.68s] PASS  no_lost_jobs (every acknowledged key exists with the acknowledged id)                           violations=0
+[  13.68s] PASS  no_phantom_jobs (db has no job the harness never asked for)                                     violations=0
+[  13.68s] PASS  idempotency (one job per key; all 2xx for a key carry the same id; <=1 x 201)                   violations=0
+[  13.68s] PASS  idempotency_mismatch (same key + different body => 422, job unchanged)                          violations=0
+[  13.68s] PASS  none_stuck (no queued/running job after drain)                                                  violations=0
+[  13.68s] PASS  at_most_one_effect (no job has >1 side effect)                                                  violations=0
+[  13.68s] PASS  succeeded_has_exactly_one_effect                                                                violations=0
+[  13.68s] PASS  non_succeeded_has_no_effect                                                                     violations=0
+[  13.68s] PASS  no_stale_write (effect comes from the newest run, which is the one that succeeded)              violations=0
+[  13.68s] PASS  no_double_claim (runs of a job never overlap in time)                                           violations=0
+[  13.68s] PASS  all_runs_closed (every attempt has an end and an outcome)                                       violations=0
+[  13.68s] PASS  runs_match_attempts (one job_runs row per counted attempt)                                      violations=0
+[  13.68s] PASS  terminal_run_matches_state (succeeded <=> exactly one succeeded run)                            violations=0
+[  13.68s] PASS  cancel_wins (cancel_requested <=> final state cancelled)                                        violations=0
+[  13.68s] PASS  transition_log_consistent (last logged state = current state; one running entry per attempt)    violations=0
+[  13.68s] PASS  transition_log_starts_queued                                                                    violations=0
+[  13.68s] PASS  failure_semantics (jobs that fail every attempt never succeed; failed => attempts exhausted)    violations=0
+[  13.68s] PASS  cancel_response_consistency (API answer matches final state)                                    violations=0
+[  13.68s] VERDICT: ALL INVARIANTS HELD
+[  13.69s] artifacts in scratch-results\20261110T225552Z-smoke

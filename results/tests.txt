@@ -1,0 +1,62 @@
+# go test -race -count=1 -v ./...   (2026-11-10T23:48:45Z, go version go1.25.4 windows/amd64)
+?   	jobqueue/cmd/chaos	[no test files]
+?   	jobqueue/cmd/server	[no test files]
+?   	jobqueue/cmd/worker	[no test files]
+=== RUN   TestValidateKey
+=== RUN   TestValidateKey/empty
+=== RUN   TestValidateKey/simple
+=== RUN   TestValidateKey/max_length
+=== RUN   TestValidateKey/too_long
+=== RUN   TestValidateKey/space
+=== RUN   TestValidateKey/control_char
+=== RUN   TestValidateKey/non-ascii
+--- PASS: TestValidateKey (0.00s)
+    --- PASS: TestValidateKey/empty (0.00s)
+    --- PASS: TestValidateKey/simple (0.00s)
+    --- PASS: TestValidateKey/max_length (0.00s)
+    --- PASS: TestValidateKey/too_long (0.00s)
+    --- PASS: TestValidateKey/space (0.00s)
+    --- PASS: TestValidateKey/control_char (0.00s)
+    --- PASS: TestValidateKey/non-ascii (0.00s)
+=== RUN   TestCanonicalObject
+--- PASS: TestCanonicalObject (0.00s)
+=== RUN   TestCursorRoundTrip
+--- PASS: TestCursorRoundTrip (0.00s)
+PASS
+ok  	jobqueue/internal/api	1.150s
+?   	jobqueue/internal/config	[no test files]
+?   	jobqueue/internal/db	[no test files]
+?   	jobqueue/internal/migrate	[no test files]
+=== RUN   TestClaimExactlyOnceUnderEveryIsolationLevel
+=== RUN   TestClaimExactlyOnceUnderEveryIsolationLevel/read_committed
+    store_test.go:144: isolation=read committed: 500 jobs claimed exactly once, 0 serialization failures (retried)
+=== RUN   TestClaimExactlyOnceUnderEveryIsolationLevel/repeatable_read
+    store_test.go:144: isolation=repeatable read: 500 jobs claimed exactly once, 455 serialization failures (retried)
+=== RUN   TestClaimExactlyOnceUnderEveryIsolationLevel/serializable
+    store_test.go:144: isolation=serializable: 500 jobs claimed exactly once, 5266 serialization failures (retried)
+--- PASS: TestClaimExactlyOnceUnderEveryIsolationLevel (12.96s)
+    --- PASS: TestClaimExactlyOnceUnderEveryIsolationLevel/read_committed (2.53s)
+    --- PASS: TestClaimExactlyOnceUnderEveryIsolationLevel/repeatable_read (2.99s)
+    --- PASS: TestClaimExactlyOnceUnderEveryIsolationLevel/serializable (7.42s)
+=== RUN   TestRacyClaimIsDetected
+    store_test.go:165: racy claim: 273 of 300 jobs double-claimed
+--- PASS: TestRacyClaimIsDetected (3.37s)
+=== RUN   TestZombieWriteIsFenced
+--- PASS: TestZombieWriteIsFenced (1.10s)
+=== RUN   TestCancelCompleteRace
+    store_test.go:290: cancel won 132, completion won 168
+--- PASS: TestCancelCompleteRace (8.35s)
+=== RUN   TestIdempotentCreateConcurrent
+--- PASS: TestIdempotentCreateConcurrent (1.90s)
+=== RUN   TestTerminalStateIsImmutable
+--- PASS: TestTerminalStateIsImmutable (0.41s)
+=== RUN   TestReaperHonoursCancel
+--- PASS: TestReaperHonoursCancel (0.31s)
+=== RUN   TestAttemptsExhaustToFailed
+--- PASS: TestAttemptsExhaustToFailed (0.32s)
+=== RUN   TestFinishRetryAfterAmbiguousCommit
+--- PASS: TestFinishRetryAfterAmbiguousCommit (0.31s)
+PASS
+ok  	jobqueue/internal/store	30.195s
+?   	jobqueue/internal/worker	[no test files]
+exit=0
