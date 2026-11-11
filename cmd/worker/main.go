@@ -100,9 +100,10 @@ func run(log *slog.Logger) error {
 	if err != nil {
 		return err
 	}
-	// Exactly two connections: the claim/finish loop and the heartbeat. Every
-	// worker process holds its own pool, so this is what scales with N.
-	pool, err := db.Connect(ctx, url, 2, 2, "jobq-worker", 60*time.Second, log)
+	// Exactly three connections: the claim/finish loop, the heartbeat and the
+	// reaper. Every worker process holds its own pool, so this is what scales
+	// with N (budget: workers*3 + API pool + headroom <= max_connections).
+	pool, err := db.Connect(ctx, url, 3, 3, "jobq-worker", 60*time.Second, log)
 	if err != nil {
 		return err
 	}

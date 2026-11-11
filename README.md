@@ -31,7 +31,8 @@ curl -s localhost:8080/metrics | grep ^jobq_
 Tests (need a Postgres; integration tests skip without `TEST_DATABASE_URL`):
 
 ```sh
-TEST_DATABASE_URL=postgres://jobq:jobq@localhost:5432/jobq_test go test -race ./...
+docker compose up -d db               # Postgres is published on localhost:5432 (dev only)
+TEST_DATABASE_URL=postgres://jobq:jobq@localhost:5432/jobq_test?sslmode=disable go test -race -p 1 ./...   # -p 1: packages share the test DB
 ```
 
 ## What surprised me, and what still concerns me

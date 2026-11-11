@@ -56,6 +56,34 @@ off. The change was within noise, so that hypothesis is rejected.
 replication: yes. The correctness evidence holds up, and those fixes are about operating it. Items 4–6 are required before
 any external or multi-tenant use.
 
+## Found by an independent review (after the runs above)
+
+An independent reviewer re-checked the code and re-ran the harness on Linux: 3,000 jobs, 67 × kill -9, 15 × SIGSTOP, all 18
+invariants held. The reviewer confirmed claiming, fencing, the cancel/complete race, idempotency 422 and DB-clock-only SQL,
+and also found problems that none of my runs caught:
+
+* **Fixed: the reaper only ran between jobs.** It was called from the worker's main loop, before `Claim`. With every worker busy
+  on long jobs, a dead worker's job stayed `running` with an expired lease until some worker finished. The reviewer reproduced
+  it: 2 workers on 25 s jobs, kill -9 one, the dead job sat for ~21 s. For multi-hour training that is "stuck in running".
+  My harness missed it because its jobs last 10 ms–4 s, so some worker was always free soon enough. That is exactly the
+  "scale and time" blind spot listed in CHAOS.md. **Fix:** the reaper now runs in its own goroutine on a ticker,
+  independent of job execution, and the worker holds a third connection for it. **Regression test:**
+  `TestDeadWorkerReapedWhileAllWorkersBusy` (one live worker busy on an 8 s job, one dead claimant). It *fails* on the old code
+  ("not reaped within 2.7 s") and passes on the new one (reaped 1.1 s after claim with a 1 s lease). The "≈3–4 s detection"
+  figure in DESIGN.md was true only while some worker was idle. It holds now, as long as at least one worker process is alive.
+* **Known risk: a worker death consumes an attempt.** The reaper counts a killed run as an attempt. With the default
+  `max_attempts=3`, three rolling deploys or OOM kills in a row turn a healthy job into `failed`. The reviewer saw 2 jobs end
+  `failed` that would have succeeded on their 5th attempt. Better: count lease expiries separately from execution
+  failures (`attempts` vs `crashes`, with a separate, higher cap), and make graceful shutdown release the lease without
+  charging an attempt.
+* **Known risk: chaos and negative-control switches ship in the production binary.** `UNSAFE_MODE` (no-fence, racy-claim) and
+  `CHAOS_FREEZE_*` are read from the environment by the real `worker`. One wrong env var disables fencing in production. They
+  belong behind a build tag (`-tags chaos`) used only to build the harness's worker.
+* **Known risk: `/metrics` is unauthenticated and does a full `count(*)` over `jobs` per scrape.** It is a cheap DoS lever and it
+  leaks queue sizes (see fix #1 for the count).
+* **Known risk: payloads are not validated per job type.** `{"duration_ms":"abc"}` is accepted with 201 and then fails on
+  every attempt in the worker. The API should validate the payload against the schema of its `type` and answer 400.
+
 ## Where the design is weakest (my own pre-mortem)
 
 * **Lease length is a single global trade-off.** 3 s is fine for the emulated work, but for multi-hour training a 3 s lease
@@ -63,7 +91,7 @@ any external or multi-tenant use.
   checkpointing should be per job type.
 * **A worker frozen for 5 minutes that comes back:** its heartbeat fails (fence mismatch), so it stops. If it was frozen
   right before writing, `finish_job` rejects the write. Proven by `TestZombieWriteIsFenced` and `fence_only_rejections > 0`
-  in the main runs. The cost is one wasted execution, and the job itself was reaped ~3–4 s after the freeze began.
+  in the main runs. The cost is one wasted execution, and the job itself was reaped ~3–4 s after the freeze began (true only after the reaper fix above; before it, only if some worker was idle).
 * **Everything depends on one database clock and one primary.** Clock steps on that host and failover are untested
   (see [CHAOS.md](CHAOS.md#what-the-harness-does-not-catch)).
 * **Retry fairness.** Retries back off by moving `run_after` forward, so under a backlog a failing job waits behind every

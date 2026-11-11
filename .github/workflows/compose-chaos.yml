@@ -1,0 +1,60 @@
+# Linux + Docker verification (the development machine has no Docker).
+# 1. docker compose up --build, smoke-test the API
+# 2. go test -race against the compose Postgres (Linux)
+# 3. the 10k-job chaos harness via docker compose (real kill -9 and SIGSTOP)
+# Any invariant violation or evidence gap makes the job red.
+name: compose-chaos
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  chaos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: docker compose up --build
+        run: docker compose up -d --build
+
+      - name: smoke test
+        run: |
+          for i in $(seq 1 30); do curl -fsS localhost:8080/readyz && break; sleep 2; done
+          curl -fsS -XPOST localhost:8080/v1/jobs -H 'Idempotency-Key: ci-smoke-1' \
+               -d '{"type":"train","payload":{"duration_ms":200}}' | tee /tmp/job.json
+          id=$(python3 -c 'import json;print(json.load(open("/tmp/job.json"))["id"])')
+          for i in $(seq 1 30); do
+            state=$(curl -fsS localhost:8080/v1/jobs/$id | python3 -c 'import json,sys;print(json.load(sys.stdin)["state"])')
+            echo "state=$state"; [ "$state" = succeeded ] && break; sleep 1
+          done
+          [ "$state" = succeeded ]
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: go test -race (Linux, compose Postgres)
+        env:
+          TEST_DATABASE_URL: postgres://jobq:jobq@localhost:5432/jobq_test?sslmode=disable
+        run: |
+          mkdir -p results/ci
+          go test -race -p 1 -count=1 -v ./... 2>&1 | tee results/ci/tests-linux.txt
+          test ${PIPESTATUS[0]} -eq 0
+
+      - name: chaos 10k (8 workers, kill -9 ~2s, SIGSTOP)
+        run: docker compose --profile chaos run --rm chaos -label ci-docker-10k
+
+      - name: collect compose logs
+        if: always()
+        run: |
+          mkdir -p results/ci
+          docker compose logs --no-color > results/ci/compose.log 2>&1 || true
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: chaos-results
+          path: |
+            results/*ci-docker*
+            results/ci/

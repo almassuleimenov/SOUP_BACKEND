@@ -166,6 +166,9 @@ Be explicit about the blind spots. A green run says nothing about these:
 9. **Windows vs Linux.** On Windows there is no SIGSTOP, so zombies come only from the in-worker freeze hook. That hook
    freezes at one chosen point (after work, before the write), which is the worst point. A real SIGSTOP can land anywhere.
    The Docker/Linux run adds real SIGSTOP/SIGCONT.
-10. **Starvation and fairness.** Order is checked for correctness, not fairness. A poison job that crashes every worker that
+10. **Long jobs with a fully busy fleet.** Jobs last at most 4 s, so some worker is always free soon. That is why the harness
+    never noticed that the reaper ran only between jobs (found by an independent review, fixed, and covered by
+    `TestDeadWorkerReapedWhileAllWorkersBusy`). A harness profile with every worker on long jobs would have caught it.
+11. **Starvation and fairness.** Order is checked for correctness, not fairness. A poison job that crashes every worker that
     takes it keeps its place at the head of the queue after each reap (deliberately), so it can kill up to `max_attempts`
     workers in a row.

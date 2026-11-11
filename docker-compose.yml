@@ -12,6 +12,10 @@ services:
       - ./deploy/initdb:/docker-entrypoint-initdb.d:ro
       - pgdata:/var/lib/postgresql/data
     command: ["postgres", "-c", "max_connections=300"]
+    # Published for local tests only (TEST_DATABASE_URL in README). Dev credentials;
+    # do not publish the port like this in production.
+    ports:
+      - "127.0.0.1:5432:5432"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U jobq -d jobq"]
       interval: 2s

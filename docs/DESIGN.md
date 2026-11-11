@@ -38,12 +38,15 @@ strictly greater than every earlier claim of that job, and every later write by 
 
 Leases. The worker heartbeats every `lease/3`: `UPDATE … SET lease_expires_at = now()+lease WHERE id=$1 AND lease_token=$2
 AND state='running'`. Zero rows means the lease was lost, so the worker abandons the job and writes nothing. Every worker also runs
-the reaper every 0.5–1 s: `running AND lease_expires_at < now()` → `queued` (or `failed` if attempts are exhausted, or `cancelled`
+the reaper **in its own goroutine**, every 0.5–1 s, independently of the job it is executing: `running AND lease_expires_at < now()` → `queued` (or `failed` if attempts are exhausted, or `cancelled`
 if a cancel was requested). It uses `SKIP LOCKED` and re-checks the predicate, so concurrent reapers are safe, and a heartbeat that
 commits first simply makes the row stop matching. **Only the database clock is used** (`now()`). Worker clocks never enter
 any comparison, so worker clock skew cannot shorten or extend a lease. Workers only measure *durations* with a monotonic clock, to
 self-fence (stop working) if they could not heartbeat for longer than a lease.
-Detection latency is `lease + reap interval` (≈3–4 s with defaults). The trade-off: a shorter lease detects death faster but
+Detection latency is `lease + reap interval` (≈3–4 s with defaults) as long as at least one worker process is alive.
+*(Until the independent review the reaper ran only between jobs, so with every worker busy on long jobs a dead worker's
+job stayed `running` until someone finished. Fixed and covered by `TestDeadWorkerReapedWhileAllWorkersBusy`. Each worker
+now holds 3 DB connections: loop, heartbeat, reaper.)* The trade-off: a shorter lease detects death faster but
 turns long GC/network pauses into false deaths. Fencing makes those false deaths safe, but each one costs a duplicate *execution*.
 
 ## What happens when a running job is cancelled

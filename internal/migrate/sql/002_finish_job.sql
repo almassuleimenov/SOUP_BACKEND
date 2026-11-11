@@ -7,8 +7,9 @@
 -- Postgres waited for a CPU-starved client. One call = one round trip, and the
 -- row lock is held only for the duration of the function body.
 --
--- Semantics are identical to the previous Go implementation (see git history /
--- store.Finish doc): lock row; reject stale fence (recording fence-only
+-- Semantics are identical to the previous Go implementation (a SELECT ... FOR
+-- UPDATE followed by conditional writes in one transaction; the history of
+-- this change is in docs/AI_USAGE.md #7 and docs/VERDICT.md): lock row; reject stale fence (recording fence-only
 -- rejections); ambiguous-commit retries report success; cancel_requested beats
 -- success and failure; effect is written in the same transaction.
 

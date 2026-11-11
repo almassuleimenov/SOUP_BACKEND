@@ -73,21 +73,21 @@ var (
 // finished (or abandoned to lease expiry) before Run returns.
 func (w *Worker) Run(ctx context.Context) error {
 	w.log.Info("worker started", "lease", w.cfg.Lease, "heartbeat", w.cfg.Heartbeat, "effect_mode", w.cfg.EffectMode)
+
+	// The reaper runs in its own goroutine, independent of job execution.
+	// (It used to run only between jobs, so while every worker was busy with a
+	// long job, a dead worker's job stayed "running" until someone finished:
+	// found by an independent review, regression test in worker_test.go.)
+	reapCtx, stopReap := context.WithCancel(ctx)
+	reapDone := make(chan struct{})
+	go func() { defer close(reapDone); w.reapLoop(reapCtx) }()
+	defer func() { stopReap(); <-reapDone }()
+
 	idle := w.cfg.PollMin
-	lastReap := time.Time{}
 	for {
 		if ctx.Err() != nil {
 			w.log.Info("worker stopping")
 			return nil
-		}
-		if time.Since(lastReap) >= w.cfg.ReapEvery {
-			lastReap = time.Now()
-			if n, err := w.st.ReapExpired(ctx, 100); err != nil {
-				w.log.Warn("reap failed", "err", err)
-			} else if n > 0 {
-				w.stats.Reaped.Add(float64(n))
-				w.log.Info("reaped expired leases", "count", n)
-			}
 		}
 
 		job, err := w.st.Claim(ctx, w.cfg.ID, w.cfg.Lease)
@@ -107,6 +107,28 @@ func (w *Worker) Run(ctx context.Context) error {
 		idle = w.cfg.PollMin
 		w.stats.Claimed.Inc()
 		w.process(job)
+	}
+}
+
+// reapLoop returns expired leases to the queue every ReapEvery until ctx ends.
+// Safe to run in every worker at once (ReapExpired uses SKIP LOCKED).
+func (w *Worker) reapLoop(ctx context.Context) {
+	t := time.NewTicker(w.cfg.ReapEvery)
+	defer t.Stop()
+	for {
+		select {
+		case <-ctx.Done():
+			return
+		case <-t.C:
+		}
+		n, err := w.st.ReapExpired(ctx, 100)
+		switch {
+		case err != nil && ctx.Err() == nil:
+			w.log.Warn("reap failed", "err", err)
+		case n > 0:
+			w.stats.Reaped.Add(float64(n))
+			w.log.Info("reaped expired leases", "count", n)
+		}
 	}
 }
 

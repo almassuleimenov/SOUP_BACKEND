@@ -3,9 +3,36 @@
 **Tool:** Claude Code (Claude Opus), in an interactive session. It also used public skill prompts (golang-pro, postgres-pro,
 chaos-engineer, test-master, code-reviewer, security-reviewer and others from `jeffallan/claude-skills`) as checklists.
 
-**What the AI did:** it wrote most of the code and the first drafts of the documents. Design decisions (Postgres, leases +
-fencing tokens, effect inside the completion transaction, cancel-wins) were discussed and accepted. Every claim in these
-docs is backed by a harness run or a test in this repository. Re-run them, don't trust the prose.
+**What the AI did:** it wrote most of the code and the first drafts of the documents. It also proposed the design
+decisions (Postgres, leases + fencing tokens, effect inside the completion transaction, cancel-wins), and I accepted them.
+Every claim in these docs is backed by a harness run or a test in this repository. Re-run them, don't trust the prose.
+
+## What I did myself
+
+* **Picked and installed the tooling.** I found the `jeffallan/claude-skills` repository and chose which skills fit this
+  task: Go, PostgreSQL/SQL, architecture and API design, security review, code review, debugging, testing, DevOps,
+  monitoring, SRE. I had them installed globally so they're available in every session.
+* **Set up the environment** for working with Claude Code on my Windows machine: the Go toolchain, the MSYS2 gcc that
+  `go test -race` needs, and the git repository with the GitHub remote. Docker isn't installed on this machine. Because of
+  that, every run in `results/` was made on Windows against an embedded Postgres, and the `docker compose` path still has
+  to be verified (see below).
+* **Set the direction.** I gave Claude the task spec and asked for the strongest solution to it, not just a passing one.
+* **Checked the answers.** I followed the progress, asked for a full explanation of the design and results in Russian so I
+  could understand them, and reviewed the documents. I noticed that this file showed only the AI's part and asked for my
+  own part to be written down honestly. I also compared the local working copy with the GitHub version.
+* **Had the work independently reviewed and acted on it.** I got an independent review of the code and docs. The reviewer
+  re-checked the code and re-ran the harness on Linux (3,000 jobs, 67 × kill -9, 15 × SIGSTOP, all invariants held). The
+  review found a real bug that neither the AI nor the harness had caught: the reaper ran only between jobs (row 10 below). It
+  also found docs promising more than the code did, plus several known risks. I brought the findings back and asked for them
+  to be fixed or written down. The fixes are in this change set, and the risks are now listed in VERDICT.md.
+* **Got a Linux/Docker run without Docker locally.** Because there is no Docker on my machine, I added a GitHub Actions
+  workflow (`.github/workflows/compose-chaos.yml`, approach suggested in the review). On `ubuntu-latest` it runs
+  `docker compose up --build`, a smoke test, `go test -race` on Linux and the 10k chaos harness via `docker compose`
+  (real kill -9 and SIGSTOP), and uploads the raw output as an artifact.
+* **Owned the repository.** I make and push every commit myself.
+
+I did not write the Go code or the SQL by hand, and I did not run the harness or the tests from my own terminal. Those
+commands ran inside the Claude Code session, and their raw output is in `results/`.
 
 ## Where the AI's first version was wrong, and how it was caught
 
@@ -22,6 +49,7 @@ None of these produced an error message. Each was caught by looking at evidence,
 | 7 | Finish was a 6-round-trip transaction holding the job's row lock | Sampling `pg_stat_activity` at 1000 rps: 272/~400 samples "idle in transaction" | `finish_job()` PL/pgSQL, one round trip. Idle-in-tx went to 0. **Throughput gain was NOT demonstrated** (within noise) |
 | 8 | A Finish retried after a lost COMMIT reply was counted as a zombie | Code review | Own-run check, `TestFinishRetryAfterAmbiguousCommit` |
 | 9 | I drew conclusions from single load-test runs ("fsync +10%", "finish fix made it slower") | Repeating the same config: 304 / 448 / 592 jobs/s | Noise is ±35%. Those claims are withdrawn, and only repeatable effects are stated in VERDICT.md |
+| 10 | **The reaper only ran between jobs** (called from the main loop before `Claim`). With every worker busy on long jobs, a dead worker's job stayed `running` with an expired lease until someone finished (~21 s in the reviewer's repro with 25 s jobs). DESIGN.md claimed 3–4 s detection regardless | **Independent review**, not the harness: harness jobs last ≤ 4 s, so some worker was always free soon | Reaper in its own goroutine (3rd DB connection). `TestDeadWorkerReapedWhileAllWorkersBusy` fails on the old code and passes on the new one. Docs corrected |
 
 ## What was verified by hand / by measurement
 
@@ -30,6 +58,11 @@ None of these produced an error message. Each was caught by looking at evidence,
 * Isolation-level claims (READ COMMITTED is enough; REPEATABLE READ / SERIALIZABLE only add 40001 retries) were measured by
   `TestClaimExactlyOnceUnderEveryIsolationLevel`, not taken on faith.
 * Latency numbers in the verdict come from the open-loop load test, not from estimates.
+
+## Still to do before submission
+
+* Push and let the `compose-chaos` GitHub Actions workflow run (`docker compose` on Linux). Download the `chaos-results`
+  artifact into `results/` and commit it, whatever the result, then link the run in the submission email.
 
 ## What I would still not trust without checking
 
