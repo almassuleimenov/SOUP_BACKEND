@@ -384,20 +384,29 @@ func TestReaperHonoursCancel(t *testing.T) {
 	}
 }
 
-// Retries exhaust into failed; the reaper counts a dead worker as an attempt.
-func TestAttemptsExhaustToFailed(t *testing.T) {
+// crash simulates kill -9 of the current owner: expire its lease and reap.
+func crash(t *testing.T, p *pgxpool.Pool, st *store.Store, id string) {
+	t.Helper()
+	expireLease(t, p, id)
+	if n, err := st.ReapExpired(context.Background(), 10); err != nil || n != 1 {
+		t.Fatalf("reap: n=%d err=%v", n, err)
+	}
+}
+
+// Failures exhaust max_attempts; a crash in between is not a failure.
+func TestFailuresExhaustToFailed(t *testing.T) {
 	p := pool(t, "")
 	st := store.New(p, store.Options{})
 	ctx := context.Background()
 	id := createN(t, st, 1, `{}`)[0] // max_attempts = 3
-	for i := 1; i <= 3; i++ {
+	steps := []string{"fail", "crash", "fail", "fail"}
+	for i, step := range steps {
 		c, err := st.Claim(ctx, "w", lease)
 		if err != nil || c == nil {
-			t.Fatalf("attempt %d: %v", i, err)
+			t.Fatalf("step %d: %v", i, err)
 		}
-		if i == 2 { // worker dies on attempt 2
-			expireLease(t, p, id)
-			_, _ = st.ReapExpired(ctx, 10)
+		if step == "crash" {
+			crash(t, p, st, id)
 			continue
 		}
 		if _, err := st.Finish(ctx, store.FinishParams{JobID: id, Fence: c.Fence, WorkerID: "w",
@@ -406,8 +415,55 @@ func TestAttemptsExhaustToFailed(t *testing.T) {
 		}
 	}
 	j, _ := st.GetJob(ctx, id)
-	if j.State != store.StateFailed || j.Attempts != 3 {
-		t.Fatalf("state=%s attempts=%d", j.State, j.Attempts)
+	if j.State != store.StateFailed || j.Attempts != 4 || j.Failures != 3 || j.Crashes != 1 {
+		t.Fatalf("state=%s attempts=%d failures=%d crashes=%d", j.State, j.Attempts, j.Failures, j.Crashes)
+	}
+}
+
+// Review finding: worker deaths used to consume max_attempts, so a few
+// deploys in a row killed a healthy job. Now 4 crashes (more than
+// max_attempts=3) followed by a clean run must still succeed.
+func TestCrashesDoNotSpendAttempts(t *testing.T) {
+	p := pool(t, "")
+	st := store.New(p, store.Options{})
+	ctx := context.Background()
+	id := createN(t, st, 1, `{}`)[0] // max_attempts = 3, max_crashes = 5
+	for i := 0; i < 4; i++ {
+		if c, err := st.Claim(ctx, "w", lease); err != nil || c == nil {
+			t.Fatalf("claim %d: %v", i, err)
+		}
+		crash(t, p, st, id)
+	}
+	c, _ := st.Claim(ctx, "w", lease)
+	res, err := st.Finish(ctx, store.FinishParams{JobID: id, Fence: c.Fence, WorkerID: "w",
+		Outcome: store.OutcomeSuccess, EffectInTx: true})
+	if err != nil || res.State != store.StateSucceeded {
+		t.Fatalf("finish after 4 crashes: %+v %v", res, err)
+	}
+	j, _ := st.GetJob(ctx, id)
+	if j.Crashes != 4 || j.Failures != 0 || j.Attempts != 5 {
+		t.Fatalf("crashes=%d failures=%d attempts=%d", j.Crashes, j.Failures, j.Attempts)
+	}
+}
+
+// A poison job that kills every worker that takes it is still bounded.
+func TestPoisonJobBoundedByCrashBudget(t *testing.T) {
+	p := pool(t, "")
+	st := store.New(p, store.Options{})
+	ctx := context.Background()
+	id := createN(t, st, 1, `{}`)[0] // max_crashes = 5
+	for i := 0; i < 5; i++ {
+		if c, err := st.Claim(ctx, "w", lease); err != nil || c == nil {
+			t.Fatalf("claim %d: %v", i, err)
+		}
+		crash(t, p, st, id)
+	}
+	j, _ := st.GetJob(ctx, id)
+	if j.State != store.StateFailed || j.Crashes != 5 {
+		t.Fatalf("state=%s crashes=%d", j.State, j.Crashes)
+	}
+	if c, _ := st.Claim(ctx, "w", lease); c != nil {
+		t.Fatal("poison job claimed again after its crash budget was exhausted")
 	}
 }
 
@@ -432,5 +488,32 @@ func TestFinishRetryAfterAmbiguousCommit(t *testing.T) {
 	_ = p.QueryRow(ctx, `SELECT late_write_rejected FROM job_runs WHERE fence = $1`, c.Fence).Scan(&late)
 	if n := countEffects(t, p, id); n != 1 || late != 0 {
 		t.Fatalf("effects=%d late_write_rejected=%d", n, late)
+	}
+}
+
+// Found by the harness (FINAL2 main run, budgets_match_runs): a worker whose
+// heartbeat timed out self-fences and closes its run as 'superseded' BEFORE
+// the reaper sees the expired lease. The reaper then counted a crash but left
+// the run labelled 'superseded', so jobs.crashes disagreed with job_runs.
+func TestSelfFencedRunIsLabelledByReaper(t *testing.T) {
+	p := pool(t, "")
+	st := store.New(p, store.Options{})
+	ctx := context.Background()
+	id := createN(t, st, 1, `{}`)[0]
+	c, err := st.Claim(ctx, "w", lease)
+	if err != nil || c == nil {
+		t.Fatalf("claim: %v", err)
+	}
+	if err := st.CloseRunIfOpen(ctx, c.Fence); err != nil { // worker gives up first
+		t.Fatal(err)
+	}
+	crash(t, p, st, id) // then the lease expires and is reaped
+	var outcome string
+	if err := p.QueryRow(ctx, `SELECT outcome FROM job_runs WHERE fence = $1`, c.Fence).Scan(&outcome); err != nil {
+		t.Fatal(err)
+	}
+	j, _ := st.GetJob(ctx, id)
+	if outcome != "lease_expired" || j.Crashes != 1 || j.State != store.StateQueued {
+		t.Fatalf("run outcome=%q crashes=%d state=%s, want lease_expired/1/queued", outcome, j.Crashes, j.State)
 	}
 }

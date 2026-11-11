@@ -63,8 +63,11 @@ type Job struct {
 	Type            string          `json:"type"`
 	Payload         json.RawMessage `json:"payload"`
 	State           State           `json:"state"`
-	Attempts        int             `json:"attempts"`
-	MaxAttempts     int             `json:"max_attempts"`
+	Attempts        int             `json:"attempts"`     // claims (executions started)
+	MaxAttempts     int             `json:"max_attempts"` // budget for failures reported by the job
+	Failures        int             `json:"failures"`     // executions that reported an error
+	Crashes         int             `json:"crashes"`      // executions whose worker died (lease expired)
+	MaxCrashes      int             `json:"max_crashes"`
 	CancelRequested bool            `json:"cancel_requested"`
 	LastError       *string         `json:"last_error,omitempty"`
 	Result          json.RawMessage `json:"result,omitempty"`
@@ -75,13 +78,13 @@ type Job struct {
 }
 
 const jobColumns = `id, seq, idempotency_key, job_type, payload, state::text, attempts, max_attempts,
-	cancel_requested, last_error, result, created_at, updated_at, started_at, finished_at`
+	failures, crashes, max_crashes, cancel_requested, last_error, result, created_at, updated_at, started_at, finished_at`
 
 func scanJob(row pgx.Row) (Job, error) {
 	var j Job
 	var state string
 	err := row.Scan(&j.ID, &j.Seq, &j.IdempotencyKey, &j.Type, &j.Payload, &state, &j.Attempts,
-		&j.MaxAttempts, &j.CancelRequested, &j.LastError, &j.Result, &j.CreatedAt, &j.UpdatedAt,
+		&j.MaxAttempts, &j.Failures, &j.Crashes, &j.MaxCrashes, &j.CancelRequested, &j.LastError, &j.Result, &j.CreatedAt, &j.UpdatedAt,
 		&j.StartedAt, &j.FinishedAt)
 	j.State = State(state)
 	return j, err
@@ -161,7 +164,7 @@ func (s *Store) CreateJob(ctx context.Context, p CreateParams) (job Job, created
 		`SELECT request_hash, `+jobColumns+` FROM jobs WHERE idempotency_key = $1`, p.IdempotencyKey)
 	var state string
 	err = row.Scan(&existingHash, &job.ID, &job.Seq, &job.IdempotencyKey, &job.Type, &job.Payload,
-		&state, &job.Attempts, &job.MaxAttempts, &job.CancelRequested, &job.LastError, &job.Result,
+		&state, &job.Attempts, &job.MaxAttempts, &job.Failures, &job.Crashes, &job.MaxCrashes, &job.CancelRequested, &job.LastError, &job.Result,
 		&job.CreatedAt, &job.UpdatedAt, &job.StartedAt, &job.FinishedAt)
 	if err != nil {
 		// The conflicting row cannot disappear (jobs are never deleted), so this
@@ -299,7 +302,8 @@ func (s *Store) CountByState(ctx context.Context) (map[State]int64, error) {
 type Claimed struct {
 	JobID       string
 	Fence       int64
-	Attempt     int
+	Attempt     int // claim number (1-based), includes crashed executions
+	Failures    int // failures reported so far (before this execution)
 	MaxAttempts int
 	Type        string
 	Payload     json.RawMessage
@@ -333,15 +337,15 @@ func (s *Store) Claim(ctx context.Context, workerID string, lease time.Duration)
 				started_at       = COALESCE(j.started_at, now())
 			FROM next
 			WHERE j.id = next.id AND j.state = 'queued'
-			RETURNING j.id, j.lease_token, j.attempts, j.max_attempts, j.job_type, j.payload
+			RETURNING j.id, j.lease_token, j.attempts, j.failures, j.max_attempts, j.job_type, j.payload
 		), run AS (
 			INSERT INTO job_runs (fence, job_id, attempt, worker_id)
 			SELECT lease_token, id, attempts, $1 FROM claimed
 		)
-		SELECT id, lease_token, attempts, max_attempts, job_type, payload FROM claimed`,
+		SELECT id, lease_token, attempts, failures, max_attempts, job_type, payload FROM claimed`,
 		workerID, secs(lease))
 	var c Claimed
-	err := row.Scan(&c.JobID, &c.Fence, &c.Attempt, &c.MaxAttempts, &c.Type, &c.Payload)
+	err := row.Scan(&c.JobID, &c.Fence, &c.Attempt, &c.Failures, &c.MaxAttempts, &c.Type, &c.Payload)
 	if errors.Is(err, pgx.ErrNoRows) {
 		return nil, nil
 	}
@@ -370,13 +374,13 @@ func (s *Store) claimRacy(ctx context.Context, workerID string, lease time.Durat
 				lease_expires_at = now() + make_interval(secs => $3),
 				started_at = COALESCE(started_at, now())
 			WHERE id = $1   -- BUG: no "AND state = 'queued'"
-			RETURNING id, lease_token, attempts, max_attempts, job_type, payload
+			RETURNING id, lease_token, attempts, failures, max_attempts, job_type, payload
 		), run AS (
 			INSERT INTO job_runs (fence, job_id, attempt, worker_id)
 			SELECT lease_token, id, attempts, $2 FROM claimed
 		)
-		SELECT id, lease_token, attempts, max_attempts, job_type, payload FROM claimed`,
-		id, workerID, secs(lease)).Scan(&c.JobID, &c.Fence, &c.Attempt, &c.MaxAttempts, &c.Type, &c.Payload)
+		SELECT id, lease_token, attempts, failures, max_attempts, job_type, payload FROM claimed`,
+		id, workerID, secs(lease)).Scan(&c.JobID, &c.Fence, &c.Attempt, &c.Failures, &c.MaxAttempts, &c.Type, &c.Payload)
 	if err != nil {
 		return nil, fmt.Errorf("racy claim: %w", err)
 	}
@@ -500,7 +504,9 @@ func (s *Store) CloseRunIfOpen(ctx context.Context, fence int64) error {
 }
 
 // ReapExpired returns jobs whose lease expired (worker presumed dead) to the
-// queue, or to a terminal state if they were cancelled or out of attempts.
+// queue, or to a terminal state if they were cancelled or out of crash budget.
+// A crash is counted in `crashes`, not in `failures`: a dead worker does not
+// spend the job's max_attempts (migration 003).
 // Safe to run concurrently from every worker: SKIP LOCKED + the re-checked
 // predicate make each expired lease reaped exactly once, and a heartbeat that
 // lands first simply makes the row no longer match.
@@ -515,12 +521,15 @@ func (s *Store) ReapExpired(ctx context.Context, limit int) (int, error) {
 			FOR UPDATE SKIP LOCKED
 		), upd AS (
 			UPDATE jobs j SET
-				state = CASE WHEN j.cancel_requested           THEN 'cancelled'::job_state
-				             WHEN j.attempts >= j.max_attempts THEN 'failed'::job_state
+				crashes = j.crashes + 1,
+				state = CASE WHEN j.cancel_requested              THEN 'cancelled'::job_state
+				             WHEN j.crashes + 1 >= j.max_crashes  THEN 'failed'::job_state
 				             ELSE 'queued'::job_state END,
-				finished_at = CASE WHEN j.cancel_requested OR j.attempts >= j.max_attempts
+				finished_at = CASE WHEN j.cancel_requested OR j.crashes + 1 >= j.max_crashes
 				                   THEN now() ELSE NULL END,
-				last_error = 'lease expired: worker ' || j.lease_owner || ' presumed dead',
+				last_error = 'lease expired: worker ' || j.lease_owner || ' presumed dead'
+				             || CASE WHEN j.crashes + 1 >= j.max_crashes AND NOT j.cancel_requested
+				                     THEN ' (crash budget exhausted: poison job?)' ELSE '' END,
 				-- run_after is left unchanged on purpose: the job keeps its place
 				-- at the head of the queue instead of waiting behind the backlog
 				-- a second time because its worker died.
@@ -530,8 +539,14 @@ func (s *Store) ReapExpired(ctx context.Context, limit int) (int, error) {
 			  AND j.lease_token = e.lease_token
 			RETURNING e.lease_token AS old_fence
 		), runs AS (
-			UPDATE job_runs r SET ended_at = clock_timestamp(), outcome = 'lease_expired'
-			FROM upd WHERE r.fence = upd.old_fence AND r.ended_at IS NULL
+			-- The run is labelled here, in the same statement that counts the
+			-- crash, so jobs.crashes always equals the lease_expired runs. A
+			-- worker that self-fenced (heartbeat timed out) may already have
+			-- closed its run as 'superseded'; that run did lose its lease, so
+			-- it is relabelled, keeping the worker's own ended_at.
+			UPDATE job_runs r SET ended_at = COALESCE(r.ended_at, clock_timestamp()), outcome = 'lease_expired'
+			FROM upd WHERE r.fence = upd.old_fence
+			  AND (r.ended_at IS NULL OR r.outcome = 'superseded')
 		)
 		SELECT count(*) FROM upd`, limit).Scan(&n)
 	if err != nil {
