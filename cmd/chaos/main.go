@@ -196,7 +196,8 @@ func run(o opts) (int, error) {
 		"REAP_EVERY=500ms", "RETRY_BASE=100ms", "RETRY_MAX=1s",
 		fmt.Sprintf("CHAOS_FREEZE_PROB=%g", o.freezeProb), "CHAOS_FREEZE_FOR="+(2*o.lease+time.Second).String(), /* => [lease+0.5s, 2*lease+1s) */
 		"EFFECT_MODE="+o.effectMode, "UNSAFE_MODE="+o.unsafeMode)
-	fl := newFleet(filepath.Join(binDir, "worker"+ext), wenv, wlog, o.workers)
+	// worker-chaos = the worker built with -tags chaos (fault injection compiled in).
+	fl := newFleet(filepath.Join(binDir, "worker-chaos"+ext), wenv, wlog, o.workers)
 	if err := fl.fill(); err != nil {
 		return 0, err
 	}
@@ -340,6 +341,7 @@ func run(o opts) (int, error) {
 	}
 	if !drained {
 		failed++
+		logf("FAIL  %-95s", "queue_drained (all jobs reached a terminal state before the drain timeout)")
 	}
 	gaps := evidenceGaps(ev, o)
 	for _, g := range gaps {

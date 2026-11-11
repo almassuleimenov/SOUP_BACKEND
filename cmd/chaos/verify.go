@@ -26,6 +26,9 @@ func (c *check) fail(format string, a ...any) {
 type dbJob struct {
 	id, key, state string
 	attempts, max  int
+	failures       int
+	crashes        int
+	maxCrashes     int
 	cancelReq      bool
 	failAttempts   int
 }
@@ -63,14 +66,14 @@ func sqlCheck(ctx context.Context, pool *pgxpool.Pool, name, q string) check {
 
 func verify(ctx context.Context, pool *pgxpool.Pool, specs []jobSpec, l *loader) ([]check, error) {
 	rows, err := pool.Query(ctx, `SELECT id::text, idempotency_key, state::text, attempts, max_attempts,
-		cancel_requested, COALESCE((payload->>'fail_attempts')::int, 0) FROM jobs`)
+		failures, crashes, max_crashes, cancel_requested, COALESCE((payload->>'fail_attempts')::int, 0) FROM jobs`)
 	if err != nil {
 		return nil, fmt.Errorf("load jobs: %w", err)
 	}
 	byKey := map[string]dbJob{}
 	for rows.Next() {
 		var j dbJob
-		if err := rows.Scan(&j.id, &j.key, &j.state, &j.attempts, &j.max, &j.cancelReq, &j.failAttempts); err != nil {
+		if err := rows.Scan(&j.id, &j.key, &j.state, &j.attempts, &j.max, &j.failures, &j.crashes, &j.maxCrashes, &j.cancelReq, &j.failAttempts); err != nil {
 			rows.Close()
 			return nil, err
 		}
@@ -136,13 +139,19 @@ func verify(ctx context.Context, pool *pgxpool.Pool, specs []jobSpec, l *loader)
 	}
 
 	// --- Semantics that need payload knowledge ----------------------------
-	semantics := check{Name: "failure_semantics (jobs that fail every attempt never succeed; failed => attempts exhausted)"}
+	semantics := check{Name: "failure_semantics (succeeded => failed exactly fail_attempts times; failed => a budget is exhausted; crashes never spend max_attempts)"}
 	for _, j := range byKey {
 		if j.failAttempts >= j.max && j.state == "succeeded" {
 			semantics.fail("job %s fails all %d attempts but succeeded", j.id, j.max)
 		}
-		if j.state == "failed" && j.attempts != j.max {
-			semantics.fail("job %s failed after %d/%d attempts", j.id, j.attempts, j.max)
+		if j.state == "succeeded" && j.failures != j.failAttempts {
+			semantics.fail("job %s succeeded after %d failures, payload says %d", j.id, j.failures, j.failAttempts)
+		}
+		if j.state == "failed" && j.failures != j.max && j.crashes != j.maxCrashes {
+			semantics.fail("job %s failed with failures=%d/%d crashes=%d/%d", j.id, j.failures, j.max, j.crashes, j.maxCrashes)
+		}
+		if j.failAttempts < j.max && j.state == "failed" && j.crashes != j.maxCrashes {
+			semantics.fail("job %s should recover (fail_attempts=%d < %d) but failed without exhausting crashes", j.id, j.failAttempts, j.max)
 		}
 	}
 	checks = append(checks, lost, phantom, idem, mism)
@@ -183,6 +192,13 @@ func verify(ctx context.Context, pool *pgxpool.Pool, specs []jobSpec, l *loader)
 			 FROM jobs j LEFT JOIN job_runs r ON r.job_id = j.id GROUP BY j.id, j.state
 			 HAVING (j.state = 'succeeded') <> (count(r.fence) FILTER (WHERE r.outcome = 'succeeded') = 1)
 			     OR count(r.fence) FILTER (WHERE r.outcome = 'succeeded') > 1`),
+		sqlCheck(ctx, pool, "budgets_match_runs (failures = runs that reported an error; crashes = runs whose lease expired)",
+			`SELECT j.id, j.failures, j.crashes,
+			        count(r.fence) FILTER (WHERE r.outcome IN ('failed', 'retry')) AS failed_runs,
+			        count(r.fence) FILTER (WHERE r.outcome = 'lease_expired')     AS expired_runs
+			 FROM jobs j LEFT JOIN job_runs r ON r.job_id = j.id GROUP BY j.id, j.failures, j.crashes
+			 HAVING j.failures <> count(r.fence) FILTER (WHERE r.outcome IN ('failed', 'retry'))
+			     OR j.crashes  <> count(r.fence) FILTER (WHERE r.outcome = 'lease_expired')`),
 		sqlCheck(ctx, pool, "cancel_wins (cancel_requested <=> final state cancelled)",
 			`SELECT id, state, cancel_requested FROM jobs WHERE cancel_requested <> (state = 'cancelled')`),
 		sqlCheck(ctx, pool, "transition_log_consistent (last logged state = current state; one running entry per attempt)",
