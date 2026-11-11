@@ -1,0 +1,5 @@
+This run completed (it finished just before the operator stopped the rest of the FINAL2 series).
+It used the pre-fix binary and shows the same bug as FINAL2-main-10k: budgets_match_runs, 2 jobs
+whose self-fenced runs were left labelled 'superseded' while the reaper counted a crash.
+Rerun on the fixed build: FINAL3-busy-fleet (all invariants held). The rest of the FINAL2 series
+was stopped: FINAL2-neg-no-fence was killed at 0 s, the other negative controls never started.

@@ -1,0 +1,102 @@
+[   0.00s] run 20261111T223655Z-FINAL3-neg-external-effect  os=windows  args=-db postgres://jobq:jobq@127.0.0.1:55432/jobq_chaos?sslmode=disable -jobs 1000 -out results -label FINAL3-neg-external-effect -effect-mode external -freeze-prob 0.05
+[   0.00s] config jobs=1000 workers=8 kill-every=2s pause-prob=0.25(pause supported=false) dup=0.30 mismatch=0.02 cancel=0.10 fail=0.05 long=0.05/4000ms freeze=0.0500 lease=2s hb=500ms effect=external unsafe=""
+[   1.93s] chaos: kill -9 w001 (kills=1)
+[   4.19s] chaos: kill -9 w009 (kills=2)
+[   5.38s] load finished in 4.67s: posts=1892 dup_posts=892 mismatch_posts=18 cancels=60 client_retries=0 net_errors=0 5xx=0
+[   5.73s] progress posts=1892 cancels=60 load_done=true cancelled=57 queued=861 running=5 succeeded=77 kills=2
+[   6.76s] chaos: kill -9 w008 (kills=3)
+[   8.92s] chaos: kill -9 w007 (kills=4)
+[  10.73s] progress posts=1892 cancels=67 load_done=true cancelled=64 queued=771 running=6 succeeded=159 kills=4
+[  11.70s] chaos: kill -9 w011 (kills=5)
+[  12.99s] chaos: kill -9 w010 (kills=6)
+[  14.86s] chaos: kill -9 w005 (kills=7)
+[  15.73s] progress posts=1892 cancels=70 load_done=true cancelled=68 queued=680 running=8 succeeded=244 kills=7
+[  15.95s] chaos: kill -9 w014 (kills=8)
+[  17.82s] chaos: kill -9 w013 (kills=9)
+[  20.22s] chaos: kill -9 w017 (kills=10)
+[  20.73s] progress posts=1892 cancels=75 load_done=true cancelled=73 queued=584 running=8 succeeded=335 kills=10
+[  22.48s] chaos: kill -9 w004 (kills=11)
+[  24.00s] chaos: kill -9 w018 (kills=12)
+[  25.72s] progress posts=1892 cancels=79 load_done=true cancelled=77 queued=500 running=7 succeeded=416 kills=12
+[  26.99s] chaos: kill -9 w006 (kills=13)
+[  29.11s] chaos: kill -9 w003 (kills=14)
+[  30.73s] progress posts=1892 cancels=88 load_done=true cancelled=85 queued=301 running=8 succeeded=606 kills=14
+[  32.08s] chaos: kill -9 w022 (kills=15)
+[  34.82s] chaos: kill -9 w016 (kills=16)
+[  35.73s] progress posts=1892 cancels=93 load_done=true cancelled=90 queued=195 running=5 succeeded=710 kills=16
+[  37.53s] chaos: kill -9 w021 (kills=17)
+[  39.42s] chaos: kill -9 w002 (kills=18)
+[  40.73s] progress posts=1892 cancels=104 load_done=true cancelled=101 queued=93 running=8 succeeded=798 kills=18
+[  42.17s] chaos: kill -9 w024 (kills=19)
+[  43.45s] chaos: kill -9 w012 (kills=20)
+[  45.33s] chaos: kill -9 w019 (kills=21)
+[  45.73s] progress posts=1892 cancels=107 load_done=true cancelled=104 queued=9 running=8 succeeded=879 kills=21
+[  47.26s] chaos: kill -9 w028 (kills=22)
+[  49.92s] chaos: kill -9 w025 (kills=23)
+[  50.73s] progress posts=1892 cancels=107 load_done=true cancelled=104 failed=8 running=3 succeeded=885 kills=23
+[  51.07s] chaos: kill -9 w029 (kills=24)
+[  52.87s] chaos: kill -9 w026 (kills=25)
+[  54.83s] chaos: kill -9 w027 (kills=26)
+[  55.73s] progress posts=1892 cancels=107 load_done=true cancelled=104 failed=8 running=2 succeeded=886 kills=26
+[  56.36s] chaos: kill -9 w033 (kills=27)
+[  57.62s] chaos: kill -9 w020 (kills=28)
+[  60.54s] chaos: kill -9 w015 (kills=29)
+[  60.73s] progress posts=1892 cancels=107 load_done=true cancelled=104 failed=8 running=2 succeeded=886 kills=29
+[  61.97s] chaos: kill -9 w030 (kills=30)
+[  63.03s] chaos: kill -9 w031 (kills=31)
+[  65.53s] chaos: kill -9 w038 (kills=32)
+[  65.56s] queue drained 1m4.84s after load start
+[  65.70s] ==================== RESULT ====================
+[  65.70s] jobs=1000 workers=8 wall=1m4.84s throughput=15.4 jobs/s  create latency p50=16.2ms p95=117.9ms p99=257.5ms max=765ms (n=1910)
+[  65.70s] end-to-end (DB clock): queue_wait p50=23.777s p99=39.861s | created->succeeded p50=24.323s p99=43.524s max=60.984s
+[  65.70s] evidence (proves the failure paths were exercised):
+  attempts_per_job  0=51 1=869 2=46 3=10 4=9 5=10 6=4 7=1
+  cancel_paths      cancelled_by_reaper_after_worker_death=3 cancelled_by_worker_while_running=50 cancelled_while_queued=51
+  cancel_responses  200_cancelled=51 202_cancel_requested=53 409_already_succeeded=4
+  effects           jobs_with_effect=932 total=962
+  final_states      cancelled=104 failed=9 succeeded=887
+  harness           cancel_requests=108 client_retries=0 dup_posts=892 http_5xx=0 kills_sigkill=32 mismatch_posts=18 net_errors=0 pauses_sigstop=0 posts=1892 respawns=32 unexpected_worker_exits=0
+  run_outcomes      cancelled=50 failed=9 lease_expired=60 retry=102 succeeded=887
+  zombies           fence_only_rejections=3 late_writes_rejected_total=38 runs_with_late_write_rejected=38
+
+[  65.70s] PASS  no_lost_jobs (every acknowledged key exists with the acknowledged id)                           violations=0
+[  65.70s] PASS  no_phantom_jobs (db has no job the harness never asked for)                                     violations=0
+[  65.70s] PASS  idempotency (one job per key; all 2xx for a key carry the same id; <=1 x 201)                   violations=0
+[  65.70s] PASS  idempotency_mismatch (same key + different body => 422, job unchanged)                          violations=0
+[  65.70s] PASS  none_stuck (no queued/running job after drain)                                                  violations=0
+[  65.70s] FAIL  at_most_one_effect (no job has >1 side effect)                                                  violations=30
+[  65.70s]         e.g. 07cded4d-7318-41db-b474-f7d743e57c75 | 2 | [395 451]
+[  65.70s]         e.g. 0879468b-543a-40c3-b35f-0a1c4277937b | 2 | [285 348]
+[  65.70s]         e.g. 0bd4a03a-935d-4411-9ec1-a0a2db5b7665 | 2 | [48 79]
+[  65.70s]         e.g. 0d260d88-c2d0-40fc-b7fc-9e953de131b6 | 2 | [45 78]
+[  65.70s]         e.g. 10666116-a333-433f-9353-6d17798eadd8 | 2 | [118 185]
+[  65.70s] FAIL  succeeded_has_exactly_one_effect                                                                violations=30
+[  65.70s]         e.g. bf5c9058-9c04-4463-858c-8f37802b6058 | 2
+[  65.70s]         e.g. 69c0128d-d646-4289-b252-b1d4edb25ddb | 2
+[  65.70s]         e.g. be1af172-c2aa-4349-b64f-fa3db0bfbfa0 | 2
+[  65.70s]         e.g. 07cded4d-7318-41db-b474-f7d743e57c75 | 2
+[  65.70s]         e.g. 97ccc80c-6aa3-4e00-a336-3c3d33218815 | 2
+[  65.70s] FAIL  non_succeeded_has_no_effect                                                                     violations=45
+[  65.70s]         e.g. 002546ad-1300-4846-8531-32af7380cf0e | cancelled | 1
+[  65.70s]         e.g. ecc275ff-2de0-4137-b975-bedcdba76049 | cancelled | 1
+[  65.70s]         e.g. 0c4245e0-482a-47c3-94c3-b62f6b062ab4 | cancelled | 1
+[  65.70s]         e.g. 7ddfc59b-c5dd-4bdf-b261-3333502693f3 | cancelled | 1
+[  65.70s]         e.g. 47dd95db-c969-492b-b09e-b8d0d259a93b | cancelled | 1
+[  65.70s] FAIL  no_stale_write (effect comes from the newest run, which is the one that succeeded)              violations=75
+[  65.70s]         e.g. de405291-82bf-4229-aeaf-1f681b8c1aec | 10 | 10 | <nil>
+[  65.70s]         e.g. 524725ef-595d-4522-8a79-e2e88200377d | 13 | 13 | <nil>
+[  65.70s]         e.g. db7f81d4-e493-48a9-be0c-841c496d8ae5 | 23 | 23 | <nil>
+[  65.70s]         e.g. 39a7bd46-fcdb-44f8-b41e-cbce4a4d3206 | 17 | 75 | 75
+[  65.70s]         e.g. 2e6d44b0-77d6-4794-ae2c-b5ca2e789daa | 90 | 90 | <nil>
+[  65.70s] PASS  no_double_claim (runs of a job never overlap in time)                                           violations=0
+[  65.70s] PASS  all_runs_closed (every attempt has an end and an outcome)                                       violations=0
+[  65.70s] PASS  runs_match_attempts (one job_runs row per counted attempt)                                      violations=0
+[  65.70s] PASS  terminal_run_matches_state (succeeded <=> exactly one succeeded run)                            violations=0
+[  65.70s] PASS  budgets_match_runs (failures = runs that reported an error; crashes = runs whose lease expired) violations=0
+[  65.70s] PASS  cancel_wins (cancel_requested <=> final state cancelled)                                        violations=0
+[  65.70s] PASS  transition_log_consistent (last logged state = current state; one running entry per attempt)    violations=0
+[  65.70s] PASS  transition_log_starts_queued                                                                    violations=0
+[  65.70s] PASS  failure_semantics (succeeded => failed exactly fail_attempts times; failed => a budget is exhausted; crashes never spend max_attempts) violations=0
+[  65.70s] PASS  cancel_response_consistency (API answer matches final state)                                    violations=0
+[  65.70s] VERDICT: 4 INVARIANT(S) VIOLATED
+[  65.71s] artifacts in results\20261111T223655Z-FINAL3-neg-external-effect

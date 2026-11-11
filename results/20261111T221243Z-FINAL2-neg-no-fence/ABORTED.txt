@@ -1,0 +1,1 @@
+ABORTED at 0 s by the operator: stopped together with the rest of the FINAL2 series after FINAL2-main-10k exposed a bug. Pre-fix binary, no result. Rerun on the fixed build: FINAL3-neg-no-fence.

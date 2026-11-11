@@ -1,0 +1,2 @@
+[   0.00s] run 20261111T221243Z-FINAL2-neg-no-fence  os=windows  args=-db postgres://jobq:jobq@127.0.0.1:55432/jobq_chaos?sslmode=disable -jobs 1000 -out results -label FINAL2-neg-no-fence -unsafe no-fence -freeze-prob 0.1 -long-rate 0.2
+[   0.00s] config jobs=1000 workers=8 kill-every=2s pause-prob=0.25(pause supported=false) dup=0.30 mismatch=0.02 cancel=0.10 fail=0.05 long=0.20/4000ms freeze=0.1000 lease=2s hb=500ms effect=tx unsafe="no-fence"
