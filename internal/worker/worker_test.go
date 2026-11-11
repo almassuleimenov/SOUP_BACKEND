@@ -7,7 +7,6 @@ package worker
 import (
 	"context"
 	"encoding/json"
-	"io"
 	"log/slog"
 	"os"
 	"testing"
@@ -64,7 +63,7 @@ func TestDeadWorkerReapedWhileAllWorkersBusy(t *testing.T) {
 		ID: "live", Lease: lease, Heartbeat: lease / 4, PollMin: 10 * time.Millisecond, PollMax: 50 * time.Millisecond,
 		ReapEvery: reapEvery, RetryBase: 100 * time.Millisecond, RetryMax: time.Second,
 		EffectMode: EffectInTx, FinishTimeout: 5 * time.Second,
-	}, st, slog.New(slog.NewTextHandler(io.Discard, nil)), NewMetrics(prometheus.NewRegistry()))
+	}, st, slog.New(slog.NewTextHandler(tWriter{t}, nil)), NewMetrics(prometheus.NewRegistry()))
 	wctx, stop := context.WithCancel(ctx)
 	done := make(chan struct{})
 	go func() { defer close(done); _ = w.Run(wctx) }()
@@ -102,6 +101,11 @@ func TestDeadWorkerReapedWhileAllWorkersBusy(t *testing.T) {
 	}
 	t.Logf("dead job reaped %s after claim (lease %s) while the only live worker was busy", reapedAfter.Round(time.Millisecond), lease)
 }
+
+// tWriter routes worker logs into the test log: shown only if the test fails.
+type tWriter struct{ t *testing.T }
+
+func (w tWriter) Write(b []byte) (int, error) { w.t.Log(string(b)); return len(b), nil }
 
 func waitState(t *testing.T, st *store.Store, id string, want store.State, d time.Duration) {
 	t.Helper()

@@ -48,7 +48,7 @@ type Config struct {
 // Payload is what the emulated "training job" understands.
 type Payload struct {
 	DurationMS   int `json:"duration_ms"`   // simulated work time
-	FailAttempts int `json:"fail_attempts"` // the first N attempts fail
+	FailAttempts int `json:"fail_attempts"` // the first N executions that reach the end report an error
 }
 
 // Worker executes jobs.
@@ -292,8 +292,10 @@ func execute(ctx context.Context, job *store.Claimed) (json.RawMessage, error) {
 		return nil, context.Cause(ctx)
 	case <-t.C:
 	}
-	if job.Attempt <= p.FailAttempts {
-		return nil, fmt.Errorf("simulated failure on attempt %d", job.Attempt)
+	// fail_attempts counts executions that *report* an error; a crashed
+	// execution does not consume one (it does not consume a failure either).
+	if job.Failures < p.FailAttempts {
+		return nil, fmt.Errorf("simulated failure #%d (claim %d)", job.Failures+1, job.Attempt)
 	}
 	return json.RawMessage(fmt.Sprintf(`{"fence":%d,"attempt":%d}`, job.Fence, job.Attempt)), nil
 }
