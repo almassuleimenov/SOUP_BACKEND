@@ -43,9 +43,6 @@ func loadConfig() (worker.Config, store.Options, error) {
 		errs = append(errs, err)
 		return v
 	}
-	freeze, err := config.Float("CHAOS_FREEZE_PROB", 0)
-	errs = append(errs, err)
-
 	cfg := worker.Config{
 		ID:            config.String("WORKER_ID", defaultID()),
 		Lease:         dur("LEASE", 3*time.Second),
@@ -55,13 +52,8 @@ func loadConfig() (worker.Config, store.Options, error) {
 		ReapEvery:     dur("REAP_EVERY", time.Second),
 		RetryBase:     dur("RETRY_BASE", 200*time.Millisecond),
 		RetryMax:      dur("RETRY_MAX", 10*time.Second),
-		FreezeProb:    freeze,
-		FreezeFor:     dur("CHAOS_FREEZE_FOR", 0),
 		FinishTimeout: dur("FINISH_TIMEOUT", 5*time.Second),
-		EffectMode:    worker.EffectMode(config.String("EFFECT_MODE", string(worker.EffectInTx))),
-	}
-	if cfg.FreezeFor == 0 {
-		cfg.FreezeFor = 2 * cfg.Lease
+		EffectMode:    worker.EffectInTx,
 	}
 	if err := errors.Join(errs...); err != nil {
 		return cfg, store.Options{}, err
@@ -69,18 +61,11 @@ func loadConfig() (worker.Config, store.Options, error) {
 	if cfg.Heartbeat*3 > cfg.Lease {
 		return cfg, store.Options{}, fmt.Errorf("HEARTBEAT (%s) must be at most LEASE/3 (%s)", cfg.Heartbeat, cfg.Lease)
 	}
-	if cfg.EffectMode != worker.EffectInTx && cfg.EffectMode != worker.EffectExternal {
-		return cfg, store.Options{}, fmt.Errorf("EFFECT_MODE must be tx or external")
-	}
+	// Fault injection and negative controls exist only in the `chaos` build
+	// (chaos_on.go). The production build refuses to start if they are set.
 	var opts store.Options
-	switch m := os.Getenv("UNSAFE_MODE"); m {
-	case "":
-	case "no-fence":
-		opts.UnsafeNoFence = true
-	case "racy-claim":
-		opts.UnsafeRacyClaim = true
-	default:
-		return cfg, opts, fmt.Errorf("unknown UNSAFE_MODE %q", m)
+	if err := chaosConfig(&cfg, &opts); err != nil {
+		return cfg, opts, err
 	}
 	return cfg, opts, nil
 }
