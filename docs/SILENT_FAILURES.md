@@ -122,6 +122,13 @@ jumps. Even if a worker misjudges, fencing makes its writes harmless.
 
 ## Also checked (bonus)
 
+* **Monitoring that silently reports nothing** (`TestQueueCollectorAgainstPostgres`). The queue-metrics SQL had a syntax
+  error from day one, so `/metrics` returned `jobq_queue_scrape_ok 0` and none of the gauges VERDICT.md proposed alerting on.
+  No error reached any log, and no harness run scrapes `/metrics`. Found by EXPLAIN, now covered by a test that executes the
+  real query (verified to fail on the old SQL).
+* **Worker deaths spending the job's retry budget** (`TestCrashesDoNotSpendAttempts`, `TestPoisonJobBoundedByCrashBudget`,
+  harness `budgets_match_runs`). Found by an independent review: a few deploys in a row used to turn healthy jobs into `failed`.
+
 * **Ambiguous commit on finish** (`TestFinishRetryAfterAmbiguousCommit`). The worker's COMMIT succeeds but the reply is lost,
   so the worker retries. The retry must not write a second effect and must not count itself as a zombie. `finish_job`
   recognises its own already-closed run and reports success. (Found in code review, not by the harness: the harness never
@@ -129,4 +136,5 @@ jumps. Even if a worker misjudges, fencing makes its writes harmless.
 
 * **Terminal states are immutable** (`TestTerminalStateIsImmutable`): the DB trigger rejects any update of a terminal row,
   including "harmless" ones like rewriting `result`.
-* **Attempts are bounded and a dead worker counts as an attempt** (`TestAttemptsExhaustToFailed`): a poison job can't loop forever.
+* **Both retry budgets are bounded** (`TestFailuresExhaustToFailed`, `TestPoisonJobBoundedByCrashBudget`): a job that keeps
+  failing, or keeps killing its worker, ends `failed` instead of looping forever.

@@ -64,5 +64,7 @@ internal/migrate/sql/001_init.sql   schema, state-machine trigger, constraints
 ## Worker configuration (env)
 
 `LEASE` (3s) · `HEARTBEAT` (750ms, ≤ LEASE/3) · `REAP_EVERY` (1s) · `RETRY_BASE`/`RETRY_MAX` (200ms/10s) ·
-`EFFECT_MODE` (`tx` | `external`) · chaos only: `CHAOS_FREEZE_PROB`, `CHAOS_FREEZE_FOR`, `UNSAFE_MODE` (`no-fence` | `racy-claim`).
-API: `HTTP_ADDR`, `DB_MAX_CONNS`, `API_TOKEN` (optional bearer auth).
+Only in `worker-chaos` (built with `-tags chaos`; the production worker refuses to start if these are set):
+`EFFECT_MODE` (`tx` | `external`), `CHAOS_FREEZE_PROB`, `CHAOS_FREEZE_FOR`, `UNSAFE_MODE` (`no-fence` | `racy-claim`).
+API: `HTTP_ADDR`, `DB_MAX_CONNS`, `API_TOKEN` (optional bearer auth, also required for `/metrics` when set).
+Job types: only `train` is executable; unknown types and malformed `train` payloads get 400.

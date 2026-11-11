@@ -16,11 +16,14 @@ SQLite would be correct but slow. Postgres is correct *and* behaves the way it w
 
 ```
 queued ──claim──▶ running ──finish ok──▶ succeeded
-  │                 │ ├──finish err, attempts left──▶ queued (run_after = now()+backoff)
-  │                 │ ├──finish err, no attempts left / reaper, no attempts left──▶ failed
-  │                 │ └──lease expired (reaper)──▶ queued  (keeps its place in line)
+  │                 │ ├──finish err, failures < max_attempts──▶ queued (run_after = now()+backoff)
+  │                 │ ├──finish err, failures = max_attempts / reaper, crashes = max_crashes──▶ failed
+  │                 │ └──lease expired (reaper), crashes < max_crashes──▶ queued  (keeps its place in line)
   └──cancel──▶ cancelled ◀──cancel_requested observed (worker finish or reaper)──┘
 ```
+Two separate budgets: `failures` (the job reported an error, limit `max_attempts`) and `crashes` (its worker died or froze
+past the lease, limit `max_crashes`=5). A deploy or OOM kill never spends the job's own retry budget, and a poison job that
+kills every worker is still bounded. `attempts` counts claims (= rows in `job_runs`).
 A trigger in the database enforces the arrows above (illegal transitions raise), makes terminal rows immutable, and logs every
 transition to `job_transitions`. CHECK constraints tie the lease columns to `state='running'` and `finished_at` to terminal states.
 A bug in any client fails loudly instead of corrupting data.

@@ -24,7 +24,9 @@ Every claim in these docs is backed by a harness run or a test in this repositor
   re-checked the code and re-ran the harness on Linux (3,000 jobs, 67 × kill -9, 15 × SIGSTOP, all invariants held). The
   review found a real bug that neither the AI nor the harness had caught: the reaper ran only between jobs (row 10 below). It
   also found docs promising more than the code did, plus several known risks. I brought the findings back and asked for them
-  to be fixed or written down. The fixes are in this change set, and the risks are now listed in VERDICT.md.
+  to be **fixed in code, not only documented**: the reaper, the crash budget, the production build without chaos switches,
+  `/metrics` auth and cost, and payload validation. Each fix has a test, and the reaper and metrics tests were also run
+  against the old code to show that they fail there. See VERDICT.md.
 * **Got a Linux/Docker run without Docker locally.** Because there is no Docker on my machine, I added a GitHub Actions
   workflow (`.github/workflows/compose-chaos.yml`, approach suggested in the review). On `ubuntu-latest` it runs
   `docker compose up --build`, a smoke test, `go test -race` on Linux and the 10k chaos harness via `docker compose`
@@ -50,6 +52,9 @@ None of these produced an error message. Each was caught by looking at evidence,
 | 8 | A Finish retried after a lost COMMIT reply was counted as a zombie | Code review | Own-run check, `TestFinishRetryAfterAmbiguousCommit` |
 | 9 | I drew conclusions from single load-test runs ("fsync +10%", "finish fix made it slower") | Repeating the same config: 304 / 448 / 592 jobs/s | Noise is ±35%. Those claims are withdrawn, and only repeatable effects are stated in VERDICT.md |
 | 10 | **The reaper only ran between jobs** (called from the main loop before `Claim`). With every worker busy on long jobs, a dead worker's job stayed `running` with an expired lease until someone finished (~21 s in the reviewer's repro with 25 s jobs). DESIGN.md claimed 3–4 s detection regardless | **Independent review**, not the harness: harness jobs last ≤ 4 s, so some worker was always free soon | Reaper in its own goroutine (3rd DB connection). `TestDeadWorkerReapedWhileAllWorkersBusy` fails on the old code and passes on the new one. Docs corrected |
+| 11 | **The queue metrics never worked.** The collector's SQL had `FILTER` attached to `EXTRACT` instead of `min()`, a syntax error since the first version. Every scrape silently returned `jobq_queue_scrape_ok 0`, and VERDICT.md proposed paging on those very metrics | Found only by running `EXPLAIN ANALYZE` on the rewritten query while fixing a review item. No harness run scrapes `/metrics` | Fixed. `TestQueueCollectorAgainstPostgres` runs the real query; it was run against the old SQL and fails there |
+| 12 | One unexplained failure of `TestDeadWorkerReapedWhileAllWorkersBusy` ("did not reach running within 5s") in the first full-suite run after the crash-budget change | Not reproduced in 4 later full runs with `-race` | Root cause **unknown**. Worker logs are now routed into the test log, so a recurrence (e.g. in CI) shows what happened. I am not claiming it is fixed |
+| 13 | **Crash counter disagreed with the run history.** A worker whose heartbeat *timed out* under load self-fenced and closed its run as `superseded`; the reaper then counted the crash but only labelled runs that were still open. 1 job out of 10,000 | The new harness invariant `budgets_match_runs`, in `FINAL2-main-10k` (1 of 10,000 jobs) and `FINAL2-busy-fleet` (2 of 80), both exit 1, raw output kept. Not by any unit test or review | Fixed: the reaper relabels a self-fenced run as `lease_expired` in the same statement that counts the crash. `TestSelfFencedRunIsLabelledByReaper` fails on the old code and passes on the new. Rerun as `FINAL3-*`. Effects and states were never wrong; only the accounting was |
 
 ## What was verified by hand / by measurement
 
