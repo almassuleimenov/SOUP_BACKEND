@@ -99,7 +99,7 @@ re-checks.
 
 **How checked:** `TestClaimExactlyOnceUnderEveryIsolationLevel` runs the same 32-way claim under READ COMMITTED, REPEATABLE
 READ and SERIALIZABLE. It asserts exactly-once claims in all three and logs the number of serialization failures (final run, `results/tests.txt`: READ COMMITTED 0, REPEATABLE
-READ 455, SERIALIZABLE 5266 serialization failures for the same 500 claims). The stricter levels add retries and buy no extra safety. The read-then-write bug
+READ 533, SERIALIZABLE 4742 serialization failures for the same 500 claims). The stricter levels add retries and buy no extra safety. The read-then-write bug
 (`racy-claim`) is what actually breaks under READ COMMITTED, and the harness catches it (§1).
 
 ## 6. Clock skew

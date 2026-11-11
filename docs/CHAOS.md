@@ -63,7 +63,7 @@ Each switch breaks exactly one mechanism (`UNSAFE_MODE` in the worker, or `-effe
 ## Runs
 
 Every run, including failed, blind and superseded ones, is listed in **[results/INDEX.md](../results/INDEX.md)** with its
-raw `harness.log`, `workers.log`, `api.log` and `summary.json`. In total there are 30 runs.
+raw `harness.log`, `workers.log`, `api.log` and `summary.json`. In total there are 39 runs (plus one aborted at 0 s, FINAL2-neg-no-fence).
 Early development runs are in `results/dev-iterations/`.
 
 ### History (what failed, and what I learned)
