@@ -69,7 +69,9 @@ func (s *Server) Handler() http.Handler {
 	mux.Handle("POST /v1/jobs/{id}/cancel", s.wrap("cancel", s.auth(s.cancelJob)))
 	mux.HandleFunc("GET /healthz", func(w http.ResponseWriter, _ *http.Request) { w.WriteHeader(http.StatusOK) })
 	mux.HandleFunc("GET /readyz", s.ready)
-	mux.Handle("GET /metrics", promhttp.HandlerFor(s.gatherer, promhttp.HandlerOpts{}))
+	// Same bearer token as the API when API_TOKEN is set (Prometheus supports
+	// authorization.credentials). Queue sizes are not public information.
+	mux.Handle("GET /metrics", s.auth(promhttp.HandlerFor(s.gatherer, promhttp.HandlerOpts{}).ServeHTTP))
 	return mux
 }
 
@@ -98,8 +100,17 @@ func (s *Server) createJob(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusBadRequest, "invalid_type", "type must match "+typeRe.String())
 		return
 	}
+	validate, known := payloadValidators[req.Type]
+	if !known {
+		writeError(w, http.StatusBadRequest, "unknown_type", "no worker can execute job type "+strconv.Quote(req.Type))
+		return
+	}
 	payload, err := canonicalObject(req.Payload)
 	if err != nil {
+		writeError(w, http.StatusBadRequest, "invalid_payload", err.Error())
+		return
+	}
+	if err := validate(payload); err != nil {
 		writeError(w, http.StatusBadRequest, "invalid_payload", err.Error())
 		return
 	}

@@ -70,3 +70,27 @@ func TestCursorRoundTrip(t *testing.T) {
 		}
 	}
 }
+
+func TestValidateTrainPayload(t *testing.T) {
+	tests := []struct {
+		payload string
+		ok      bool
+	}{
+		{`{}`, true},
+		{`{"duration_ms":200,"fail_attempts":1,"lr":0.001}`, true},
+		{`{"duration_ms":"abc"}`, false}, // review finding: used to get 201
+		{`{"duration_ms":1.5}`, false},
+		{`{"duration_ms":-1}`, false},
+		{`{"duration_ms":86400001}`, false},
+		{`{"fail_attempts":null}`, false},
+		{`{"fail_attempts":21}`, false},
+	}
+	for _, tt := range tests {
+		if err := validateTrain(json.RawMessage(tt.payload)); (err == nil) != tt.ok {
+			t.Errorf("validateTrain(%s) err=%v, want ok=%v", tt.payload, err, tt.ok)
+		}
+	}
+	if _, ok := payloadValidators["nope"]; ok {
+		t.Error("unknown types must not have a validator")
+	}
+}
