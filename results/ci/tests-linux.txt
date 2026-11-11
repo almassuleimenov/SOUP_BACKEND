@@ -1,0 +1,81 @@
+go: downloading github.com/kylelemons/godebug v1.1.0
+?   	jobqueue/cmd/chaos	[no test files]
+?   	jobqueue/cmd/server	[no test files]
+?   	jobqueue/cmd/worker	[no test files]
+=== RUN   TestValidateKey
+=== RUN   TestValidateKey/empty
+=== RUN   TestValidateKey/simple
+=== RUN   TestValidateKey/max_length
+=== RUN   TestValidateKey/too_long
+=== RUN   TestValidateKey/space
+=== RUN   TestValidateKey/control_char
+=== RUN   TestValidateKey/non-ascii
+--- PASS: TestValidateKey (0.00s)
+    --- PASS: TestValidateKey/empty (0.00s)
+    --- PASS: TestValidateKey/simple (0.00s)
+    --- PASS: TestValidateKey/max_length (0.00s)
+    --- PASS: TestValidateKey/too_long (0.00s)
+    --- PASS: TestValidateKey/space (0.00s)
+    --- PASS: TestValidateKey/control_char (0.00s)
+    --- PASS: TestValidateKey/non-ascii (0.00s)
+=== RUN   TestCanonicalObject
+--- PASS: TestCanonicalObject (0.00s)
+=== RUN   TestCursorRoundTrip
+--- PASS: TestCursorRoundTrip (0.00s)
+=== RUN   TestValidateTrainPayload
+--- PASS: TestValidateTrainPayload (0.00s)
+=== RUN   TestQueueCollectorAgainstPostgres
+--- PASS: TestQueueCollectorAgainstPostgres (0.11s)
+PASS
+ok  	jobqueue/internal/api	1.136s
+?   	jobqueue/internal/config	[no test files]
+?   	jobqueue/internal/db	[no test files]
+?   	jobqueue/internal/migrate	[no test files]
+=== RUN   TestClaimExactlyOnceUnderEveryIsolationLevel
+=== RUN   TestClaimExactlyOnceUnderEveryIsolationLevel/read_committed
+    store_test.go:144: isolation=read committed: 500 jobs claimed exactly once, 0 serialization failures (retried)
+=== RUN   TestClaimExactlyOnceUnderEveryIsolationLevel/repeatable_read
+    store_test.go:144: isolation=repeatable read: 500 jobs claimed exactly once, 635 serialization failures (retried)
+=== RUN   TestClaimExactlyOnceUnderEveryIsolationLevel/serializable
+    store_test.go:144: isolation=serializable: 500 jobs claimed exactly once, 4663 serialization failures (retried)
+--- PASS: TestClaimExactlyOnceUnderEveryIsolationLevel (6.46s)
+    --- PASS: TestClaimExactlyOnceUnderEveryIsolationLevel/read_committed (0.90s)
+    --- PASS: TestClaimExactlyOnceUnderEveryIsolationLevel/repeatable_read (1.34s)
+    --- PASS: TestClaimExactlyOnceUnderEveryIsolationLevel/serializable (4.22s)
+=== RUN   TestRacyClaimIsDetected
+    store_test.go:165: racy claim: 299 of 300 jobs double-claimed
+--- PASS: TestRacyClaimIsDetected (2.54s)
+=== RUN   TestZombieWriteIsFenced
+--- PASS: TestZombieWriteIsFenced (0.15s)
+=== RUN   TestCancelCompleteRace
+    store_test.go:290: cancel won 126, completion won 174
+--- PASS: TestCancelCompleteRace (1.44s)
+=== RUN   TestIdempotentCreateConcurrent
+--- PASS: TestIdempotentCreateConcurrent (0.48s)
+=== RUN   TestTerminalStateIsImmutable
+--- PASS: TestTerminalStateIsImmutable (0.11s)
+=== RUN   TestReaperHonoursCancel
+--- PASS: TestReaperHonoursCancel (0.06s)
+=== RUN   TestFailuresExhaustToFailed
+--- PASS: TestFailuresExhaustToFailed (0.07s)
+=== RUN   TestCrashesDoNotSpendAttempts
+--- PASS: TestCrashesDoNotSpendAttempts (0.07s)
+=== RUN   TestPoisonJobBoundedByCrashBudget
+--- PASS: TestPoisonJobBoundedByCrashBudget (0.07s)
+=== RUN   TestFinishRetryAfterAmbiguousCommit
+--- PASS: TestFinishRetryAfterAmbiguousCommit (0.06s)
+=== RUN   TestSelfFencedRunIsLabelledByReaper
+--- PASS: TestSelfFencedRunIsLabelledByReaper (0.06s)
+PASS
+ok  	jobqueue/internal/store	12.580s
+=== RUN   TestDeadWorkerReapedWhileAllWorkersBusy
+    worker_test.go:108: time=2026-11-11T22:58:01.923Z level=INFO msg="worker started" worker=live lease=1s heartbeat=250ms effect_mode=tx
+        
+    worker_test.go:108: time=2026-11-11T22:58:03.125Z level=INFO msg="reaped expired leases" worker=live count=1
+        
+    worker_test.go:102: dead job reaped 1.167s after claim (lease 1s) while the only live worker was busy
+    worker_test.go:108: time=2026-11-11T22:58:09.952Z level=INFO msg="worker stopping" worker=live
+        
+--- PASS: TestDeadWorkerReapedWhileAllWorkersBusy (8.09s)
+PASS
+ok  	jobqueue/internal/worker	9.107s

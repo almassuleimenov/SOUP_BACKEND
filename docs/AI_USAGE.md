@@ -20,8 +20,7 @@ Every claim in these docs is backed by a harness run or a test in this repositor
 * **Checked the answers.** I followed the progress, asked for a full explanation of the design and results in Russian so I
   could understand them, and reviewed the documents. I noticed that this file showed only the AI's part and asked for my
   own part to be written down honestly. I also compared the local working copy with the GitHub version.
-* **Had the work independently reviewed and acted on it.** I got an independent review of the code and docs. The reviewer
-  re-checked the code and re-ran the harness on Linux (3,000 jobs, 67 × kill -9, 15 × SIGSTOP, all invariants held). The
+* **Had the work independently reviewed and acted on it.** I got an independent review of the code and docs. The
   review found a real bug that neither the AI nor the harness had caught: the reaper ran only between jobs (row 10 below). It
   also found docs promising more than the code did, plus several known risks. I brought the findings back and asked for them
   to be **fixed in code, not only documented**: the reaper, the crash budget, the production build without chaos switches,
@@ -30,7 +29,9 @@ Every claim in these docs is backed by a harness run or a test in this repositor
 * **Got a Linux/Docker run without Docker locally.** Because there is no Docker on my machine, I added a GitHub Actions
   workflow (`.github/workflows/compose-chaos.yml`, approach suggested in the review). On `ubuntu-latest` it runs
   `docker compose up --build`, a smoke test, `go test -race` on Linux and the 10k chaos harness via `docker compose`
-  (real kill -9 and SIGSTOP), and uploads the raw output as an artifact.
+  (real kill -9 and SIGSTOP), and uploads the raw output as an artifact. I pushed, the run passed
+  ([run 43115919523](https://github.com/almassuleimenov/SOUP_BACKEND/actions/runs/43115919523), commit `8899edf`: 10,000 jobs, 200 × kill -9, 39 × SIGSTOP, all invariants
+  held; 28 tests pass with `-race` on Linux), and I downloaded the artifact and added it to `results/`.
 * **Owned the repository.** I make and push every commit myself.
 
 I did not write the Go code or the SQL by hand, and I did not run the harness or the tests from my own terminal. Those
@@ -66,12 +67,12 @@ None of these produced an error message. Each was caught by looking at evidence,
 
 ## Still to do before submission
 
-* Push and let the `compose-chaos` GitHub Actions workflow run (`docker compose` on Linux). Download the `chaos-results`
-  artifact into `results/` and commit it, whatever the result, then link the run in the submission email.
+* Link the Actions run in the submission email. (The Linux/Docker run itself is done and committed.)
 
 ## What I would still not trust without checking
 
-* The harness was run on Windows (no SIGSTOP; zombies come from an in-process freeze hook). On Linux in Docker it also does
-  real SIGSTOP/SIGCONT. The Linux numbers should be re-run before trusting them.
+* Most harness runs were on Windows (no SIGSTOP; zombies come from an in-process freeze hook). The Linux/Docker run (with
+  real SIGSTOP/SIGCONT) is a single 10k run on a shared CI runner: one green run, not a statistic. Its latency numbers are
+  from a different machine and are not comparable to the laptop numbers.
 * AI-written prose tends to overstate. Wherever a doc says "guaranteed", the backing is a CHECK constraint, a trigger, or a
   harness invariant, and is named next to it. If it isn't named, treat it as a claim.

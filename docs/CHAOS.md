@@ -173,7 +173,7 @@ Be explicit about the blind spots. A green run says nothing about these:
    would be deterministic or resumable on retry, which matters a lot for at-least-once execution of multi-hour jobs.
 9. **Windows vs Linux.** On Windows there is no SIGSTOP, so zombies come only from the in-worker freeze hook. That hook
    freezes at one chosen point (after work, before the write), which is the worst point. A real SIGSTOP can land anywhere.
-   The Docker/Linux run adds real SIGSTOP/SIGCONT.
+   The Docker/Linux run (`results/20261111T225812Z-ci-docker-10k`, GitHub Actions) adds real SIGSTOP/SIGCONT: 39 of them, all invariants held.
 10. **Long jobs with a fully busy fleet.** Jobs last at most 4 s, so some worker is always free soon. That is why the harness
     never noticed that the reaper ran only between jobs (found by an independent review, fixed, and covered by
     `TestDeadWorkerReapedWhileAllWorkersBusy`). A harness profile with every worker on long jobs would have caught it.

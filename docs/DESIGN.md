@@ -41,7 +41,7 @@ strictly greater than every earlier claim of that job, and every later write by 
 
 Leases. The worker heartbeats every `lease/3`: `UPDATE … SET lease_expires_at = now()+lease WHERE id=$1 AND lease_token=$2
 AND state='running'`. Zero rows means the lease was lost, so the worker abandons the job and writes nothing. Every worker also runs
-the reaper **in its own goroutine**, every 0.5–1 s, independently of the job it is executing: `running AND lease_expires_at < now()` → `queued` (or `failed` if attempts are exhausted, or `cancelled`
+the reaper **in its own goroutine**, every 0.5–1 s, independently of the job it is executing: `running AND lease_expires_at < now()` → `queued` (counting one crash, not a failure; `failed` if the crash budget `max_crashes` is exhausted; `cancelled`
 if a cancel was requested). It uses `SKIP LOCKED` and re-checks the predicate, so concurrent reapers are safe, and a heartbeat that
 commits first simply makes the row stop matching. **Only the database clock is used** (`now()`). Worker clocks never enter
 any comparison, so worker clock skew cannot shorten or extend a lease. Workers only measure *durations* with a monotonic clock, to

@@ -14,6 +14,7 @@ on day 30 and on the first bad day, not in the first 10 minutes. The list below 
 | **100 new jobs/s open-loop for 60 s + full chaos** (kill -9 ~2 s, 30% concurrent duplicate POSTs ⇒ ~180 POST/s, cancels, zombies), 32 workers | **0 errors, all invariants held.** Create p50 3.2 ms, p99 21 ms, max 166 ms. Queue wait p50 0.5 s, p99 2.9 s. created→succeeded p99 4.9 s. Backlog oscillated around 0–400 and drained 10 s after load stopped. `results/*load-100rps-chaos-w32-v2` |
 | Same, first attempt | **4 × 5xx** (`too many clients`, local `max_connections=100`). Clients retried with the same key, so no duplicates. This led to fixes #2 and #3 below. `results/*load-100rps-chaos-w32` |
 | Machinery ceiling, zero-length jobs, no chaos | 300–640 jobs/s end-to-end. **Run-to-run noise ±35%** (same config: 304, 448, 592 jobs/s), so single-run comparisons below that noise level mean nothing. 8 workers ≥ 16 ≥ 32 workers: the box is CPU-bound, and more workers only add contention |
+| **Linux / Docker, final build** (10k chaos run, not a load test) | GitHub Actions runner, `ubuntu-latest`, `docker compose`, commit `8899edf` ([run 43115919523](https://github.com/almassuleimenov/SOUP_BACKEND/actions/runs/43115919523), raw output in `results/20261111T225812Z-ci-docker-10k` and `results/ci/`): 10,000 jobs, 8 workers, 200 × kill -9, 39 × SIGSTOP, **all 19 invariants held**, `fence_only_rejections=5`, 0 × 5xx; `go test -race` on Linux: 28 tests pass. Create p99 30 ms, max 253 ms |
 | 10x (1000 rps target) | **Does not hold.** Accepted only ~450–640 rps. Create p99 0.2–2 s, max up to 4.9 s, queue wait p99 1.5–15 s |
 
 **What breaks first at 10x:** the single Postgres primary. Each job costs about 10 row writes (insert + audit row, claim
@@ -58,9 +59,10 @@ any external or multi-tenant use.
 
 ## Found by an independent review (after the runs above)
 
-An independent reviewer re-checked the code and re-ran the harness on Linux: 3,000 jobs, 67 × kill -9, 15 × SIGSTOP, all 18
-invariants held. The reviewer confirmed claiming, fencing, the cancel/complete race, idempotency 422 and DB-clock-only SQL,
-and also found problems that none of my runs caught. All of them are now fixed in code, not just documented:
+An independent reviewer re-checked the code. The reviewer confirmed claiming, fencing, the cancel/complete race, idempotency 422 and DB-clock-only SQL,
+and also found problems that none of my runs caught. All of them are now fixed in code, not just documented. The Linux/Docker
+evidence for the fixed build is my own run: GitHub Actions, `ubuntu-latest`, `docker compose`, commit `8899edf` ([run 43115919523](https://github.com/almassuleimenov/SOUP_BACKEND/actions/runs/43115919523), raw output in `results/20261111T225812Z-ci-docker-10k` and `results/ci/`): 10,000 jobs, 8 workers, 200 × kill -9, 39 × SIGSTOP, **all 19 invariants held**, `fence_only_rejections=5`, 0 × 5xx; `go test -race` on Linux: 28 tests pass.
+
 
 * **Fixed: the reaper only ran between jobs.** It was called from the worker's main loop, before `Claim`. With every worker busy
   on long jobs, a dead worker's job stayed `running` with an expired lease until some worker finished. The reviewer reproduced
